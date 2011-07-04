@@ -1,7 +1,7 @@
-@M  
+@M
 new B myB {
 	myAtt1 = "41";
-	myAttMultiValued += [ "val1", "val2" ];
+	myAttMultiValued += [ "val1" , "val2" ];
 	myAtt3 += "41";
 }
 M@
