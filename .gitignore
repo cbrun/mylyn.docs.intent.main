@@ -14,6 +14,7 @@
 /plugins/org.eclipse.mylyn.docs.intent.markup/bin
 /plugins/org.eclipse.mylyn.docs.intent.markup.gen/bin
 /plugins/org.eclipse.mylyn.docs.intent.parser/bin
-/tests/org.eclipse.mylyn.docs.intent.collab.test
-/tests/org.eclipse.mylyn.docs.intent.markup.test
-/tests/org.eclipse.mylyn.docs.intent.parser.test
+/tests/org.eclipse.mylyn.docs.intent.collab.test/bin
+/tests/org.eclipse.mylyn.docs.intent.markup.test/bin
+/tests/org.eclipse.mylyn.docs.intent.parser.test/bin
+/examples/org.eclipse.mylyn.docs.intent.retro/bin
