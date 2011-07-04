@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Authors">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" Me" lineBreak="true"/>
+      <content xmi:type="markup:Text" data="Contact">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" me@mycompany.com"/>
+    </content>
+    <content xmi:type="markup:List" listType="TABLE_OF_CONTENT">
+      <attributes CSSStyle="list-style: none;"/>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <content xmi:type="markup:Link" hrefOrHashName="#EMFCompareUserGuide" target="//@content.0">
+          <attributes/>
+          <name>
+            <content xmi:type="markup:Text" data="EMF Compare User Guide"/>
+          </name>
+        </content>
+        <items listType="TABLE_OF_CONTENT" imbricationLevel="2" isList="true">
+          <attributes CSSStyle="list-style: none;"/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Installation" target="//@content.0/@content.2">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Installation"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Requirements" target="//@content.0/@content.3">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Requirements"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2" isList="true">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Configuration" target="//@content.0/@content.4">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Configuration"/>
+              </name>
+            </content>
+            <items listType="TABLE_OF_CONTENT" imbricationLevel="3" isList="true">
+              <attributes CSSStyle="list-style: none;"/>
+              <items listType="NUMERIC" imbricationLevel="3">
+                <attributes/>
+                <content xmi:type="markup:Link" hrefOrHashName="#ActivatingEMFCompareonagivenfileextension" target="//@content.0/@content.4/@content.0">
+                  <attributes/>
+                  <name>
+                    <content xmi:type="markup:Text" data="Activating EMF Compare on a given file extension"/>
+                  </name>
+                </content>
+              </items>
+            </items>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Usage" target="//@content.0/@content.5">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Usage"/>
+              </name>
+            </content>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="To install EMF Compare you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll need to use either the  "/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://www.eclipse.org/modeling/emf/updates/" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data=" EMF update-site :"/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" or the build bits from the: "/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://www.eclipse.org/modeling/emf/downloads/?project=compare" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data=" download page "/>
+          </name>
+        </content>
+      </content>
+      <attributes id="Installation"/>
+      <title>
+        <content xmi:type="markup:Text" data="Installation"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="EMF Compare depends on:"/>
+      </content>
+      <content xmi:type="markup:List" listType="NUMERIC">
+        <attributes/>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data="EMF runtime"/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data="Eclipse Platform (if you don"/>
+          <content xmi:type="markup:Entity" data="#8217"/>
+          <content xmi:type="markup:Text" data="t want to run EMF Compare in "/>
+          <content xmi:type="markup:Entity" data="#171"/>
+          <content xmi:type="markup:Text" data="standalone mode"/>
+          <content xmi:type="markup:Entity" data="#187"/>
+          <content xmi:type="markup:Text" data=")."/>
+        </items>
+      </content>
+      <attributes id="Requirements"/>
+      <title>
+        <content xmi:type="markup:Text" data="Requirements"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Section" level="3">
+        <content xmi:type="markup:Paragraph">
+          <attributes/>
+          <content xmi:type="markup:Text" data="EMF compare uses a content-type to know whether it should be used for comparison. This content-type will initially register itself against .ecore and .uml files. " lineBreak="true"/>
+          <content xmi:type="markup:Text" data="You may add your own extension using the Preferences view / Global / Content-types and adding your file extension in the "/>
+          <content xmi:type="markup:Entity" data="#171"/>
+          <content xmi:type="markup:Text" data="EMF Compare"/>
+          <content xmi:type="markup:Entity" data="#187"/>
+          <content xmi:type="markup:Text" data=" content-type." lineBreak="true"/>
+          <content xmi:type="markup:Image" url="images/ContentTypes.png">
+            <attributes/>
+          </content>
+        </content>
+        <attributes id="ActivatingEMFCompareonagivenfileextension"/>
+        <title>
+          <content xmi:type="markup:Text" data="Activating EMF Compare on a given file extension"/>
+        </title>
+      </content>
+      <attributes id="Configuration"/>
+      <title>
+        <content xmi:type="markup:Text" data="Configuration"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Once activated you can compare your file (locally or from any Configuration Management System supported by the Team API) using the "/>
+        <content xmi:type="markup:Text" data="compare with">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" menu in Eclipse." lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/CompareUI.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The following areas are highlighted in the picture : " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="1. The diff model displaying all the differences found on the models" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="2. The version 1 model" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="3. The version 2 model" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="4. The "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="export differences"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=" button" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="5. Move to next/Move to previous difference" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="6. Merge the current difference (left to right or right to left)" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="7. Merge all non conflicting differences (left to right or right to left)" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="8. Display properties differences" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Note that some actions may be disabled depending on whether you are using VCS or not."/>
+      </content>
+      <attributes id="Usage"/>
+      <title>
+        <content xmi:type="markup:Text" data="Usage"/>
+      </title>
+    </content>
+    <attributes id="EMFCompareUserGuide"/>
+    <title>
+      <content xmi:type="markup:Text" data="EMF Compare User Guide"/>
+    </title>
+  </content>
+</markup:Document>

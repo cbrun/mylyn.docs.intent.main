@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.mylyn.docs.intent.markup/src-gen"
+    editDirectory="" editorDirectory="" modelPluginID="org.eclipse.mylyn.docs.intent.markup"
+    modelName="Markup" editPluginClass="org.eclipse.mylyn.docs.intent.markup.markup.provider.MarkupEditPlugin"
+    editorPluginClass="org.eclipse.mylyn.docs.intent.markup.markup.presentation.MarkupEditorPlugin"
+    rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
+    reflectiveDelegation="true" testSuiteClass="org.eclipse.mylyn.docs.intent.markup.markup.tests.MarkupAllTests"
+    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Reflective" complianceLevel="5.0"
+    copyrightFields="false">
+  <foreignModel>markup.ecore</foreignModel>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
+  <genPackages prefix="Markup" basePackage="org.eclipse.mylyn.docs.intent.markup"
+      disposableProviderFactory="true" ecorePackage="markup.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="markup.ecore#//Formatting">
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/none"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/emphasis"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/strong"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/italic"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/bold"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/citation"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/deleted"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/inserted"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/superscript"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/subscript"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/span"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/code"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/monospace"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/underlined"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//Formatting/quote"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="markup.ecore#//ListType">
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//ListType/BULLETED"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//ListType/NUMERIC"/>
+      <genEnumLiterals ecoreEnumLiteral="markup.ecore#//ListType/TABLE_OF_CONTENT"/>
+    </genEnums>
+    <genClasses ecoreClass="markup.ecore#//Document"/>
+    <genClasses ecoreClass="markup.ecore#//SimpleContainer"/>
+    <genClasses image="false" ecoreClass="markup.ecore#//StructureElement"/>
+    <genClasses ecoreClass="markup.ecore#//Section">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference markup.ecore#//Section/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Section/level"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="markup.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference markup.ecore#//Container/content"/>
+    </genClasses>
+    <genClasses ecoreClass="markup.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Image/url"/>
+    </genClasses>
+    <genClasses ecoreClass="markup.ecore#//Entity"/>
+    <genClasses ecoreClass="markup.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Text/data"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Text/format"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Text/lineBreak"/>
+    </genClasses>
+    <genClasses ecoreClass="markup.ecore#//Link">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference markup.ecore#//Link/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Link/hrefOrHashName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference markup.ecore#//Link/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Link/hasBeenDeclaredWithHTMLSyntax"/>
+    </genClasses>
+    <genClasses ecoreClass="markup.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference markup.ecore#//Block/content"/>
+    </genClasses>
+    <genClasses ecoreClass="markup.ecore#//Annotations">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Annotations/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Annotations/CSSStyle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Annotations/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Annotations/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//Annotations/CSSClass"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="markup.ecore#//HasAttributes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference markup.ecore#//HasAttributes/attributes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="markup.ecore#//BlockContent"/>
+    <genClasses ecoreClass="markup.ecore#//Paragraph"/>
+    <genClasses ecoreClass="markup.ecore#//Tip"/>
+    <genClasses ecoreClass="markup.ecore#//Warning"/>
+    <genClasses ecoreClass="markup.ecore#//Information"/>
+    <genClasses ecoreClass="markup.ecore#//Note"/>
+    <genClasses ecoreClass="markup.ecore#//Panel"/>
+    <genClasses ecoreClass="markup.ecore#//Div"/>
+    <genClasses ecoreClass="markup.ecore#//FootNote"/>
+    <genClasses ecoreClass="markup.ecore#//Quote"/>
+    <genClasses ecoreClass="markup.ecore#//Preformatted"/>
+    <genClasses ecoreClass="markup.ecore#//Code"/>
+    <genClasses ecoreClass="markup.ecore#//List">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//List/listType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference markup.ecore#//List/items"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//List/imbricationLevel"/>
+    </genClasses>
+    <genClasses ecoreClass="markup.ecore#//ListItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//ListItem/isList"/>
+    </genClasses>
+    <genClasses ecoreClass="markup.ecore#//Table"/>
+    <genClasses ecoreClass="markup.ecore#//TableRow"/>
+    <genClasses ecoreClass="markup.ecore#//TableCell">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//TableCell/isCellHeader"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute markup.ecore#//TableCell/colsPan"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

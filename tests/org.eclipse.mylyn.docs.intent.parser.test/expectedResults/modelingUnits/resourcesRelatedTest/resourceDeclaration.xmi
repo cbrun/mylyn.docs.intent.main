@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intentMU:ModelingUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intentMU="http://www.eclipse.org/intent/modelingunit/0.7" xsi:schemaLocation="http://www.eclipse.org/intent/modelingunit/0.7 expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore">
+  <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" uri="&quot;cdo:/repo1/myResource&quot;" name="myCompleteRes" contentType="&quot;ECore&quot;">
+    <content IntentHref="myRoot1"/>
+    <content IntentHref="myRoot2"/>
+  </instructions>
+  <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" name="myResWithoutURI" contentType="&quot;ECore&quot;">
+    <content IntentHref="myRoot1"/>
+    <content IntentHref="myRoot2"/>
+  </instructions>
+  <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" uri="&quot;platform:/resource/myproject/myResource&quot;" name="myResWithoutContentType">
+    <content IntentHref="myRoot1"/>
+    <content IntentHref="myRoot2"/>
+  </instructions>
+  <instructions xmi:type="intentMU:AnnotationDeclaration" lineBreak="true" IntentHref="ResourceDeclaration?" referencedElement="//@instructions.5" annotationID="annotationID">
+    <map key="cle" value="&quot;val1&quot;"/>
+  </instructions>
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;testLabel&quot;" textToPrint="&quot;myPrettyResource&quot;" type="EXPLICIT" IntentHref="ResourceDeclaration?" referencedElement="//@instructions.5"/>
+  <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" uri="&quot;file:/D:/MyResourceFolder/myResource&quot;" name="myResWithoutContent" contentType="&quot;ECore&quot;"/>
+  <instructions xmi:type="intentMU:IntentSectionReferenceinModelingUnit" lineBreak="true" IntentHref="ResourceDeclaration?" referencedElement="//@instructions.7">
+    <referencedObject IntentHref="&quot;TestSectionReference&quot;"/>
+  </instructions>
+  <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" name="emptyResource"/>
+</intentMU:ModelingUnit>

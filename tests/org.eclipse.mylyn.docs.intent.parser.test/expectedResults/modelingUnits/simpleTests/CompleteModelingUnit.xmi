@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intentMU:ModelingUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intentMU="http://www.eclipse.org/intent/modelingunit/0.7" xsi:schemaLocation="http://www.eclipse.org/intent/modelingunit/0.7 expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore" unitName="completeModelingUnit1">
+  <instructions xmi:type="intentMU:AnnotationDeclaration" lineBreak="true" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.2" annotationID="annotationID">
+    <map key="cle" value="&quot;val&quot;"/>
+    <map key="cle2" value="&quot;val2&quot;"/>
+  </instructions>
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;myB&quot;" textToPrint="&quot;instance de la classe B&quot;" type="EXPLICIT" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.2"/>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="myB">
+    <metaType IntentHref="B"/>
+    <structuralFeatures lineBreak="true" name="myAttMulti" usedOperator="MULTI_VALUED_AFFECTATION">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;val1&quot;"/>
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;val2&quot;"/>
+    </structuralFeatures>
+    <structuralFeatures lineBreak="true" name="myAtt0">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;bAtt&quot;"/>
+    </structuralFeatures>
+  </instructions>
+  <instructions xmi:type="intentMU:IntentSectionReferenceinModelingUnit" lineBreak="true" textToPrint="&quot;textToPrint&quot;" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.4">
+    <referencedObject IntentHref="&quot;Section1.2.3&quot;"/>
+  </instructions>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="myA">
+    <metaType IntentHref="A"/>
+    <structuralFeatures lineBreak="true" name="myAtt1">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;41&quot;"/>
+    </structuralFeatures>
+    <structuralFeatures lineBreak="true" name="myAtt2">
+      <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+        <value>
+          <metaType IntentHref="B"/>
+          <structuralFeatures lineBreak="true" name="myAtt0">
+            <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;okAtt&quot;"/>
+          </structuralFeatures>
+        </value>
+      </values>
+    </structuralFeatures>
+    <structuralFeatures lineBreak="true" name="myAtt3">
+      <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+        <referencedElement IntentHref="myB"/>
+      </values>
+    </structuralFeatures>
+  </instructions>
+  <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+    <referencedElement IntentHref="myB"/>
+    <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="myAtt1">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;41&quot;"/>
+    </contributions>
+    <contributions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;myAtt2&quot;" textToPrint="&quot;justification de mon Att2&quot;" type="EXPLICIT"/>
+    <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="myAtt2">
+      <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+        <value>
+          <metaType IntentHref="B"/>
+          <structuralFeatures lineBreak="true" name="myAtt0">
+            <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;okAtt&quot;"/>
+          </structuralFeatures>
+        </value>
+      </values>
+    </contributions>
+    <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="myAtt3">
+      <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+        <referencedElement IntentHref="myB"/>
+      </values>
+    </contributions>
+  </instructions>
+</intentMU:ModelingUnit>

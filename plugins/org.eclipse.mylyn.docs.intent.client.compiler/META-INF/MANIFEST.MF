@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.mylyn.docs.intent.client.compiler
+Bundle-Version: 0.7.0.qualifier
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.emf.common;bundle-version="2.6.0",
+ org.eclipse.emf.ecore;bundle-version="2.6.0",
+ org.eclipse.mylyn.docs.intent.core,
+ org.eclipse.mylyn.docs.intent.collab,
+ org.eclipse.mylyn.docs.intent.collab.common,
+ org.eclipse.emf.compare.match;bundle-version="1.1.0",
+ org.eclipse.emf.compare;bundle-version="1.1.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.eclipse.mylyn.docs.intent.client.compiler,
+ org.eclipse.mylyn.docs.intent.client.compiler.launcher,
+ org.eclipse.mylyn.docs.intent.client.compiler.repositoryconnection
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="My List BULLETED:"/>
+    </content>
+    <content xmi:type="markup:List">
+      <attributes/>
+      <items>
+        <attributes/>
+        <content xmi:type="markup:Text" data="item1"/>
+      </items>
+      <items isList="true">
+        <attributes/>
+        <content xmi:type="markup:Text" data="item' 2"/>
+        <items imbricationLevel="2" isList="true">
+          <attributes/>
+          <items imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item 2.1"/>
+          </items>
+          <items imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item 2.2"/>
+          </items>
+          <items imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item2.2.1"/>
+          </items>
+        </items>
+      </items>
+      <items isList="true">
+        <attributes/>
+        <content xmi:type="markup:Text" data="item 3"/>
+        <items imbricationLevel="2" isList="true">
+          <attributes/>
+          <items imbricationLevel="2" isList="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item 3.1"/>
+            <items imbricationLevel="3" isList="true">
+              <attributes/>
+              <items imbricationLevel="3">
+                <attributes/>
+                <content xmi:type="markup:Text" data="item 3.1.2"/>
+              </items>
+              <items imbricationLevel="3" isList="true">
+                <attributes/>
+                <content xmi:type="markup:Text" data="item 3.1.2"/>
+                <items imbricationLevel="4" isList="true">
+                  <attributes/>
+                  <items imbricationLevel="4">
+                    <attributes/>
+                    <content xmi:type="markup:Text" data="level 4"/>
+                  </items>
+                </items>
+              </items>
+              <items imbricationLevel="3">
+                <attributes/>
+                <content xmi:type="markup:Text" data="then 3"/>
+              </items>
+            </items>
+          </items>
+          <items imbricationLevel="2" isList="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="then "/>
+            <content xmi:type="markup:Text" data="2">
+              <attributes/>
+              <format>emphasis</format>
+              <format>code</format>
+            </content>
+            <items imbricationLevel="3" isList="true">
+              <attributes/>
+              <items imbricationLevel="3">
+                <attributes/>
+                <content xmi:type="markup:Text" data="then 3"/>
+              </items>
+              <items imbricationLevel="3" isList="true">
+                <attributes/>
+                <content xmi:type="markup:Text" data="then "/>
+                <content xmi:type="markup:Text" data="3">
+                  <attributes/>
+                  <format>bold</format>
+                </content>
+                <items imbricationLevel="4" isList="true">
+                  <attributes/>
+                  <items imbricationLevel="4" isList="true">
+                    <attributes/>
+                    <content xmi:type="markup:Text" data="then 4"/>
+                    <items imbricationLevel="5" isList="true">
+                      <attributes/>
+                      <items imbricationLevel="5" isList="true">
+                        <attributes/>
+                        <content xmi:type="markup:Text" data="then 5"/>
+                        <items imbricationLevel="6" isList="true">
+                          <attributes/>
+                          <items imbricationLevel="6">
+                            <attributes/>
+                            <content xmi:type="markup:Text" data="then 6"/>
+                          </items>
+                        </items>
+                      </items>
+                    </items>
+                  </items>
+                </items>
+              </items>
+            </items>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="My List NUMERIC:"/>
+    </content>
+    <content xmi:type="markup:List" listType="NUMERIC">
+      <attributes CSSStyle="color:red;"/>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <items listType="NUMERIC" imbricationLevel="2" isList="true">
+          <attributes CSSStyle="color:red;"/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item"/>
+            <content xmi:type="markup:Entity" data="#174"/>
+            <content xmi:type="markup:Text" data=" 0.1"/>
+          </items>
+        </items>
+      </items>
+      <items listType="NUMERIC">
+        <attributes/>
+        <content xmi:type="markup:Text" data="item"/>
+        <content xmi:type="markup:Entity" data="#169"/>
+        <content xmi:type="markup:Text" data="1"/>
+      </items>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <content xmi:type="markup:Text" data="item 2"/>
+        <items listType="NUMERIC" imbricationLevel="2" isList="true">
+          <attributes CSSStyle="color:blue;"/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item"/>
+            <content xmi:type="markup:Entity" data="#8482"/>
+            <content xmi:type="markup:Text" data=" 2.1"/>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item 2.2"/>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="item 2.2.1"/>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="My List MIXED : "/>
+    </content>
+    <content xmi:type="markup:List" listType="NUMERIC">
+      <attributes/>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <content xmi:type="markup:Text" data="A. 3 reasons : "/>
+        <items imbricationLevel="2" isList="true">
+          <attributes/>
+          <items imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Reason a"/>
+          </items>
+          <items imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Reason b"/>
+          </items>
+          <items imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Reason c"/>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:List">
+      <attributes/>
+      <items isList="true">
+        <attributes/>
+        <content xmi:type="markup:Text" data="B. 2 reasons :"/>
+        <items listType="NUMERIC" imbricationLevel="2" isList="true">
+          <attributes/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Reason 1"/>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Reason 2"/>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Reason 3"/>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <attributes id="Testssectionafter"/>
+      <title>
+        <content xmi:type="markup:Text" data="Tests section after"/>
+      </title>
+    </content>
+    <attributes id="ListsTest"/>
+    <title>
+      <content xmi:type="markup:Text" data="Lists Test"/>
+    </title>
+  </content>
+</markup:Document>

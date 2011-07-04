@@ -1,0 +1,28 @@
+
+h1. Tables in textile
+
+Most of these features don't seem to be recognized by the Wikitext parser.
+
+h2. Heading cells
+
+
+
+|_. a|_. table|_. heading|
+|a|table|row|
+
+h2. Table and row styles
+
+
+table(tableclass).
+|a |b |c |
+(rowclass). |a|classy|row|
+|a |{color:red}. stylish|cell|
+
+h2. Alignments
+
+
+
+|_. TestAlignments|
+|^. top alignment |
+|-. middle alignment |
+|~. bottom alignment |

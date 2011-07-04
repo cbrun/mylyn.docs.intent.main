@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.mylyn.docs.intent.collab.test/src-gen"
+    modelPluginID="org.eclipse.mylyn.docs.intent.collab.test" modelName="TestModel"
+    rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
+    reflectiveDelegation="true" importerID="org.eclipse.emf.importer.ecore" featureDelegation="Reflective"
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>testModel.ecore</foreignModel>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
+  <genPackages prefix="TestPackage" basePackage="org.eclipse.mylyn.docs.intent.collab.test.model"
+      disposableProviderFactory="true" ecorePackage="testModel.ecore#/">
+    <genClasses image="false" ecoreClass="testModel.ecore#//AbstractTestClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//AbstractTestClass/name"/>
+    </genClasses>
+    <genClasses ecoreClass="testModel.ecore#//TestClass1">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute testModel.ecore#//TestClass1/theAttributeToListen"/>
+      <genOperations ecoreOperation="testModel.ecore#//TestClass1/testOperation">
+        <genParameters ecoreParameter="testModel.ecore#//TestClass1/testOperation/testParameter"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="testModel.ecore#//TestClass2"/>
+    <genClasses ecoreClass="testModel.ecore#//TestIndex">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//TestIndex/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="testModel.ecore#//TestIndexEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference testModel.ecore#//TestIndexEntry/referencedElement"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

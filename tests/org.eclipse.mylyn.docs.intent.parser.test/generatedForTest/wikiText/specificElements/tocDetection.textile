@@ -1,0 +1,25 @@
+
+h1. Testlink
+
+
+h2. Test Internal links
+
+
+
+h2. Test 'href' links
+
+
+
+h2. Embeded href and links
+
+The following list should not be detected as a TOC
+* "Testlink":#Testlink
+** "Test Internal links":#TestInternallinks
+** "Test href links":#Testhreflinks
+** "Embeded href and links":http://www.google.fr
+
+But of course this one should
+
+{toc}And this one also
+
+{toc}

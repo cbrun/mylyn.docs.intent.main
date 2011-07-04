@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Author">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" Me" lineBreak="true"/>
+      <content xmi:type="markup:Text" data="Contact">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" me@mycompany.com"/>
+    </content>
+    <content xmi:type="markup:List" listType="TABLE_OF_CONTENT">
+      <attributes CSSStyle="list-style: none;"/>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <content xmi:type="markup:Link" hrefOrHashName="#Adaptingthecomparisonprocess" target="//@content.0">
+          <attributes/>
+          <name>
+            <content xmi:type="markup:Text" data="Adapting the comparison process"/>
+          </name>
+        </content>
+        <items listType="TABLE_OF_CONTENT" imbricationLevel="2" isList="true">
+          <attributes CSSStyle="list-style: none;"/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Introduction" target="//@content.0/@content.2">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Introduction"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#CustomizingtheMatchEngine" target="//@content.0/@content.3">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Customizing the Match Engine"/>
+              </name>
+            </content>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="If you defined your own formalism using an "/>
+        <content xmi:type="markup:Text" data="ecore">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" model you might want to control the way your model is processed during the comparison to get results faster or to avoid false positives." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="The main things you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll want to customize is the match process, it"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s responsability is to match elements from both versions of the models, trying to determine their identity. "/>
+      </content>
+      <attributes id="Introduction"/>
+      <title>
+        <content xmi:type="markup:Text" data="Introduction"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="You first need to write your own "/>
+        <content xmi:type="markup:Text" data="IMatchEngine">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" , the simplest way to do so is to extends the "/>
+        <content xmi:type="markup:Text" data="GenericMatchEngine">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" which already provides all the needed behavior and plugin in your own customized "/>
+        <content xmi:type="markup:Text" data="SimilarityChecker">
+          <attributes/>
+          <format>code</format>
+        </content>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="public class LibraryMatchEngine extends GenericMatchEngine {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;@Override"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;protected AbstractSimilarityChecker prepareChecker() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;return new AbstractSimilarityChecker(filter) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;/**"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; * Should determine whether an element is similar to the other one or not."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; * "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; * @param obj1"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; *            an element."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; * @param obj2"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; *            another element."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; * @return true if those elements have the same identity."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9; */"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;@Override"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;public boolean isSimilar(EObject obj1, EObject obj2) throws FactoryException {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;// TODO Auto-generated method stub"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;return false;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;@Override"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;public double absoluteMetric(EObject obj1, EObject obj2) throws FactoryException {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;// TODO Auto-generated method stub"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;return 0;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;@Override"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;public void init(Resource leftResource, Resource rightResource) throws FactoryException {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;// TODO Auto-generated method stub"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;@Override"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;public void init(EObject leftObject, EObject rightObject) throws FactoryException {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;// TODO Auto-generated method stub"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;};"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="  "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="And then you can specify your own similarity logic redefining the isSimilar method. Please note that you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll have to express a distance between two elements through the "/>
+        <content xmi:type="markup:Text" data="absoluteMetric(...)">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" method. " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="The "/>
+        <content xmi:type="markup:Text" data="init(...)">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" methods will be called by the match engine so that you can prepare your matching process if you need to."/>
+      </content>
+      <content xmi:type="markup:Quote">
+        <attributes/>
+        <content xmi:type="markup:Text" data="  If your matching process is "/>
+        <content xmi:type="markup:Text" data="able">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" to return, right away, from a given instance it"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s matched counter part, then you should override the "/>
+        <content xmi:type="markup:Text" data="fastLookup(..)">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" method to return this instance :"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;@Override"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;public EObject fastLookup(EObject obj1) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;return leftToRight.get(obj1);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="It is not mandatory and only here to get a faster processing with specific matching like, for instance, ID based ones." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Please have a look on the existing "/>
+        <content xmi:type="markup:Text" data="AbstractSimilarityChecker">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" subclasses and feel free to copy/paste from those, these are not provided through the API yet but will have API counterparts at some point."/>
+      </content>
+      <attributes id="CustomizingtheMatchEngine"/>
+      <title>
+        <content xmi:type="markup:Text" data="Customizing the Match Engine"/>
+      </title>
+    </content>
+    <attributes id="Adaptingthecomparisonprocess"/>
+    <title>
+      <content xmi:type="markup:Text" data="Adapting the comparison process"/>
+    </title>
+  </content>
+</markup:Document>

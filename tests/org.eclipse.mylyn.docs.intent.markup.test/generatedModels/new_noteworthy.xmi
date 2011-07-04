@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Test copyright"/>
+      <content xmi:type="markup:Entity" data="#169"/>
+      <content xmi:type="markup:Text" data="."/>
+    </content>
+    <content xmi:type="markup:List" listType="TABLE_OF_CONTENT">
+      <attributes CSSStyle="list-style: none;"/>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <content xmi:type="markup:Link" hrefOrHashName="#NewNoteworthy" target="//@content.0">
+          <attributes/>
+          <name>
+            <content xmi:type="markup:Text" data="New &amp; Noteworthy"/>
+          </name>
+        </content>
+        <items listType="TABLE_OF_CONTENT" imbricationLevel="2" isList="true">
+          <attributes CSSStyle="list-style: none;"/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#NewsNoteworthy" target="//@content.0/@content.2">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="News &amp; Noteworthy"/>
+              </name>
+            </content>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Referencing images :" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="../images/news_noteworthy/img1.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Image" url="../images/news_noteworthy/img1.png">
+          <attributes/>
+        </content>
+      </content>
+      <attributes id="NewsNoteworthy"/>
+      <title>
+        <content xmi:type="markup:Text" data="News &amp; Noteworthy"/>
+      </title>
+    </content>
+    <attributes id="NewNoteworthy"/>
+    <title>
+      <content xmi:type="markup:Text" data="New &amp; Noteworthy"/>
+    </title>
+  </content>
+</markup:Document>

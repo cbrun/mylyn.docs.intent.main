@@ -1,0 +1,27 @@
+@M
+Resource myCompleteRes {
+	URI = "cdo:/repo1/myResource";
+	contentType = "ECore";
+	content += myRoot1;
+	content += myRoot2;
+}
+Resource myResWithoutURI {
+	contentType = "ECore";
+	content += myRoot1;
+	content += myRoot2;
+}
+Resource myResWithoutContentType {
+	URI = "platform:/resource/myproject/myResource";
+	content += myRoot1;
+	content += myRoot2;
+}
+@Annotation annotationID cle="val1"
+@label "testLabel" "myPrettyResource"
+Resource myResWithoutContent {
+	URI = "file:/D:/MyResourceFolder/myResource";
+	contentType = "ECore";
+}
+@see "TestSectionReference"
+Resource emptyResource {
+}
+M@

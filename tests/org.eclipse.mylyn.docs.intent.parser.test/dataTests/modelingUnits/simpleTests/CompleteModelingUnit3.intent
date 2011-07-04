@@ -1,0 +1,40 @@
+@M myModelingUnitName [myAttachedResource]
+// Label definition (type : implicit), attached to myA by the linkResolver
+@lazylabel "myA" "representative instance of class A"
+new A myA {
+	// StructuralFeatures affectation
+	myAttMultiValued += [ "val1", "val2" ];
+	mySimpleAtt = "myAttValue";
+}
+// Label definition (type : explicit)
+@label "myB"
+new B myB {
+	myAtt1 = "41";
+	// New instance in right-part of an affectation
+	myAtt2 = new B {
+		myAtt0 = "okAtt";
+	};
+	// Instance reference in righ-part of an affectation
+	myAtt3 = myB;
+}
+// Section Reference : attached to the next Modeling Element
+@see "Mysection where I have defined by B"
+@see "Another Section" "reasons for separation of concerns"
+// Generic Annotation mechanism.
+@Annotation associateBashFileID bashFile="bashFile1", mode="admin"
+myA {
+	myAttMultiValued = "Completion of the definition made earlier";
+	myAttRelativeToPersistence = new PersistenceInformationHandler {
+		isPersistent = "true";
+	};
+}
+// Ressource Declaration : should not be made in the same time than a resource reference
+@label "myResourceForPersistence" "you can attache information to resources too"
+Resource myResourceForPersistence {
+	URI = "cdo:/repo1/myResource";
+	// ModelInstance is the default type : doesn't need to be declared
+	contentType = "ModelInstance";
+	content += myRoot1;
+	content += myRoot2;
+}
+M@

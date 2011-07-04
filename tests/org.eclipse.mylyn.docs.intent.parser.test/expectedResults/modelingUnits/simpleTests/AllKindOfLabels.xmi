@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intentMU:ModelingUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intentMU="http://www.eclipse.org/intent/modelingunit/0.7" xsi:schemaLocation="http://www.eclipse.org/intent/modelingunit/0.7 expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore">
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;labelValue&quot;" type="EXPLICIT" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.1"/>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="MyA">
+    <metaType IntentHref="A"/>
+  </instructions>
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;labelValue&quot;" textToPrint="&quot;textToPrint&quot;" type="EXPLICIT" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.3"/>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="MyB">
+    <metaType IntentHref="B"/>
+  </instructions>
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;labelValue&quot;" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.5"/>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="MyC">
+    <metaType IntentHref="C"/>
+  </instructions>
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;labelValue&quot;" textToPrint="&quot;textToPrint&quot;" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.7"/>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="MyD">
+    <metaType IntentHref="D"/>
+  </instructions>
+</intentMU:ModelingUnit>

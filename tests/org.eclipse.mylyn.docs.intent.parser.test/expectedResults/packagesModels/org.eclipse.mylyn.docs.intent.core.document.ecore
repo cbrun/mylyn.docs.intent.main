@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="document"
+    nsURI="http://www.eclipse.org/intent/intentdocument/0.7" nsPrefix="intentDocument">
+  <eClassifiers xsi:type="ecore:EClass" name="IntentGenericElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compilationStatus" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/intent/compilerinfos/0.7#//CompilationStatus"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentStructuredElement" abstract="true"
+      eSuperTypes="expectedResults/packagesModels/markup.ecore#//Section expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentGenericElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="formattedTitle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        derived="true" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnnotationMapping" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//URI"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentReference" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IntentHref" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentSectionReference" eSuperTypes="expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentSection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentSectionOrParagraphReference" eSuperTypes="expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedObject" eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//StructureElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentDocument" eSuperTypes="expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentStructuredElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chapters" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentChapter"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="headers" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentHeaderDeclaration"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentSubSectionContainer" abstract="true"
+      eSuperTypes="expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentStructuredElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intentContent" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentSection"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="units" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/genericUnit.ecore#//GenericUnit"
+        volatile="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptionUnits" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/descriptionUnit.ecore#//DescriptionUnit"
+        volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentChapter" eSuperTypes="expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentSubSectionContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentSection" eSuperTypes="expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentSubSectionContainer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentSectionVisibility"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="completeLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelingUnits" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore#//ModelingUnit"
+        volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedHeaders" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredHeaders" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//IntentHeaderDeclaration"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentHeaderDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imports" upperBound="-1"
+        eType="ecore:EDataType expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//URI"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotationMappings" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore#//AnnotationMapping"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" eType="ecore:EClass expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore#//ResourceReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IntentSectionVisibility">
+    <eLiterals name="PUBLIC"/>
+    <eLiterals name="HIDDEN" value="1"/>
+    <eLiterals name="INTERNAL" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="URI" instanceClassName="java.lang.String"/>
+</ecore:EPackage>

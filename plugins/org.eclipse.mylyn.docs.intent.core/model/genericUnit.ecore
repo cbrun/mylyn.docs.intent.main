@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="genericunit"
+    nsURI="http://www.eclipse.org/intent/genericunit/0.7" nsPrefix="intentGU">
+  <eClassifiers xsi:type="ecore:EClass" name="GenericUnit" abstract="true" eSuperTypes="document.ecore#//IntentGenericElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
+        eType="#//UnitInstruction" containment="true" eOpposite="#//UnitInstruction/unit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unitName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnitInstruction" abstract="true" eSuperTypes="document.ecore#//IntentGenericElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//GenericUnit"
+        eOpposite="#//GenericUnit/instructions"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineBreak" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnitInstructionReference" eSuperTypes="document.ecore#//IntentReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" eType="#//UnitInstruction"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelDeclarationReference" eSuperTypes="document.ecore#//IntentReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" eType="#//LabelDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TypeLabel">
+    <eLiterals name="LAZY"/>
+    <eLiterals name="EXPLICIT" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntentSectionReferenceInstruction" eSuperTypes="#//UnitInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedObject" lowerBound="1"
+        eType="ecore:EClass document.ecore#//IntentSectionOrParagraphReference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textToPrint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelDeclaration" eSuperTypes="#//UnitInstruction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="labelValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textToPrint" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//TypeLabel"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelReferenceInstruction" eSuperTypes="#//UnitInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedLabel" lowerBound="1"
+        eType="#//LabelDeclarationReference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//TypeLabel"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdressedAnnotation" eSuperTypes="#//UnitInstruction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="receiver" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

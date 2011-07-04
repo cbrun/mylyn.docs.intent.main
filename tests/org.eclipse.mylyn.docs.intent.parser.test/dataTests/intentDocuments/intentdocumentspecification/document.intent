@@ -1,0 +1,637 @@
+Document {
+	Chapter {
+		Overview : the @ExtendedLibrary@ MetaModel
+
+		In this chapter, we will present the
+		@lazylabel "Extended Libray" "MetaModel defining the entities and behavior related to a Library"
+		Meta Model.
+
+		First of all, we will present the general purpose of this Metamodel.
+		We will then try to identify the main entities that define Extended Libray. 
+		In another chapter, we will study all the types of Item handled by our Extended Library. 
+		Last, we will define several the actors of any library (i.e the Employees and Borrowers).
+		Section {
+			Motivation for define Extended Library
+
+			In our daily work, we have noticed that the standard @Library@ Metamodel was not adapted
+			to our activity. Actually, we had to use other classes for representing all the 
+			informations we needed. 
+
+			That's why the have chosen to define our own MetaModel for Library, richer than the
+			standard one, and (according to us) more efficient for dealing with lots of Employees, 
+			Books and Borrowers.
+		}
+		Section {
+			Extended Library storage : Resources definitions
+
+			First of all, let's see how we will store the defined Metamodel. We have chosen to 
+			create a single ECore file.
+			@M extlibraryStorage 
+				Resource extlibraryResource {
+					URI = "platform:/resource/org.eclipse.mylyn.docs.intent.example/model/extlibrary.ecore";
+					contentType = "ECore";
+					content += extlibrary;
+				}
+			M@
+
+			This allow us to use directly the generated metamodel to define modelers.
+		}
+		Section {
+			Extended Library Package : package hierarchy
+
+			As we will see in
+			@see "ExtendedLibraryPackage:MainEntities" , there are too few entities
+			to justify the definition of subpackages. 
+
+			In consequence, we define a single package : extlibrary, that will define all the entities
+			of the Metamodel.
+			@M extlibraryPackage_definition 
+				new EPackage extlibrary {
+					nsURI = "http://www.eclipse.org/Intent/Extlibrary/1.0.0";
+					nsPrefix = "extlib";
+				}
+			M@
+		}
+	}
+	Chapter {
+		The main entities of the Extended Library
+
+		In this part, we will define the principal concepts of any Extended Library. 
+		Intuitively, a library has at least a collection of Books, Employees that work in the library
+		and Borrowers that borrow the books.
+		Section {
+			Specification of a Book
+
+			A Book has a title, and a author. 
+			As we will see later, we will divide the collections of all books in several categories ;
+			but as this division is not essential, we will focus on it later.
+			@M bookSimpleDefinition 
+				extlibrary {
+					eClassifiers += new EClass Book {
+						eStructuralFeatures += new EAttribute {
+							name = "title";
+							eType = EString;
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EReference book_writer {
+							name = "author";
+							eType = Writer;
+							lowerBound = "1";
+							changeable = "true";
+							ordered = "true";
+							eOpposite = writer_books;
+						};
+					};
+				}
+			M@
+
+			We also define a number of pages (setted by default to 100).
+			@M book_numberofPagesDefinition 
+				@Annotation javaDoc documentation="Number of pages of a Book. By default, we set it to 100."
+				Book {
+					eStructuralFeatures += new EAttribute {
+						name = "pages";
+						eType = EInt;
+						changeable = "true";
+						defaultValueLiteral = "100";
+						ordered = "true";
+					};
+				}
+			M@
+		}
+	}
+	Chapter {
+		The Items hierarchy
+
+		In this chapter, we will study the item hierarchy, that allow us to describe Books, 
+		AudioBooks, AudioVisual content.
+		Section {
+			BookCategory : allow us to classify Books
+
+			Let's first define categories for Books.
+			@M BookCategorydataTypeDefinition 
+				extlibrary {
+					eClassifiers += new EEnum BookCategory {
+						serializable = "true";
+						eLiterals += new EEnumLiteral {
+							name = "Mystery";
+							literal = "Mystery";
+							value = "0";
+						};
+						eLiterals += new EEnumLiteral {
+							name = "ScienceFiction";
+							literal = "ScienceFiction";
+							value = "1";
+						};
+						eLiterals += new EEnumLiteral {
+							name = "Biography";
+							literal = "Biography";
+							value = "2";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Book class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Book" "Book definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Book" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M BookDefinition 
+				Book {
+					eStructuralFeatures += new EAttribute {
+						name = "category";
+						eType = BookCategory;
+						changeable = "true";
+						ordered = "true";
+						unsettable = "true";
+					};
+					eSuperTypes += CirculatingItem;
+				}
+			M@
+		}
+		Section {
+			Presentation of the Library class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Library" "Library definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Library" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M LibraryDefinition 
+				extlibrary {
+					eClassifiers += new EClass Library {
+						eSuperTypes += Addressable;
+						eStructuralFeatures += new EAttribute {
+							name = "name";
+							eType = EString;
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EReference {
+							name = "writers";
+							eType = Writer;
+							containment = "true";
+							resolveProxies = "false";
+							upperBound = "-1";
+							changeable = "true";
+							derived = "true";
+							ordered = "true";
+							transient = "true";
+							volatile = "true";
+						};
+						eStructuralFeatures += new EReference {
+							name = "stock";
+							eType = Item;
+							containment = "true";
+							resolveProxies = "false";
+							upperBound = "-1";
+							changeable = "true";
+							ordered = "false";
+						};
+						eStructuralFeatures += new EReference {
+							name = "books";
+							eType = Book;
+							upperBound = "-1";
+							changeable = "true";
+							derived = "true";
+							transient = "true";
+							ordered = "false";
+						};
+					};
+				}
+			M@
+
+			We also define all the informations relatives to the employees and borrowers of 
+			this library :
+			@M LibraryEmployeesAndBorrowers 
+				Library {
+					eStructuralFeatures += new EReference {
+						name = "employees";
+						eType = Employee;
+						containment = "true";
+						resolveProxies = "false";
+						upperBound = "-1";
+						changeable = "true";
+						derived = "true";
+						ordered = "true";
+						transient = "true";
+						volatile = "true";
+					};
+					eStructuralFeatures += new EReference {
+						name = "borrowers";
+						eType = Borrower;
+						containment = "true";
+						resolveProxies = "false";
+						upperBound = "-1";
+						changeable = "true";
+						derived = "true";
+						ordered = "false";
+						transient = "true";
+						volatile = "true";
+					};
+					eStructuralFeatures += new EAttribute {
+						name = "people";
+						eType = EFeatureMapEntry;
+						upperBound = "-1";
+						changeable = "true";
+						ordered = "true";
+					};
+				}
+			M@
+
+			An other consideration is the branches :
+			@M
+				Library {
+					eStructuralFeatures += new EReference lib_branches {
+						name = "branches";
+						eType = Library;
+						containment = "true";
+						upperBound = "-1";
+						changeable = "true";
+						ordered = "true";
+						eOpposite = lib_parentBranch;
+					};
+					eStructuralFeatures += new EReference lib_parentBranch {
+						name = "parentBranch";
+						eType = Library;
+						container = "true";
+						changeable = "true";
+						ordered = "true";
+						eOpposite = lib_branches;
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Writer class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Writer" "Writer definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Writer" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M WriterDefinition 
+				extlibrary {
+					eClassifiers += new EClass Writer {
+						eSuperTypes += Person;
+						eStructuralFeatures += new EAttribute {
+							name = "name";
+							eType = EString;
+							changeable = "true";
+							ordered = "true";
+							transient = "true";
+							volatile = "true";
+						};
+						eStructuralFeatures += new EReference writer_books {
+							name = "books";
+							eType = Book;
+							upperBound = "-1";
+							changeable = "true";
+							ordered = "true";
+							eOpposite = book_writer;
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Item class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Item" "Item definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Item" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M ItemDefinition 
+				extlibrary {
+					eClassifiers += new EClass Item {
+						abstract = "true";
+						eStructuralFeatures += new EAttribute {
+							name = "publicationDate";
+							eType = EDate;
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Lendable class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Lendable" "Lendable definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Lendable" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M LendableDefinition 
+				extlibrary {
+					eClassifiers += new EClass Lendable {
+						abstract = "true";
+						interface = "true";
+						eStructuralFeatures += new EAttribute {
+							name = "copies";
+							eType = EInt;
+							lowerBound = "1";
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EReference lendable_borrowers {
+							name = "borrowers";
+							eType = Borrower;
+							upperBound = "-1";
+							changeable = "true";
+							eOpposite = borrowed;
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the CirculatingItem class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "CirculatingItem" "CirculatingItem definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "CirculatingItem" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M CirculatingItemDefinition 
+				extlibrary {
+					eClassifiers += new EClass CirculatingItem {
+						abstract = "true";
+						eSuperTypes += [ Item , Lendable ];
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Periodical class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Periodical" "Periodical definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Periodical" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M PeriodicalDefinition 
+				extlibrary {
+					eClassifiers += new EClass Periodical {
+						abstract = "true";
+						eSuperTypes += Item;
+						eStructuralFeatures += new EAttribute {
+							name = "title";
+							eType = EString;
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EAttribute {
+							name = "issuesPerYear";
+							eType = EInt;
+							lowerBound = "1";
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the AudioVisualItem class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "AudioVisualItem" "AudioVisualItem definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "AudioVisualItem" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M AudioVisualItemDefinition 
+				extlibrary {
+					eClassifiers += new EClass AudioVisualItem {
+						eSuperTypes += CirculatingItem;
+						abstract = "true";
+						eStructuralFeatures += new EAttribute {
+							name = "title";
+							eType = EString;
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EAttribute {
+							name = "minutesLength";
+							eType = EInt;
+							lowerBound = "1";
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EAttribute {
+							name = "damaged";
+							eType = EBoolean;
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the BookOnTape class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "BookOnTape" "BookOnTape definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "BookOnTape" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M BookOnTapeDefinition 
+				extlibrary {
+					eClassifiers += new EClass BookOnTape {
+						eSuperTypes += AudioVisualItem;
+						eStructuralFeatures += new EReference {
+							name = "reader";
+							eType = Person;
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EReference {
+							name = "author";
+							eType = Writer;
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the VideoCassette class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "VideoCassette" "VideoCassette definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "VideoCassette" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M VideoCassetteDefinition 
+				extlibrary {
+					eClassifiers += new EClass VideoCassette {
+						eSuperTypes += AudioVisualItem;
+						eStructuralFeatures += new EReference {
+							name = "cast";
+							eType = Person;
+							upperBound = "-1";
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Borrower class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Borrower" "Borrower definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Borrower" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M BorrowerDefinition 
+				extlibrary {
+					eClassifiers += new EClass Borrower {
+						eSuperTypes += Person;
+						eStructuralFeatures += new EReference borrowed {
+							name = "borrowed";
+							eType = Lendable;
+							upperBound = "-1";
+							changeable = "true";
+							ordered = "true";
+							eOpposite = lendable_borrowers;
+						};
+					};
+				}
+			M@
+		}
+	}
+	Chapter {
+		Specification of the actor of an Extended Library : Employees and Borrowers
+
+		In this part, we will take an interest on all the actors of an Extended Library.
+		Section {
+			Presentation of the Person class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Person" "Person definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Person" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M PersonDefinition 
+				extlibrary {
+					eClassifiers += new EClass Person {
+						eSuperTypes += Addressable;
+						eStructuralFeatures += new EAttribute {
+							name = "firstName";
+							eType = EString;
+							lowerBound = "1";
+							changeable = "true";
+							ordered = "true";
+						};
+						eStructuralFeatures += new EAttribute {
+							name = "lastName";
+							eType = EString;
+							lowerBound = "1";
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Employee class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Employee" "Employee definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Employee" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M EmployeeDefinition 
+				extlibrary {
+					eClassifiers += new EClass Employee {
+						eSuperTypes += Person;
+						eStructuralFeatures += new EReference {
+							name = "manager";
+							eType = Employee;
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+		Section {
+			Presentation of the Addressable class.
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			Ut enim ad *minim* veniam, quis nostrud exercitation ullamco laboris
+			@label "Addressable" "Addressable definition"
+			nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate _@velit@_ esse cillum dolore eu fugiat
+			@see "Addressable" nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+			sunt in culpa qui officia deserunt mollit anim id est laborum.
+			@M AddressableDefinition 
+				extlibrary {
+					eClassifiers += new EClass Addressable {
+						abstract = "true";
+						interface = "true";
+						eStructuralFeatures += new EAttribute {
+							name = "address";
+							eType = EString;
+							changeable = "true";
+							ordered = "true";
+						};
+					};
+				}
+			M@
+		}
+	}
+}

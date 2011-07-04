@@ -1,0 +1,41 @@
+
+h2. Unresolved problems
+
+
+h3. Fancy styles problems
+
+
+
+bq.. 
+The right and left paddings don't seem to be detected by the WikiText parser. Moreover, @*they*@ aren't detected as paragraphs.p(())).
+Left padding of 2em and right padding of 3em.
+
+h3. Tables
+
+
+
+h3. Alignments
+
+It's really odd, the top alignment is detected but not the middle and bottom ones.
+
+|_. TestAlignments|
+|^. top alignment |
+|-. middle alignment |
+|~. bottom alignment |
+
+h4. Colspans
+
+
+
+|Colspan 3 |
+|a |table |row|
+|a |Colspan 2|
+
+h4. Rowspans
+
+
+
+|Rowspan 3|a |
+|a |a |
+|a |a |
+|a |a |a|

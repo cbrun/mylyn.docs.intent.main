@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Most of these features don"/>
+      <content xmi:type="markup:Entity" data="#8217"/>
+      <content xmi:type="markup:Text" data="t seem to be recognized by the Wikitext parser."/>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Table">
+        <attributes/>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell" isCellHeader="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="a"/>
+          </content>
+          <content xmi:type="markup:TableCell" isCellHeader="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="table"/>
+          </content>
+          <content xmi:type="markup:TableCell" isCellHeader="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="heading"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="a"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="table"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="row"/>
+          </content>
+        </content>
+      </content>
+      <attributes id="Headingcells"/>
+      <title>
+        <content xmi:type="markup:Text" data="Heading cells"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Table">
+        <attributes CSSClass="tableclass"/>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="a "/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="b "/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="c "/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes CSSClass="rowclass"/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="a"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="classy"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="row"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="a "/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes CSSStyle="color:red"/>
+            <content xmi:type="markup:Text" data="stylish"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="cell"/>
+          </content>
+        </content>
+      </content>
+      <attributes id="Tableandrowstyles"/>
+      <title>
+        <content xmi:type="markup:Text" data="Table and row styles"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Table">
+        <attributes/>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell" isCellHeader="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="TestAlignments"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes CSSStyle="text-align: top;"/>
+            <content xmi:type="markup:Text" data="top alignment "/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="-. middle alignment "/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="~. bottom alignment "/>
+          </content>
+        </content>
+      </content>
+      <attributes id="Alignments"/>
+      <title>
+        <content xmi:type="markup:Text" data="Alignments"/>
+      </title>
+    </content>
+    <attributes id="Tablesintextile"/>
+    <title>
+      <content xmi:type="markup:Text" data="Tables in textile"/>
+    </title>
+  </content>
+</markup:Document>

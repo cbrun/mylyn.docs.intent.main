@@ -1,0 +1,14 @@
+
+h1. New & Noteworthy
+
+Test copyright(c).
+
+{toc}
+
+h2. News & Noteworthy
+
+Referencing images :
+!../images/news_noteworthy/img1.png!
+
+!../images/news_noteworthy/img1.png!
+

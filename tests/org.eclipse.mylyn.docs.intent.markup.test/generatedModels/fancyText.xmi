@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes CSSStyle="text-align: left;"/>
+      <content xmi:type="markup:Text" data="Left-aligned paragraph."/>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes CSSStyle="text-align: justify;"/>
+        <content xmi:type="markup:Text" data="Justified paragraph."/>
+      </content>
+      <content xmi:type="markup:Section" level="3">
+        <attributes id="Centeredheading." CSSStyle="text-align: center;"/>
+        <title>
+          <content xmi:type="markup:Text" data="Centered heading."/>
+        </title>
+      </content>
+      <content xmi:type="markup:Section" level="3">
+        <content xmi:type="markup:Paragraph">
+          <attributes CSSStyle="padding-left: 1em;"/>
+          <content xmi:type="markup:Text" data="Left padding of  1 em "/>
+        </content>
+        <content xmi:type="markup:Paragraph">
+          <attributes CSSStyle="padding-right: 2em;"/>
+          <content xmi:type="markup:Text" data="Right padding of  2 em "/>
+        </content>
+        <attributes id="Paddings"/>
+        <title>
+          <content xmi:type="markup:Text" data="Paddings "/>
+        </title>
+      </content>
+      <attributes id="RightAlignedsection" CSSStyle="text-align: right;"/>
+      <title>
+        <content xmi:type="markup:Text" data="Right Aligned section"/>
+      </title>
+    </content>
+    <attributes id="Fancytextsandfancyblocs"/>
+    <title>
+      <content xmi:type="markup:Text" data="Fancy texts and fancy blocs"/>
+    </title>
+  </content>
+</markup:Document>

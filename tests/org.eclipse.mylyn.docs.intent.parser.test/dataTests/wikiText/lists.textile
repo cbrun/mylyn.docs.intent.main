@@ -1,0 +1,47 @@
+
+h1. Lists Test
+
+My List BULLETED:
+* item1
+* item' 2
+** item 2.1
+** item 2.2
+** item2.2.1
+* item 3
+** item 3.1
+*** item 3.1.2
+*** item 3.1.2
+**** level 4
+*** then 3
+** then _@2@_
+*** then 3
+*** then **3**
+**** then 4
+***** then 5
+****** then 6
+
+My List NUMERIC:
+##{color:red;} item(r) 0.1
+# item(c)1
+# item 2
+##{color:blue;} item(tm) 2.1
+## item 2.2
+## item 2.2.1
+
+My List MIXED : 
+# A. 3 reasons : 
+** Reason a
+** Reason b
+** Reason c
+
+
+* B. 2 reasons :
+## Reason 1
+## Reason 2
+## Reason 3
+
+
+
+h2. Tests section after
+
+

@@ -1,0 +1,242 @@
+Document {
+	Chapter {
+		Structural element of a @Intent@ document
+
+		In this chapter, we will present the main structural elements of a
+		@label "Intent" "Methodoly inspired from Literate Programming"
+		document. 
+
+		First, let's take a look on the global structure of such documents.
+		Section {
+			Global structure of an Intent document : overview
+
+			The general purpose of the Intent methodology is to allow 
+			"M.D.A (Model Driven Architecture)":http://en.wikipedia.org/wiki/Model-driven_architecture 
+			architects to structure their models specifications exactly like they would structure a design 
+			description report. 
+
+			We based the Intent methodology on the
+			<a href="http://www-cs-faculty.stanford.edu/~uno/lp.html"> Literate Programming </a> concept, defined
+			by Donald E. Knuth. The main idea is to combine a textual language for model description (like EMFAtic 
+			or EFactory) with a documentation language (like Latex or HTML). 
+
+			Following this paradigm, we have structured a
+			@lazylabel "Intent" document exactly as we would have structure a 
+			design description report : 
+
+			* Intent document
+			** chapter
+			*** section
+			**** Description Unit
+			**** SubSection
+			***** Description Unit
+			***** Modeling Unit
+			***** Subsubsection
+			****** ...
+			
+
+			We see here that an Intent document is composed of a set of chapters. 
+			Each chapter mixes Description Units (that use the documentation langage to explain the current chapter
+			topic and concerns) and a Sections (that present a more specific point of the current chapter). 
+			Each section can contain Modeling Units (that define a model or a part of that model with the model 
+			description langage), Description Units (that present the defined model or more general decisions), or 
+			Sections that explain specific points or define model parts related to this section concern. 
+
+			For example, in the current section entitled "Global structure of a
+			@see "Intent" document", we have 
+			explained the base of an Intent document structure. This structure will be modelised in the IntentDocument package, 
+			defined in the following Modeling Unit :
+																						 
+			@M IntentDocumentOverview 
+				Resource IntentDocumentX {
+					URI = "platform:/resource/intentTest/modelised/IntentDocumentPackageXResource.ecore";
+					contentType = "ECore";
+					content += IntentDocumentPackageX;
+				}
+				new EPackage IntentDocumentPackageX {
+					nsURI = "http://www.eclipse.org/intent/intentdocumentX";
+					nsPrefix = "IntentDocumentX";
+				}
+			M@
+																						 
+
+			We will take a closer look on the Modeling Units syntax later. Let's just say that in this modeling unit we
+			defined an EPackage called IntentDocumentPackage with the given URI and Prefix. We also declared a Resource
+			containing this package. As we see later, a Resource allowing the developer to manage the storage
+			of the defined models.
+			Section {
+				Global structure of an Intent document : specification
+
+				In this section, we will design  precisely the global structured defined above. 
+
+				First of all, we define the generic entity IntentStructuredElement, 
+				that represents a IntentDocument, a chapter and a section.
+																							 
+				@M IntentStructuredElementDefinition 
+					IntentDocumentPackageX {
+						eClassifiers += new EClass IntentStructuredElementX {
+							eStructuralFeatures += new EAttribute formattedTitle {
+								eType = EString;
+							};
+						};
+					}
+				M@
+																							 
+
+				Any IntentDocument is a IntentStructuredElementX that contains chapter(s) :
+																							 
+				@M documentDefinition 
+					IntentDocumentPackageX {
+						eClassifiers += new EClass IntentDocumentX {
+							eStructuralFeatures += new EReference chapters {
+								eType = IntentChapterX;
+								upperBound = "-1";
+								containment = "true";
+							};
+						};
+					}
+				M@
+																							 
+
+				An Intent's chapter is a IntentStructuredElement...
+																							 
+				@M chapterDefinition 
+					IntentDocumentPackageX {
+						eClassifiers += new EClass IntentChapterX {
+							eStructuralFeatures += new EReference subSections {
+								eType = RXMSection;
+								upperBound = "-1";
+								containment = YES;
+							};
+						};
+					}
+				M@
+																							 
+			}
+		}
+		Section {
+			Specification of an Intent section
+
+			h2. Some styled subsection
+			
+			Now that we _have_ *seen* the @general@ structure of an Intent documentation in the
+			@see "GlobalstructureofanIntentDocumentoverview" "previous Section"
+			, let's see how Sections are defined.
+																						 
+			@M sectionDefinition 
+				IntentDocumentPackageX {
+					eClassifiers += new EClass IntentSectionX {
+						eStructuralFeatures += new EAttribute units {
+							eType = IntentSectionX;
+							upperBound = "-1";
+							containment = "true";
+						};
+					};
+				}
+			M@
+																						 
+		}
+	}
+	Chapter {
+		The Sample Package
+
+		In this chapter, we will present the _@Sample Package@_ specifications.
+		Section {
+
+			Overview
+																						 
+			@M samplePackageOverview 
+				Resource IntentDocumentX {
+					URI = "platform:/resource/intentTest/modelised/samplePackage.ecore";
+					contentType = "ECore";
+					content += SamplePackage;
+				}
+				new EPackage SamplePackage {
+					nsURI = "http://www.eclipse.org/intent/samplepackage";
+					nsPrefix = "samplePackage";
+				}
+			M@
+																						 
+			Section {
+
+				The sample Class specification
+																							 
+				@M
+					SamplePackage {
+						eClassifiers += new EClass SampleClass {
+							eStructuralFeatures += new EReference sampleRef {
+								eType = SampleClass;
+								upperBound = "-1";
+							};
+						};
+						eClassifiers += new EClass SampleClass2 {
+							eStructuralFeatures += new EReference sampleRef2 {
+								eType = SampleClass2;
+								upperBound = "-1";
+							};
+						};
+					}
+				M@
+																							 
+
+				For personnal reasons, we add a sampleAttribute to this sampleClass.
+																							 
+				@M
+					SampleClass {
+						eStructuralFeatures += new EAttribute sampleAttribute {
+							eType = EInt;
+							upperBound = "-1";
+						};
+						eStructuralFeatures += new EAttribute sampleAttributeINTERNALYADDED {
+							eType = EString;
+							upperBound = "-1";
+						};
+					}
+				M@
+																							 
+			}
+		}
+	}
+	Chapter {
+		The Sample Instances 
+		
+		Section {
+			The main sample instances
+			
+			As we used the sample package for these purposes, we had to defined several instances : 
+			
+			@M instanceSample1
+				new SampleClass mySample1 {
+					sampleAttribute = "3";
+					sampleAttributeINTERNALYADDED = [ "a", "b", "c" ];
+					sampleRef = mySample2;
+				}
+			M@
+			
+			The second instance is also very important : 
+			
+			@M instanceSample2
+				new SampleClass mySample2 {
+					sampleAttribute += "42";
+					sampleRef += mySample1;
+				}
+			M@
+		}
+		Section {
+			The sample Instance Storage
+			
+			We stored all the simple instances in the following resource : 
+			
+			@M	instanceResource
+				Resource IntentDocumentX {
+					URI = "platform:/resource/intentTest/modelised/instances/mySampleInstances.xmi";
+					contentType = "XMI";
+					content += mySample1;
+					content += mySample2;
+				}			
+			M@
+		
+		}
+		
+	}
+}

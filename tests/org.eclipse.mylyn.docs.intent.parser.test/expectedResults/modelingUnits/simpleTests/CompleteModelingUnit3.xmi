@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intentMU:ModelingUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intentMU="http://www.eclipse.org/intent/modelingunit/0.7" xsi:schemaLocation="http://www.eclipse.org/intent/modelingunit/0.7 expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore" unitName="myModelingUnitName">
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;myA&quot;" textToPrint="&quot;representative instance of class A&quot;" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.1"/>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="myA">
+    <metaType IntentHref="A"/>
+    <structuralFeatures lineBreak="true" name="myAttMultiValued" usedOperator="MULTI_VALUED_AFFECTATION">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;val1&quot;"/>
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;val2&quot;"/>
+    </structuralFeatures>
+    <structuralFeatures lineBreak="true" name="mySimpleAtt">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;myAttValue&quot;"/>
+    </structuralFeatures>
+  </instructions>
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;myB&quot;" type="EXPLICIT" IntentHref="InstanciationInstruction?" referencedElement="//@instructions.3"/>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="myB">
+    <metaType IntentHref="B"/>
+    <structuralFeatures lineBreak="true" name="myAtt1">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;41&quot;"/>
+    </structuralFeatures>
+    <structuralFeatures lineBreak="true" name="myAtt2">
+      <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+        <value>
+          <metaType IntentHref="B"/>
+          <structuralFeatures lineBreak="true" name="myAtt0">
+            <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;okAtt&quot;"/>
+          </structuralFeatures>
+        </value>
+      </values>
+    </structuralFeatures>
+    <structuralFeatures lineBreak="true" name="myAtt3">
+      <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+        <referencedElement IntentHref="myB"/>
+      </values>
+    </structuralFeatures>
+  </instructions>
+  <instructions xmi:type="intentMU:IntentSectionReferenceinModelingUnit" lineBreak="true" IntentHref="ContributionInstruction?" referencedElement="//@instructions.7">
+    <referencedObject IntentHref="&quot;Mysection where I have defined by B&quot;"/>
+  </instructions>
+  <instructions xmi:type="intentMU:IntentSectionReferenceinModelingUnit" lineBreak="true" textToPrint="&quot;reasons for separation of concerns&quot;" IntentHref="ContributionInstruction?" referencedElement="//@instructions.7">
+    <referencedObject IntentHref="&quot;Another Section&quot;"/>
+  </instructions>
+  <instructions xmi:type="intentMU:AnnotationDeclaration" lineBreak="true" IntentHref="ContributionInstruction?" referencedElement="//@instructions.7" annotationID="associateBashFileID">
+    <map key="bashFile" value="&quot;bashFile1&quot;"/>
+    <map key="mode" value="&quot;admin&quot;"/>
+  </instructions>
+  <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+    <referencedElement IntentHref="myA"/>
+    <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="myAttMultiValued">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;Completion of the definition made earlier&quot;"/>
+    </contributions>
+    <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="myAttRelativeToPersistence">
+      <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+        <value>
+          <metaType IntentHref="PersistenceInformationHandler"/>
+          <structuralFeatures lineBreak="true" name="isPersistent">
+            <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+          </structuralFeatures>
+        </value>
+      </values>
+    </contributions>
+  </instructions>
+  <instructions xmi:type="intentMU:LabelinModelingUnit" lineBreak="true" labelValue="&quot;myResourceForPersistence&quot;" textToPrint="&quot;you can attache information to resources too&quot;" type="EXPLICIT" IntentHref="ResourceDeclaration?" referencedElement="//@instructions.9"/>
+  <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" uri="&quot;cdo:/repo1/myResource&quot;" name="myResourceForPersistence" contentType="&quot;ModelInstance&quot;">
+    <content IntentHref="myRoot1"/>
+    <content IntentHref="myRoot2"/>
+  </instructions>
+  <resource IntentHref="myAttachedResource" lineBreak="true"/>
+</intentMU:ModelingUnit>

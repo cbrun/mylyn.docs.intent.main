@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.mylyn.docs.intent.client.indexer
+Bundle-Version: 0.7.0.qualifier
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.mylyn.docs.intent.core,
+ org.eclipse.mylyn.docs.intent.collab,
+ org.eclipse.mylyn.docs.intent.collab.common
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.mylyn.docs.intent.client.indexer,
+ org.eclipse.mylyn.docs.intent.client.indexer.launcher
+Bundle-ActivationPolicy: lazy

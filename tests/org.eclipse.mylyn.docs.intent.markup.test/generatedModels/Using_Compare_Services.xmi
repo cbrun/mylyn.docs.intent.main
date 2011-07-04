@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Authors">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" Me" lineBreak="true"/>
+      <content xmi:type="markup:Text" data="Contact">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" me@mycompany.com"/>
+    </content>
+    <content xmi:type="markup:List" listType="TABLE_OF_CONTENT">
+      <attributes CSSStyle="list-style: none;"/>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <content xmi:type="markup:Link" hrefOrHashName="#UsingtheCompareServices" target="//@content.0">
+          <attributes/>
+          <name>
+            <content xmi:type="markup:Text" data="Using the Compare Services"/>
+          </name>
+        </content>
+        <items listType="TABLE_OF_CONTENT" imbricationLevel="2" isList="true">
+          <attributes CSSStyle="list-style: none;"/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Introduction" target="//@content.0/@content.2">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Introduction"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Gettingthedifferencesoftwomodels" target="//@content.0/@content.3">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Getting the differences of two models"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Mergingthedifferences" target="//@content.0/@content.4">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Merging the differences"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2" isList="true">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#UsingEMFCompareinstandalonemode" target="//@content.0/@content.5">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Using EMF Compare in standalone mode"/>
+              </name>
+            </content>
+            <items listType="TABLE_OF_CONTENT" imbricationLevel="3" isList="true">
+              <attributes CSSStyle="list-style: none;"/>
+              <items listType="NUMERIC" imbricationLevel="3">
+                <attributes/>
+                <content xmi:type="markup:Link" hrefOrHashName="#Compilation" target="//@content.0/@content.5/@content.2">
+                  <attributes/>
+                  <name>
+                    <content xmi:type="markup:Text" data="Compilation"/>
+                  </name>
+                </content>
+              </items>
+              <items listType="NUMERIC" imbricationLevel="3">
+                <attributes/>
+                <content xmi:type="markup:Link" hrefOrHashName="#Launch" target="//@content.0/@content.5/@content.3">
+                  <attributes/>
+                  <name>
+                    <content xmi:type="markup:Text" data="Launch"/>
+                  </name>
+                </content>
+              </items>
+            </items>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="All the following examples will use a simple (some would say "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="stupid"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=") domain model used to keep personal information, here " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="contact lists." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Here is the diagram:" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/AddressBookMM.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The whole comparison process is divided in two phases :"/>
+      </content>
+      <content xmi:type="markup:List" listType="NUMERIC">
+        <attributes/>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data="matching both versions of the elements and providing a match model."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data="computing the diff (delta) model from this match."/>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="When comparing (using the user interface) two models conformed to the AddressBook metamodel you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll get:" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/AddressBookComparaison1.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="This is an emfdiff model displayed using the emf compare editor. Both match and delta information are kept in this model, let"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s have " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="a further look on the match part:" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/AddressBookMatch.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The match model weave elements from both versions of the model." lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/AddressBookMatchDetail.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="From this match model EMF compare is able to compute the delta (diff):" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/AddressBookDiffDetail.png">
+          <attributes/>
+        </content>
+      </content>
+      <attributes id="Introduction"/>
+      <title>
+        <content xmi:type="markup:Text" data="Introduction"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Getting these differences using some code is easy, here is the snippet::"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data="   private DiffModel getDiff(AddressBook v1, AddressBook v2) throws Exception {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        Map options = new HashMap();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        MatchModel match = MatchService.doContentMatch(v1, v2, options);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        // ..."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="And you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll get the Match model which you can browse like any other EMF model." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Let"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s now produce the diff from this match information::"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data="        DiffModel diff =  DiffService.doDiff(match);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        return diff;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    }"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Both Diff and Match services leverage the Eclipse architecture to find the best match/diff engine from the file extension." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="But EMF Compare can be used to get the differences of two models within Eclipse or out of Eclipse (standalone mode) and using it in standalone mode you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll loose the ability of "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="auto-picking"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=" the right match/diff engine considering the file extension : you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll have to call the engines yourself. Here the generic one::"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data="   private DiffModel getDiff(AddressBook v1, AddressBook v2) throws Exception {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        Map options = new HashMap();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        MatchModel match = new GenericMatchEngine().contentMatch(v1,v2,options);        "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        DiffModel diff =  new GenericDiffEngine().doDiff(match);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="        return diff;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    }"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The generic match engine can be parameterized thanks to some options available in the MatchOptions interface:"/>
+      </content>
+      <content xmi:type="markup:Table">
+        <attributes/>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell" isCellHeader="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Name"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Description"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Type"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="OPTION_DISTINCT_METAMODELS"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="If set to true, the engine will be able to compare two models from different metamodel and find similarities."/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Boolean"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="OPTION_IGNORE_ID"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="If set to true, the engine will ignore the Ecore ID"/>
+            <content xmi:type="markup:Entity" data="#8217"/>
+            <content xmi:type="markup:Text" data="s and will consider the elements data to match them."/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Boolean"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="OPTION_IGNORE_XMI_ID"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="If set to true, the engine will ignore the XMI ID"/>
+            <content xmi:type="markup:Entity" data="#8217"/>
+            <content xmi:type="markup:Text" data="s  and will consider the elements data to match them."/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Boolean"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="OPTION_SEARCH_WINDOW"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="The search window is the number of elements the engine will consider at the same time, the bigger it is, more precise is the result, but slower is the process."/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Integer"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="OPTION_PROGRESS_MONITOR"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="If set with an IProgressMonitor instance, this one will"/>
+          </content>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="IProgressMonitor be used to monitor the match process."/>
+          </content>
+        </content>
+      </content>
+      <content xmi:type="markup:Quote">
+        <attributes/>
+        <content xmi:type="markup:Text" data="please note that all these calls can be done with 3 models, left, right and the ancestor one. Then you"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll be able to detect conflicts."/>
+      </content>
+      <attributes id="Gettingthedifferencesoftwomodels"/>
+      <title>
+        <content xmi:type="markup:Text" data="Getting the differences of two models"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Once you get the differences you can merge them. You can merge every detected delta from the diff model using the merge service::"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data="   AddModelElement add = DiffHelper.isAdded(alice, changes);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="   MergeService.merge(add, false);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="   "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Here is a quick view of all the diff elements:" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/DiffMM.jpg">
+          <attributes/>
+        </content>
+      </content>
+      <attributes id="Mergingthedifferences"/>
+      <title>
+        <content xmi:type="markup:Text" data="Merging the differences"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="You can setup your environment to use EMF Compare in standalone mode. The will looks like this ::"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data="&#x9;/**"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9; * This application will try and launch an headless model comparison."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9; * "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9; * @author Cedric Brun &lt;a href=&quot;mailto:cedric.brun@obeo.fr&quot;>cedric.brun@obeo.fr&lt;/a>"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9; */"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;public final class ExampleLauncher {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;/**"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9; * This class doesn't need to be instantiated."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9; */"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;private ExampleLauncher() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;// prevents instantiation"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;/**"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9; * Launcher of this application."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9; * "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9; * @param args"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9; *            Arguments of the launch."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9; */"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;public static void main(String[] args) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;if (args.length == 2 &amp;&amp; new File(args[0]).canRead() &amp;&amp; new File(args[1]).canRead()) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;// Creates the resourceSet where we'll load the models"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;final ResourceSet resourceSet = new ResourceSetImpl();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;// Register additionnal packages here. For UML2 for instance :"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;//&#x9;&#x9;&#x9;Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION,"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;//&#x9;&#x9;&#x9;&#x9;&#x9;UMLResource.Factory.INSTANCE);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;//&#x9;&#x9;&#x9;resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;try {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Loading resources.\n&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;// Loads the two models passed as arguments"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;final EObject model1 = ModelUtils.load(new File(args[0]), resourceSet);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;final EObject model2 = ModelUtils.load(new File(args[1]), resourceSet);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;// Creates the match then the diff model for those two models"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Matching models.\n&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;final MatchModel match = MatchService.doMatch(model1, model2, Collections"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.&lt;String, Object> emptyMap());"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Differencing models.\n&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;final DiffModel diff = DiffService.doDiff(match, false);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;Merging difference to args[1].\n&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;final List&lt;DiffElement> differences = new ArrayList&lt;DiffElement>(diff.getOwnedElements());"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;// This will merge all references to the right model (second argument)."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;MergeService.merge(differences, true);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;// Prints the results"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;try {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;MatchModel :\n&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(ModelUtils.serialize(match));"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;DiffModel :\n&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(ModelUtils.serialize(diff));"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;} catch (IOException e) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;e.printStackTrace();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;// Serializes the result as &quot;result.emfdiff&quot; in the directory this class has been called from."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;saving emfdiff as \&quot;result.emfdiff\&quot;&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;final ModelInputSnapshot snapshot = DiffFactory.eINSTANCE.createModelInputSnapshot();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;snapshot.setDate(Calendar.getInstance().getTime());"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;snapshot.setMatch(match);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;snapshot.setDiff(diff);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;ModelUtils.save(snapshot, &quot;result.emfdiff&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;} catch (IOException e) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;// shouldn't be thrown"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;e.printStackTrace();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;} catch (InterruptedException e) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;&#x9;e.printStackTrace();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;} else {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;&#x9;System.out.println(&quot;usage : ExampleLauncher &lt;Model1> &lt;Model2>&quot;); //$NON-NLS-1$"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=""/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Section" level="3">
+        <content xmi:type="markup:Paragraph">
+          <attributes/>
+          <content xmi:type="markup:Text" data="The following list of libraries will need to be in the classpath in order to compile:"/>
+        </content>
+        <content xmi:type="markup:List">
+          <attributes/>
+          <items>
+            <attributes/>
+            <content xmi:type="markup:Text" data="org.eclipse.emf.common 2.3 or higher"/>
+          </items>
+          <items>
+            <attributes/>
+            <content xmi:type="markup:Text" data="org.eclipse.emf.ecore 2.3 or higher"/>
+          </items>
+          <items>
+            <attributes/>
+            <content xmi:type="markup:Text" data="org.eclipse.emf.compare 0.8 or higher"/>
+          </items>
+          <items>
+            <attributes/>
+            <content xmi:type="markup:Text" data="org.eclipse.emf.compare.diff 0.8 or higher"/>
+          </items>
+          <items>
+            <attributes/>
+            <content xmi:type="markup:Text" data="org.eclipse.emf.compare.match 0.8 or higher"/>
+          </items>
+        </content>
+        <attributes id="Compilation"/>
+        <title>
+          <content xmi:type="markup:Text" data="Compilation"/>
+        </title>
+      </content>
+      <content xmi:type="markup:Section" level="3">
+        <content xmi:type="markup:Paragraph">
+          <attributes/>
+          <content xmi:type="markup:Text" data="All six aforementionned libraries will be required to be in the classpath for this class to run. Additionally, the following libraries " lineBreak="true"/>
+          <content xmi:type="markup:Text" data="  are required:"/>
+        </content>
+        <content xmi:type="markup:List">
+          <attributes/>
+          <items>
+            <attributes/>
+            <content xmi:type="markup:Text" data="org.eclipse.emf.ecore.xmi 2.3 or higher"/>
+          </items>
+        </content>
+        <attributes id="Launch"/>
+        <title>
+          <content xmi:type="markup:Text" data="Launch"/>
+        </title>
+      </content>
+      <attributes id="UsingEMFCompareinstandalonemode"/>
+      <title>
+        <content xmi:type="markup:Text" data="Using EMF Compare in standalone mode"/>
+      </title>
+    </content>
+    <attributes id="UsingtheCompareServices"/>
+    <title>
+      <content xmi:type="markup:Text" data="Using the Compare Services"/>
+    </title>
+  </content>
+</markup:Document>

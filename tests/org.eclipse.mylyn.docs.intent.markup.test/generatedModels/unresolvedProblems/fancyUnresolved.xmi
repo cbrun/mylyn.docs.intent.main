@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="2">
+    <content xmi:type="markup:Section" level="3">
+      <content xmi:type="markup:Quote">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The right and left paddings don"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="t seem to be detected by the WikiText parser. Moreover, "/>
+        <content xmi:type="markup:Text" data="*they*">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" aren"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="t detected as paragraphs."/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="p(()))." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Left padding of 2em and right padding of 3em."/>
+      </content>
+      <attributes id="Fancystylesproblems"/>
+      <title>
+        <content xmi:type="markup:Text" data="Fancy styles problems"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="3">
+      <attributes id="Tables"/>
+      <title>
+        <content xmi:type="markup:Text" data="Tables"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="3">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="It"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s really odd, the top alignment is detected but not the middle and bottom ones."/>
+      </content>
+      <content xmi:type="markup:Table">
+        <attributes/>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell" isCellHeader="true">
+            <attributes/>
+            <content xmi:type="markup:Text" data="TestAlignments"/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes CSSStyle="text-align: top;"/>
+            <content xmi:type="markup:Text" data="top alignment "/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="-. middle alignment "/>
+          </content>
+        </content>
+        <content xmi:type="markup:TableRow">
+          <attributes/>
+          <content xmi:type="markup:TableCell">
+            <attributes/>
+            <content xmi:type="markup:Text" data="~. bottom alignment "/>
+          </content>
+        </content>
+      </content>
+      <content xmi:type="markup:Section" level="4">
+        <content xmi:type="markup:Table">
+          <attributes/>
+          <content xmi:type="markup:TableRow">
+            <attributes/>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Colspan 3 "/>
+            </content>
+          </content>
+          <content xmi:type="markup:TableRow">
+            <attributes/>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="table "/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="row"/>
+            </content>
+          </content>
+          <content xmi:type="markup:TableRow">
+            <attributes/>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Colspan 2"/>
+            </content>
+          </content>
+        </content>
+        <attributes id="Colspans"/>
+        <title>
+          <content xmi:type="markup:Text" data="Colspans"/>
+        </title>
+      </content>
+      <content xmi:type="markup:Section" level="4">
+        <content xmi:type="markup:Table">
+          <attributes/>
+          <content xmi:type="markup:TableRow">
+            <attributes/>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Rowspan 3"/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+          </content>
+          <content xmi:type="markup:TableRow">
+            <attributes/>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+          </content>
+          <content xmi:type="markup:TableRow">
+            <attributes/>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+          </content>
+          <content xmi:type="markup:TableRow">
+            <attributes/>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a "/>
+            </content>
+            <content xmi:type="markup:TableCell">
+              <attributes/>
+              <content xmi:type="markup:Text" data="a"/>
+            </content>
+          </content>
+        </content>
+        <attributes id="Rowspans"/>
+        <title>
+          <content xmi:type="markup:Text" data="Rowspans"/>
+        </title>
+      </content>
+      <attributes id="Alignments"/>
+      <title>
+        <content xmi:type="markup:Text" data="Alignments"/>
+      </title>
+    </content>
+    <attributes id="Unresolvedproblems"/>
+    <title>
+      <content xmi:type="markup:Text" data="Unresolved problems"/>
+    </title>
+  </content>
+</markup:Document>

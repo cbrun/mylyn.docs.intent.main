@@ -1,0 +1,1466 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Author">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" Me" lineBreak="true"/>
+      <content xmi:type="markup:Text" data="Contact">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" me@mycompany.com"/>
+    </content>
+    <content xmi:type="markup:List" listType="TABLE_OF_CONTENT">
+      <attributes CSSStyle="list-style: none;"/>
+      <items listType="NUMERIC" isList="true">
+        <attributes/>
+        <content xmi:type="markup:Link" hrefOrHashName="#Addingnewactionstotheexportmenu" target="//@content.0">
+          <attributes/>
+          <name>
+            <content xmi:type="markup:Text" data="Adding new actions to the export menu"/>
+          </name>
+        </content>
+        <items listType="TABLE_OF_CONTENT" imbricationLevel="2" isList="true">
+          <attributes CSSStyle="list-style: none;"/>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#SourceCode" target="//@content.0/@content.2">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Source Code"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Whatistheexportmenuandwhyaddingnewexportactions" target="//@content.0/@content.3">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="What is the export menu, and why adding new export actions?"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Theexample" target="//@content.0/@content.4">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="The example"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Settinguptheenvironment" target="//@content.0/@content.5">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Setting up the environment"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Step1Designingthemetamodel" target="//@content.0/@content.6">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Step 1 : Designing the meta-model"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Step2Definingthemetamodel" target="//@content.0/@content.7">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Step 2 : Defining the meta-model"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Step3Generatingmodelcode" target="//@content.0/@content.8">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Step 3 : Generating model code"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Step4Prototypingtheexport" target="//@content.0/@content.9">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Step 4 : Prototyping the export"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Step5Designingtheexportaction" target="//@content.0/@content.10">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Step 5 : Designing the export action"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Step6Providingtheexportaction" target="//@content.0/@content.11">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Step 6 : Providing the export action"/>
+              </name>
+            </content>
+          </items>
+          <items listType="NUMERIC" imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Link" hrefOrHashName="#Testingtheexportaction" target="//@content.0/@content.12">
+              <attributes/>
+              <name>
+                <content xmi:type="markup:Text" data="Testing the export action"/>
+              </name>
+            </content>
+          </items>
+        </items>
+      </items>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="To "/>
+        <content xmi:type="markup:Text" data="run">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" the example or view the source code for this tutorial you can download the " lineBreak="true"/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.emf/org.eclipse.emf.compare/examples/org.eclipse.emf.compare.examples.export.library/?root=Modeling_Project" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data=" example plugin "/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" "/>
+        <content xmi:type="markup:Link" hrefOrHashName="#" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data=" lienTest "/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" into your workspace and run it in a runtime workbench (see Step 7). You will need to have an Eclipse up and running for EMF Compare for this code " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="to compile."/>
+      </content>
+      <attributes id="SourceCode"/>
+      <title>
+        <content xmi:type="markup:Text" data="Source Code"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The export menu is the drop-down menu on the upper-right of EMF Compare GUI, using the classical floppy icon for a save action. On the image below, this" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="menu is expanded and shows only the default action, "/>
+        <content xmi:type="markup:Text" data="As emfdiff" lineBreak="true">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Image" url="images/ExportMenu.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="This menu allows users to save the comparison result. Adding actions there can be used to generate comparison reports easily. This tutorial will help" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="you set a reporting action for a custom meta-model. This action will be made transparent to other users and will only be shown when comparing models" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="from your own meta-model."/>
+      </content>
+      <attributes id="Whatistheexportmenuandwhyaddingnewexportactions"/>
+      <title>
+        <content xmi:type="markup:Text" data="What is the export menu, and why adding new export actions?"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The example used in this tutorial is an HTML export of a model representing a library. This tutorial will go through all the steps from defining" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="the meta-model to generating code and testing the custom export. If you simply wish to define the export extension point on one of your existing" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="models, Step directly to Step 5 of this example."/>
+      </content>
+      <attributes id="Theexample"/>
+      <title>
+        <content xmi:type="markup:Text" data="The example"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="This tutorial assumes you already have an Eclipse installed with EMF Compare up and running. See EMF Compare"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s " lineBreak="true"/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://www.eclipse.org/modeling/emf/downloads/?project=compare" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="latest build"/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" dependencies in order to achieve this." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="For the purpose of the example you will need to create a new plug-in project:"/>
+      </content>
+      <content xmi:type="markup:List">
+        <attributes/>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="Select the menu "/>
+          <content xmi:type="markup:Text" data="File => New => Other...">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" then in the pop-up select the item "/>
+          <content xmi:type="markup:Text" data="Plug-In Project">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and click "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=". "/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="In this new window, fill in the plug-in name &quot;"/>
+          <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data="&quot;, leave the other fields as they are then select "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="On this new page, tick "/>
+          <content xmi:type="markup:Text" data="Generate an activator, [...]">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and uncheck "/>
+          <content xmi:type="markup:Text" data="This plug-in will make contribution to the UI">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" if it is checked."/>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The page should now look as shown on the image below. Select "/>
+        <content xmi:type="markup:Text" data="Finish">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" to create this plug-in." lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/PluginCreation.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The PDE editor has opened to allow you to tweak the plugin"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s configuration (MANIFEST.MF and plugin.xml). Navigate to its "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="dependencies"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=" tab and" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="click the "/>
+        <content xmi:type="markup:Text" data="Add">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" button to add dependencies on the plugins listed on the image below." lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/PDEEditor.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="All of the manipulation we"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll describe in this tutorial will be made within this project."/>
+      </content>
+      <attributes id="Settinguptheenvironment"/>
+      <title>
+        <content xmi:type="markup:Text" data="Setting up the environment"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The first step is to design the meta-model for the models we wish to compare. In UML, the meta-model we"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll consider looks like :" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/LibraryModel.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="A library contains books, writers and members. Books have a title and a number of pages, and are linked to their author. Writers have a name and are " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="linked to the books they have written. Members all have a name and an ID, and they can borrow any number of books."/>
+      </content>
+      <attributes id="Step1Designingthemetamodel"/>
+      <title>
+        <content xmi:type="markup:Text" data="Step 1 : Designing the meta-model"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="EMF provides a number of ways to create this meta-model, yet this is out of the scope of this tutorial. EMF tutorials such as " lineBreak="true"/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://help.eclipse.org/help33/index.jsp?topic=/org.eclipse.emf.doc/tutorials/clibmod/clibmod.html" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="Generating an EMF model "/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" can help you in " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="going through this step." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="The Ecore file for this meta-model is present in the example plugin and can be downloaded from the "/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.emf/org.eclipse.emf.compare/examples/org.eclipse.emf.compare.examples.export.library/model/library.ecore?revision=1.1&amp;amp;root=Modeling_Project>" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="CVS "/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" with this tutorial and should look like :" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/LibraryEcore.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="We suggest you create the model (or copy the provided file) in a "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="models"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=" folder at the root of your plug-in project. We"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll assume that you have" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="named your meta-model "/>
+        <content xmi:type="markup:Text" data="library.ecore">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data="."/>
+      </content>
+      <attributes id="Step2Definingthemetamodel"/>
+      <title>
+        <content xmi:type="markup:Text" data="Step 2 : Defining the meta-model"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Now that the meta-model has been created, we can proceed to generating its implementation."/>
+      </content>
+      <content xmi:type="markup:List" listType="NUMERIC">
+        <attributes/>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Right-click on "/>
+          <content xmi:type="markup:Text" data="library.ecore">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and select "/>
+          <content xmi:type="markup:Text" data="New => Other...">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") On the popup that just appeared, expand "/>
+          <content xmi:type="markup:Text" data="Eclipse Modeling Framework">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and select "/>
+          <content xmi:type="markup:Text" data="EMF Model">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=". Click "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Fill in the name "/>
+          <content xmi:type="markup:Text" data="library.genmodel">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" for this new file and click "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Select "/>
+          <content xmi:type="markup:Text" data="Ecore model">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and click "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Click the "/>
+          <content xmi:type="markup:Text" data="Load">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" button, if an error occurs, the model is not a valid EMF model. Revert to Step 2 and check that you correctly defined the meta-model. Click "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" then "/>
+          <content xmi:type="markup:Text" data="Finish">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" to create the genmodel for this model."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") On the editor that just opened, expand the root (first) node of the tree, and right click the "/>
+          <content xmi:type="markup:Text" data="Library">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" node."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Select "/>
+          <content xmi:type="markup:Text" data="Show Properties View">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=". A new view should open on your environment."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") In the properties view, expand "/>
+          <content xmi:type="markup:Text" data="All">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and select "/>
+          <content xmi:type="markup:Text" data="base Package">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=". Fill in "/>
+          <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" in its field, as on "/>
+          <content xmi:type="markup:Text" data="base package">
+            <attributes/>
+            <format>code</format>
+          </content>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Right click the root node of the tree."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Successively select "/>
+          <content xmi:type="markup:Text" data="Generate Model Code">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=", "/>
+          <content xmi:type="markup:Text" data="Generate Edit Code">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" then "/>
+          <content xmi:type="markup:Text" data="Generate Editor Code">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Image" url="images/BasePackageProperty.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Two new packages, "/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library.impl">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" and "/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library.util">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=", have been generated" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="in your project. Besides, two new projects, "/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library.edit">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" and " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library.editor">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" have been created in your workspace." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="These newly generated packages and plug-ins correspond to the EMF code of the library meta-model and to a basic editor that can be used to created library models. This editor will be used later to create the models that will be compared. By default, these models will use the extension "/>
+        <content xmi:type="markup:Text" data="*\*.library*.">
+          <attributes/>
+          <format>code</format>
+        </content>
+      </content>
+      <attributes id="Step3Generatingmodelcode"/>
+      <title>
+        <content xmi:type="markup:Text" data="Step 3 : Generating model code"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Let"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s define the prototype of the report we wish to create on library comparisons. For the purpose of this example, we"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll create a simple HTML report" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="displaying the added and removed books and members, as well as the borrowed and returned books." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="The HTML page will be divided in three. First will come a section for member movements (addition, deletion), then a second section will deal with the" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="catalog changes (new books, lost books), and a third section will report on borrowals and returns." lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/ReportPrototype.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="We won"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="t use code generators for this example and the HTML will then be mostly hard-coded with Strings and StringBuffers. This could be improved with" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="the use of "/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://www.eclipse.org/modeling/m2t/" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="M2T languages "/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" but we won"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="t get into these technologies here as they need tutorials of their own."/>
+      </content>
+      <attributes id="Step4Prototypingtheexport"/>
+      <title>
+        <content xmi:type="markup:Text" data="Step 4 : Prototyping the export"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="We"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll use a wizard-based action for our report exporting. Export actions must implement the interface "/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.ui.export.IExportAction" lineBreak="true">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data="which defines five methods:"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data=" void exportSnapshot(ModelInputSnapshot snapshot)"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=" Image getDisabledImage()                        "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=" Image getEnabledImage()                         "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=" String getText()                                "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=" String getToolTipText() "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:List">
+        <attributes/>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="exportSnapshot">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : This method is where the actual work of exporting the comparison result will be done. The parameter it is passed, "/>
+          <content xmi:type="markup:Text" data="snapshot">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=", contains information about the match model and the differences model."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="getDisabledImage">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : The Image returned by this method will be used as our action"/>
+          <content xmi:type="markup:Entity" data="#8217"/>
+          <content xmi:type="markup:Text" data="s icon when it is disabled."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="getEnabledImage">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : As above, except this Image is used when the action is enabled."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="getText">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : This is the text that will be displayed for our action. For example, the text of the default action shown on this tutorial"/>
+          <content xmi:type="markup:Entity" data="#8217"/>
+          <content xmi:type="markup:Text" data="s first image is "/>
+          <content xmi:type="markup:Entity" data="#171"/>
+          <content xmi:type="markup:Text" data="As emfdiff"/>
+          <content xmi:type="markup:Entity" data="#187"/>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="getToolTipText">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : The returned String will be used as a tooltip when the user hovers the mouse on our action."/>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="We wish to create our report through a wizard. "/>
+        <content xmi:type="markup:Text" data="exportSnapshot">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" will be used to initialize this wizard with the comparison result and opening it on" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="the user"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s interface. As for the icon, we"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll use the same icon "/>
+        <content xmi:type="markup:Image" url="images/ActionIcon.gif">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="for both enabled and disabled state. This icon will be located in the " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="icons">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" folder of the plug-in." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="We"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll create the action class in the package "/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library.action">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=". "/>
+      </content>
+      <content xmi:type="markup:List" listType="NUMERIC">
+        <attributes/>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Right-click on the root folder of the plugin "/>
+          <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Select "/>
+          <content xmi:type="markup:Text" data="New => Folder">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and set its name to "/>
+          <content xmi:type="markup:Entity" data="#171"/>
+          <content xmi:type="markup:Text" data="icons"/>
+          <content xmi:type="markup:Entity" data="#187"/>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Copy the icon for your action (either the one above, or one you"/>
+          <content xmi:type="markup:Entity" data="#8217"/>
+          <content xmi:type="markup:Text" data="ve selected) to this new directory"/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Right-click on the "/>
+          <content xmi:type="markup:Text" data="src">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" folder of the plugin."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") | Select "/>
+          <content xmi:type="markup:Text" data="New => Package">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and fill in its name as on the image below "/>
+          <content xmi:type="markup:Image" url="images/NewPackage.png">
+            <attributes/>
+          </content>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Right-click this new package and select "/>
+          <content xmi:type="markup:Text" data="New => Class">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Fill in the name of the class to "/>
+          <content xmi:type="markup:Entity" data="#171"/>
+          <content xmi:type="markup:Text" data="LibraryExportAction"/>
+          <content xmi:type="markup:Entity" data="#187"/>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The java editor should have opened on your new Class. Paste the code below as the code of this action class::"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data="&#x9; public class LibraryExportAction implements IExportAction {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;private final String text;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;private final String toolTipText;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;private final Image image;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;public LibraryExportAction() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;text = &quot;Library report&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;toolTipText = &quot;Exports library comparison result as a report&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;final URL imageURL = LibraryPlugin.getPlugin().getBundle().getEntry(&quot;icons/libraryexport.gif&quot;);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;image = ImageDescriptor.createFromURL(imageURL).createImage();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;public String getText() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;return text; "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;public String getToolTipText() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;return toolTipText;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;public Image getDisabledImage() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;return image;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;public Image getEnabledImage() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;return image;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;public void exportSnapshot(ModelInputSnapshot snapshot) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;final LibraryExportWizard wizard = new LibraryExportWizard();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;final IWorkbench workbench = PlatformUI.getWorkbench();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;wizard.init(workbench, snapshot);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;final WizardDialog dialog = new WizardDialog(workbench.getActiveWorkbenchWindow().getShell(), wizard);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;dialog.open();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9; }"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="All needed variables are initialized within the default constructor with static values :"/>
+      </content>
+      <content xmi:type="markup:List">
+        <attributes/>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="text">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" will hold the text displayed as the action"/>
+          <content xmi:type="markup:Entity" data="#8217"/>
+          <content xmi:type="markup:Text" data="s "/>
+          <content xmi:type="markup:Entity" data="#171"/>
+          <content xmi:type="markup:Text" data="name"/>
+          <content xmi:type="markup:Entity" data="#187"/>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="toolTipText">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" will be shown as the tool tip when hovering the mouse over the action."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="image">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" is statically created from the image &quot;"/>
+          <content xmi:type="markup:Text" data="libraryexport.gif">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data="&quot; in the &quot;"/>
+          <content xmi:type="markup:Text" data="icons">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data="&quot; folder and will be used as the action"/>
+          <content xmi:type="markup:Entity" data="#8217"/>
+          <content xmi:type="markup:Text" data="s icon."/>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The method "/>
+        <content xmi:type="markup:Text" data="exportSnapshot">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" is implemented by creating a custom wizard and passing it the snapshot via its "/>
+        <content xmi:type="markup:Text" data="init">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" method. We need to create this" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="wizard : repeat the steps above to create a package named "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library.wizard"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=" alongside the "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="\*.action"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=" one." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Once done, copy the two classes " lineBreak="true"/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.emf/org.eclipse.emf.compare/examples/org.eclipse.emf.compare.examples.export.library/src/org/eclipse/emf/compare/examples/export/library/wizard/LibraryExportWizard.java?revision=1.1&amp;amp;root=Modeling_Project" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="LibraryExportWizard "/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data="and " lineBreak="true"/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.emf/org.eclipse.emf.compare/examples/org.eclipse.emf.compare.examples.export.library/src/org/eclipse/emf/compare/examples/export/library/wizard/LibraryExportWizardPage.java?revision=1.1&amp;amp;root=Modeling_Project" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="LibraryExportWizardPage "/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" within this new package." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="LibraryExportWizardPage">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" is the page that will be displayed by the wizard. It allows us to define our own validation rules::"/>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data=" protected boolean validatePage() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;boolean result = super.validatePage();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;if (result) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;final String fileName = getFileName();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;if (fileName.endsWith(&quot;.html&quot;)) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;setErrorMessage(null);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;&#x9;return true;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;setErrorMessage(&quot;File name must end in '.html'&quot;);"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;&#x9;return false;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;// This will return false"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="&#x9;return result;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=" }"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Our page will then be valid if and only if the file the user has chosen ends with the extension "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="\*.html"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=". The wizard will output an error message" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="and prevent file creation otherwise." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="LibraryExportWizard">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" is the core of our export action. This wizard will take care of creating the result file and generating the HTML code within " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="it. Let"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s take a more detailed look at its methods of interest."/>
+      </content>
+      <content xmi:type="markup:List">
+        <attributes/>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="performFinish">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : This is the method that will be called by Eclipse when the user clicks on "/>
+          <content xmi:type="markup:Text" data="Finish">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" on a valid page of our wizard. This is where we create the buffer in which the HTML code will be generated. It delegates the generation to several private methods that are used to generate sections of the HTML page."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="generateCSS">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : This method will be called to create a basic CSS style for our HTML page. Tweak this to modify the colors, background, foreground, ... of the result."/>
+        </items>
+        <items>
+          <attributes/>
+          <content xmi:type="markup:Text" data="generateXXXTable">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" : These are the methods used to generate the six HTML tables of our report. Let"/>
+          <content xmi:type="markup:Entity" data="#8217"/>
+          <content xmi:type="markup:Text" data="s detail "/>
+          <content xmi:type="markup:Text" data="generateReturnedTable">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" which is used to generate the HTML table displaying to the user the books that have been returned::"/>
+        </items>
+      </content>
+      <content xmi:type="markup:Preformatted">
+        <attributes/>
+        <content xmi:type="markup:Text" data="    private String generateReturnedTable() {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;String returnedBooks = new String();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;final TreeIterator&lt;EObject> iterator = input.getDiff().eAllContents();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;while (iterator.hasNext()) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;final EObject next = iterator.next();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;if (next instanceof RemoveReferenceValue) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;final EReference target = ((RemoveReferenceValue)next).getReference();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;if (target.getFeatureID() == LibraryPackage.MEMBER__BORROWED_BOOKS) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;// We need to create the table headers"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;if (returnedBooks.length() == 0) {"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;&#x9;returnedBooks += &quot;&lt;table>&lt;tr>&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;&#x9;returnedBooks += &quot;&lt;td class=\&quot;header\&quot; colspan=\&quot;2\&quot;>Returned Books&lt;/td>&lt;/tr>&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;&#x9;returnedBooks += &quot;&lt;tr>&lt;td class=\&quot;header\&quot;>Title&lt;/td>&lt;td class=\&quot;header\&quot;>Member&lt;/td>&lt;/tr>&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;final Book returned = (Book)((RemoveReferenceValue)next).getRightRemovedTarget();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;final Member member = (Member)((RemoveReferenceValue)next).getRightElement();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;returnedBooks += &quot;&lt;tr>&lt;td>&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;returnedBooks += returned.getTitle();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;returnedBooks += &quot;&lt;/td>&lt;td>&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;returnedBooks += member.getName();"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;&#x9;returnedBooks += &quot;&lt;/td>&lt;/tr>&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;}"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;// Closes the table if we found returned books"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;if (returnedBooks.length() > 0)"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;&#x9;returnedBooks += &quot;&lt;/table>&quot;;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    &#x9;return returnedBooks;"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    }"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data=" "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="    "/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Code">
+        <attributes/>
+        <content xmi:type="markup:Text" data="   What does this code do? It iterates over the whole differences model (*input.getDiff().eAllContents()* creates an iterator over direct and"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="   indirect children of the DiffModel) and searches for elements corresponding to removed references (*RemoveReferenceValue*). For each of these"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="   removals, we'll check that the target reference is **borrowedBooks** of the class &quot;Member&quot;. When we find such a reference, we'll create an"/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+        <content xmi:type="markup:Text" data="   HTML table containing the title of the returned book and the name of the member that had borrowed it."/>
+        <content xmi:type="markup:Text" data="&#xA;"/>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Now that we have both defined the classes backing up our export action and the model"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s code, we can set the extension point to provide EMF Compare" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="with our report action."/>
+      </content>
+      <attributes id="Step5Designingtheexportaction"/>
+      <title>
+        <content xmi:type="markup:Text" data="Step 5 : Designing the export action"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Export actions can be added through the extension point "/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.ui.export">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=". This extension point accepts three parameters, two of " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="which being mandatory. "/>
+        <content xmi:type="markup:Text" data="id">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" is the unique identifier of your extension, "/>
+        <content xmi:type="markup:Text" data="class">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" is the fully qualified name of the action class implementing" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="org.eclipse.emf.compare.ui.export.IExportAction">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=". The third "/>
+        <content xmi:type="markup:Text" data="and optional">
+          <attributes/>
+          <format>deleted</format>
+        </content>
+        <content xmi:type="markup:Text" data=" parameter is the file extension on which this export action will be " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="enabled. We"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ve prepared all of the required classes in the above steps: let us now configure this extension point:"/>
+      </content>
+      <content xmi:type="markup:List" listType="NUMERIC">
+        <attributes/>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Double-click on the file "/>
+          <content xmi:type="markup:Text" data="META-INF/MANIFEST.MF">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" of the "/>
+          <content xmi:type="markup:Text" data="org.eclipse.emf.compare.examples.export.library">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" plugin."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") | Select the "/>
+          <content xmi:type="markup:Text" data="extensions">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" tab "/>
+          <content xmi:type="markup:Image" url="images/ExtensionTab.png">
+            <attributes/>
+          </content>
+          <content xmi:type="markup:Text" data="    "/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Click on "/>
+          <content xmi:type="markup:Text" data="Add">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=", select the extension point "/>
+          <content xmi:type="markup:Text" data="org.eclipse.emf.compare.ui.export">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and click "/>
+          <content xmi:type="markup:Text" data="Finish">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") On the right part of the editor now appear three fields labeled "/>
+          <content xmi:type="markup:Text" data="ID">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=", "/>
+          <content xmi:type="markup:Text" data="class">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and "/>
+          <content xmi:type="markup:Text" data="fileExtension">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" corresponding to the parameters described above."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Fill in the ID with a unique identifier (leaving it as-is should be enough)."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Click on "/>
+          <content xmi:type="markup:Text" data="Browse...">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and enter the name of the action Class &quot;"/>
+          <content xmi:type="markup:Text" data="LibraryExportAction">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data="&quot;, select it on the lower part and click "/>
+          <content xmi:type="markup:Text" data="OK">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Set the fileExtension to be "/>
+          <content xmi:type="markup:Text" data="library">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=". The tab should now look like "/>
+          <content xmi:type="markup:Image" url="images/ExportExtension.png">
+            <attributes/>
+          </content>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="That"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s it! Your export action will now be automatically added to the export menu of EMF Compare"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s GUI for each "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="library"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=" file comparison."/>
+      </content>
+      <attributes id="Step6Providingtheexportaction"/>
+      <title>
+        <content xmi:type="markup:Text" data="Step 6 : Providing the export action"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="You will need to launch a runtime workbench to test your action. Expand the menu "/>
+        <content xmi:type="markup:Text" data="Run">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" and select "/>
+        <content xmi:type="markup:Text" data="Open Run Dialog...">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=", double click &quot;Eclipse" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Application&quot; and click "/>
+        <content xmi:type="markup:Text" data="Run">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data="." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="A new, empty workbench should have opened. Select "/>
+        <content xmi:type="markup:Text" data="New => Other... => Plugin Project">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" and name this project "/>
+        <content xmi:type="markup:Entity" data="#171"/>
+        <content xmi:type="markup:Text" data="library.test"/>
+        <content xmi:type="markup:Entity" data="#187"/>
+        <content xmi:type="markup:Text" data=". Click "/>
+        <content xmi:type="markup:Text" data="Finish">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" to " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="create the project we"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="ll use to test all of the code we prepared earlier."/>
+      </content>
+      <content xmi:type="markup:List" listType="NUMERIC">
+        <attributes/>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Right-click on the project and select "/>
+          <content xmi:type="markup:Text" data="New => Other...">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Expand "/>
+          <content xmi:type="markup:Text" data="Example EMF Model Creation Wizard">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") You should see an element "/>
+          <content xmi:type="markup:Text" data="Library Model">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" in this category. Select it and click "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") Name your library model "/>
+          <content xmi:type="markup:Text" data="v1.library">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and click "/>
+          <content xmi:type="markup:Text" data="Next">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+        <items listType="NUMERIC">
+          <attributes/>
+          <content xmi:type="markup:Text" data=") This page prompts you for the "/>
+          <content xmi:type="markup:Text" data="Model Object">
+            <attributes/>
+            <format>strong</format>
+          </content>
+          <content xmi:type="markup:Text" data=", select "/>
+          <content xmi:type="markup:Text" data="Library">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data=" and click "/>
+          <content xmi:type="markup:Text" data="Finish">
+            <attributes/>
+            <format>bold</format>
+          </content>
+          <content xmi:type="markup:Text" data="."/>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="You can now create the first version of the library model. Create some Writers, Members and Books, set some borrowals, then copy/paste your model," lineBreak="true"/>
+        <content xmi:type="markup:Text" data="naming the new one "/>
+        <content xmi:type="markup:Text" data="v2.library">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=" and make modifications to this new version (you can also commit the model on SVN/CVS, the goal of this operation is" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="to have the first version saved somewhere while still modifying another version of it)." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="If you used the meta-model provided in Step 2 for the generation, the "/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.emf/org.eclipse.emf.compare/examples/org.eclipse.emf.compare.examples.export.library/model/samples/?root=Modeling_Project" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="samples folder>"/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data="of the CVS contains two versions of a sample library." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="You now need to tell EMF Compare that library files should be compared as models. See the "/>
+        <content xmi:type="markup:Link" hrefOrHashName="http://wiki.eclipse.org/EMF_Compare_FAQ#Which_files_should_be_compared_via_EMF_Compare_.3F" hasBeenDeclaredWithHTMLSyntax="true">
+          <name>
+            <content xmi:type="markup:Text" data="EMF Compare FAQ"/>
+          </name>
+        </content>
+        <content xmi:type="markup:Text" data=" " lineBreak="true"/>
+        <content xmi:type="markup:Text" data=" to achieve this. " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="You can now launch a comparison of your libraries by selecting both models, then selecting "/>
+        <content xmi:type="markup:Text" data="Compare With => Each Other">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" as shown below" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/ComparisonLaunch.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="You should now be looking at the comparison result of your two models through EMF Compare"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s GUI. Expanding the export menu should display the **library" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="report** action as shown below. This action will not be displayed to the user when comparing files of an extension distinct from "/>
+        <content xmi:type="markup:Text" data="\">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=".library*." lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/LibraryReportAction.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Selecting this action will make the new file wizard pop up with "/>
+        <content xmi:type="markup:Text" data="result.html">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=" as the default name for the result. Select the folder where you wish" lineBreak="true"/>
+        <content xmi:type="markup:Text" data="the report created, then click "/>
+        <content xmi:type="markup:Text" data="Finish">
+          <attributes/>
+          <format>bold</format>
+        </content>
+        <content xmi:type="markup:Text" data=". The file has now been created in the selected folder. Double click on it to see the report about this " lineBreak="true"/>
+        <content xmi:type="markup:Text" data="particular comparison. If you have used the two library models provided in the zip file above, the report looks like :" lineBreak="true"/>
+        <content xmi:type="markup:Image" url="images/Result.png">
+          <attributes/>
+        </content>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="You are now ready to customize this sample report, or to define your own!"/>
+      </content>
+      <attributes id="Testingtheexportaction"/>
+      <title>
+        <content xmi:type="markup:Text" data="Testing the export action"/>
+      </title>
+    </content>
+    <attributes id="Addingnewactionstotheexportmenu"/>
+    <title>
+      <content xmi:type="markup:Text" data="Adding new actions to the export menu"/>
+    </title>
+  </content>
+</markup:Document>

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.mylyn.docs.intent.client.ui.cdo;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Vendor: %providerName
+Bundle-Activator: org.eclipse.mylyn.docs.intent.client.ui.cdo.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.mylyn.docs.intent.core,
+ org.eclipse.mylyn.docs.intent.collab.cdo,
+ org.eclipse.mylyn.docs.intent.collab.common,
+ org.eclipse.mylyn.docs.intent.client.compiler,
+ org.eclipse.mylyn.docs.intent.client.indexer,
+ org.eclipse.mylyn.docs.intent.client.ui
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

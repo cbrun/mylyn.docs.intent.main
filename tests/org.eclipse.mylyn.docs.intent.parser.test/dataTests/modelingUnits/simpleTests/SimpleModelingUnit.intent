@@ -1,0 +1,14 @@
+@M
+new B myB {
+	myAttMulti += [ "val1" , "val2" ];
+	myAtt0 = "bAtt";
+	myAtt0 = "bAtt2";
+}
+new A myA {
+	myAtt1 = "41";
+	myAtt2 = new B {
+		myAtt0 = "okAtt";
+	};
+	myAtt3 = myB;
+}
+M@

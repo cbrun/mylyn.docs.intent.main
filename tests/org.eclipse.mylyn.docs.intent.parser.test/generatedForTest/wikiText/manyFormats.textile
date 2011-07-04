@@ -1,0 +1,11 @@
+
+h2{color:green}. Many formats for @Text@ __*enti(c)ties*__
+
+
+p{color:blue}. 
+Just a *sample _@test@_ using ??a??* **lot** of ~formats~.
+
+* @Testing@ formats %with% -lists- +too+
+** *And @with@* level2 lists
+* *_@??testing??@ +formats+_*
+

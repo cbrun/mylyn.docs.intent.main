@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="2">
+    <content xmi:type="markup:Paragraph">
+      <attributes CSSStyle="color:blue"/>
+      <content xmi:type="markup:Text" data="Just a "/>
+      <content xmi:type="markup:Text" data="sample ">
+        <attributes/>
+        <format>strong</format>
+      </content>
+      <content xmi:type="markup:Text" data="test">
+        <attributes/>
+        <format>emphasis</format>
+        <format>strong</format>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" using ">
+        <format>strong</format>
+      </content>
+      <content xmi:type="markup:Text" data="a">
+        <attributes/>
+        <format>citation</format>
+        <format>strong</format>
+      </content>
+      <content xmi:type="markup:Text" data=" "/>
+      <content xmi:type="markup:Text" data="lot">
+        <attributes/>
+        <format>bold</format>
+      </content>
+      <content xmi:type="markup:Text" data=" of "/>
+      <content xmi:type="markup:Text" data="formats">
+        <attributes/>
+        <format>subscript</format>
+      </content>
+      <content xmi:type="markup:Text" data="."/>
+    </content>
+    <content xmi:type="markup:List">
+      <attributes/>
+      <items isList="true">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Testing">
+          <attributes/>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" formats "/>
+        <content xmi:type="markup:Text" data="with">
+          <attributes/>
+          <format>span</format>
+        </content>
+        <content xmi:type="markup:Text" data=" "/>
+        <content xmi:type="markup:Text" data="lists">
+          <attributes/>
+          <format>deleted</format>
+        </content>
+        <content xmi:type="markup:Text" data=" "/>
+        <content xmi:type="markup:Text" data="too">
+          <attributes/>
+          <format>inserted</format>
+        </content>
+        <items imbricationLevel="2" isList="true">
+          <attributes/>
+          <items imbricationLevel="2">
+            <attributes/>
+            <content xmi:type="markup:Text" data="And ">
+              <attributes/>
+              <format>strong</format>
+            </content>
+            <content xmi:type="markup:Text" data="with">
+              <attributes/>
+              <format>code</format>
+              <format>strong</format>
+            </content>
+            <content xmi:type="markup:Text" data=" level2 lists"/>
+          </items>
+        </items>
+      </items>
+      <items>
+        <attributes/>
+        <content xmi:type="markup:Text" data="??testing??">
+          <attributes/>
+          <format>strong</format>
+          <format>emphasis</format>
+          <format>code</format>
+        </content>
+        <content xmi:type="markup:Text" data=" ">
+          <format>strong</format>
+          <format>emphasis</format>
+        </content>
+        <content xmi:type="markup:Text" data="formats">
+          <attributes/>
+          <format>inserted</format>
+          <format>strong</format>
+          <format>emphasis</format>
+        </content>
+      </items>
+    </content>
+    <attributes id="ManyformatsforTextenticties" CSSStyle="color:green"/>
+    <title>
+      <content xmi:type="markup:Text" data="Many formats for "/>
+      <content xmi:type="markup:Text" data="Text">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" "/>
+      <content xmi:type="markup:Text" data="enti">
+        <attributes/>
+        <format>italic</format>
+        <format>strong</format>
+      </content>
+      <content xmi:type="markup:Entity" data="#169">
+        <format>italic</format>
+        <format>strong</format>
+      </content>
+      <content xmi:type="markup:Text" data="ties">
+        <format>italic</format>
+        <format>strong</format>
+      </content>
+    </title>
+  </content>
+</markup:Document>

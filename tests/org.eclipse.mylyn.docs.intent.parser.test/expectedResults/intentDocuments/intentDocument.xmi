@@ -1,0 +1,2136 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intentDocument:IntentDocument xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intentDU="http://www.eclipse.org/intent/descriptionunit/0.7" xmlns:intentDocument="http://www.eclipse.org/intent/intentdocument/0.7" xmlns:intentGU="http://www.eclipse.org/intent/genericunit/0.7" xmlns:intentMU="http://www.eclipse.org/intent/modelingunit/0.7" xmlns:markup="http://www.eclipse.org/intent/markup/0.7" xsi:schemaLocation="http://www.eclipse.org/intent/descriptionunit/0.7 expectedResults/packagesModels/descriptionUnit.ecore http://www.eclipse.org/intent/intentdocument/0.7 expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.document.ecore http://www.eclipse.org/intent/genericunit/0.7 expectedResults/packagesModels/genericUnit.ecore http://www.eclipse.org/intent/modelingunit/0.7 expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore http://www.eclipse.org/intent/markup/0.7 expectedResults/packagesModels/markup.ecore">
+  <chapters>
+    <title xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Overview : the "/>
+      <content xmi:type="markup:Text" data="ExtendedLibrary">
+        <attributes/>
+        <format>code</format>
+      </content>
+      <content xmi:type="markup:Text" data=" MetaModel"/>
+    </title>
+    <intentContent xmi:type="intentDU:DescriptionUnit">
+      <instructions xmi:type="intentDU:DescriptionBloc">
+        <descriptionBloc xmi:type="markup:SimpleContainer">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="In this chapter, we will present the"/>
+          </content>
+        </descriptionBloc>
+      </instructions>
+      <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Extended Libray" textToPrint="MetaModel defining the entities and behavior related to a Library"/>
+      <instructions xmi:type="intentDU:DescriptionBloc" lineBreak="true">
+        <descriptionBloc xmi:type="markup:SimpleContainer">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Meta Model."/>
+          </content>
+        </descriptionBloc>
+      </instructions>
+      <instructions xmi:type="intentDU:DescriptionBloc">
+        <descriptionBloc xmi:type="markup:SimpleContainer">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="First of all, we will present the general purpose of this Metamodel." lineBreak="true"/>
+            <content xmi:type="markup:Text" data="We will then try to identify the main entities that define Extended Libray. " lineBreak="true"/>
+            <content xmi:type="markup:Text" data="In another chapter, we will study all the types of Item handled by our Extended Library. " lineBreak="true"/>
+            <content xmi:type="markup:Text" data="Last, we will define several the actors of any library (i.e the Employees and Borrowers)."/>
+          </content>
+        </descriptionBloc>
+      </instructions>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Motivation for define Extended Library"/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc" lineBreak="true">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="In our daily work, we have noticed that the standard "/>
+              <content xmi:type="markup:Text" data="Library">
+                <attributes/>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" Metamodel was not adapted" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="to our activity. Actually, we had to use other classes for representing all the " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="informations we needed. "/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="That"/>
+              <content xmi:type="markup:Entity" data="#8217"/>
+              <content xmi:type="markup:Text" data="s why the have chosen to define our own MetaModel for Library, richer than the" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="standard one, and (according to us) more efficient for dealing with lots of Employees, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Books and Borrowers."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Extended Library storage : Resources definitions"/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="First of all, let"/>
+              <content xmi:type="markup:Entity" data="#8217"/>
+              <content xmi:type="markup:Text" data="s see how we will store the defined Metamodel. We have chosen to " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="create a single ECore file."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="extlibraryStorage">
+        <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" uri="&quot;platform:/resource/org.eclipse.mylyn.docs.intent.example/model/extlibrary.ecore&quot;" name="extlibraryResource" contentType="&quot;ECore&quot;">
+          <content IntentHref="extlibrary"/>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="This allow us to use directly the generated metamodel to define modelers."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Extended Library Package : package hierarchy"/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="As we will see in"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="ExtendedLibraryPackage:MainEntities"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc" lineBreak="true">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data=", there are too few entities" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="to justify the definition of subpackages. "/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="In consequence, we define a single package : extlibrary, that will define all the entities" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="of the Metamodel."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="extlibraryPackage_definition">
+        <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="extlibrary">
+          <metaType IntentHref="EPackage"/>
+          <structuralFeatures lineBreak="true" name="nsURI">
+            <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;http://www.eclipse.org/Intent/Extlibrary/1.0.0&quot;"/>
+          </structuralFeatures>
+          <structuralFeatures lineBreak="true" name="nsPrefix">
+            <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;extlib&quot;"/>
+          </structuralFeatures>
+        </instructions>
+      </intentContent>
+    </intentContent>
+  </chapters>
+  <chapters>
+    <title xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="The main entities of the Extended Library"/>
+    </title>
+    <intentContent xmi:type="intentDU:DescriptionUnit">
+      <instructions xmi:type="intentDU:DescriptionBloc">
+        <descriptionBloc xmi:type="markup:SimpleContainer">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="In this part, we will define the principal concepts of any Extended Library. " lineBreak="true"/>
+            <content xmi:type="markup:Text" data="Intuitively, a library has at least a collection of Books, Employees that work in the library" lineBreak="true"/>
+            <content xmi:type="markup:Text" data="and Borrowers that borrow the books."/>
+          </content>
+        </descriptionBloc>
+      </instructions>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Specification of a Book"/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="A Book has a title, and a author. " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="As we will see later, we will divide the collections of all books in several categories ;" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="but as this division is not essential, we will focus on it later."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="bookSimpleDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Book">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;title&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value name="book_writer">
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;author&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Writer"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="lowerBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eOpposite">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="writer_books"/>
+                        </values>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="We also define a number of pages (setted by default to 100)."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="book_numberofPagesDefinition">
+        <instructions xmi:type="intentMU:AnnotationDeclaration" lineBreak="true" IntentHref="ContributionInstruction?" referencedElement="//@chapters.1/@intentContent.1/@intentContent.3/@instructions.1" annotationID="javaDoc">
+          <map key="documentation" value="&quot;Number of pages of a Book. By default, we set it to 100.&quot;"/>
+        </instructions>
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="Book"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value>
+                <metaType IntentHref="EAttribute"/>
+                <structuralFeatures lineBreak="true" name="name">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;pages&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eType">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="EInt"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="changeable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="defaultValueLiteral">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;100&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="ordered">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+  </chapters>
+  <chapters>
+    <title xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="The Items hierarchy"/>
+    </title>
+    <intentContent xmi:type="intentDU:DescriptionUnit">
+      <instructions xmi:type="intentDU:DescriptionBloc">
+        <descriptionBloc xmi:type="markup:SimpleContainer">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="In this chapter, we will study the item hierarchy, that allow us to describe Books, " lineBreak="true"/>
+            <content xmi:type="markup:Text" data="AudioBooks, AudioVisual content."/>
+          </content>
+        </descriptionBloc>
+      </instructions>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="BookCategory : allow us to classify Books"/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Let"/>
+              <content xmi:type="markup:Entity" data="#8217"/>
+              <content xmi:type="markup:Text" data="s first define categories for Books."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="BookCategorydataTypeDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="BookCategory">
+                <metaType IntentHref="EEnum"/>
+                <structuralFeatures lineBreak="true" name="serializable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eLiterals" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EEnumLiteral"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;Mystery&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="literal">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;Mystery&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="value">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;0&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eLiterals" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EEnumLiteral"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;ScienceFiction&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="literal">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;ScienceFiction&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="value">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;1&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eLiterals" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EEnumLiteral"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;Biography&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="literal">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;Biography&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="value">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;2&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Book class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Book" textToPrint="Book definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Book"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="BookDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="Book"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value>
+                <metaType IntentHref="EAttribute"/>
+                <structuralFeatures lineBreak="true" name="name">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;category&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eType">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="BookCategory"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="changeable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="ordered">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="unsettable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+              <referencedElement IntentHref="CirculatingItem"/>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Library class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Library" textToPrint="Library definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Library"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="LibraryDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Library">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Addressable"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;name&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;writers&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Writer"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="containment">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="resolveProxies">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;false&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="upperBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="derived">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="transient">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="volatile">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;stock&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Item"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="containment">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="resolveProxies">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;false&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="upperBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;false&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;books&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Book"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="upperBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="derived">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="transient">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;false&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="We also define all the informations relatives to the employees and borrowers of " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="this library :"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="LibraryEmployeesAndBorrowers">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="Library"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value>
+                <metaType IntentHref="EReference"/>
+                <structuralFeatures lineBreak="true" name="name">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;employees&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eType">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Employee"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="containment">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="resolveProxies">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;false&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="upperBound">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="changeable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="derived">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="ordered">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="transient">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="volatile">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value>
+                <metaType IntentHref="EReference"/>
+                <structuralFeatures lineBreak="true" name="name">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;borrowers&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eType">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Borrower"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="containment">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="resolveProxies">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;false&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="upperBound">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="changeable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="derived">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="ordered">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;false&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="transient">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="volatile">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value>
+                <metaType IntentHref="EAttribute"/>
+                <structuralFeatures lineBreak="true" name="name">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;people&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eType">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="EFeatureMapEntry"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="upperBound">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="changeable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="ordered">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="An other consideration is the branches :"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="Library"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="lib_branches">
+                <metaType IntentHref="EReference"/>
+                <structuralFeatures lineBreak="true" name="name">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;branches&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eType">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Library"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="containment">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="upperBound">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="changeable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="ordered">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eOpposite">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="lib_parentBranch"/>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="lib_parentBranch">
+                <metaType IntentHref="EReference"/>
+                <structuralFeatures lineBreak="true" name="name">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;parentBranch&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eType">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Library"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="container">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="changeable">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="ordered">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eOpposite">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="lib_branches"/>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Writer class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Writer" textToPrint="Writer definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Writer"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="WriterDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Writer">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Person"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;name&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="transient">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="volatile">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value name="writer_books">
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;books&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Book"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="upperBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eOpposite">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="book_writer"/>
+                        </values>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Item class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Item" textToPrint="Item definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Item"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="ItemDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Item">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="abstract">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;publicationDate&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EDate"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Lendable class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Lendable" textToPrint="Lendable definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Lendable"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="LendableDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Lendable">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="abstract">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="interface">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;copies&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EInt"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="lowerBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value name="lendable_borrowers">
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;borrowers&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Borrower"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="upperBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eOpposite">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="borrowed"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the CirculatingItem class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="CirculatingItem" textToPrint="CirculatingItem definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="CirculatingItem"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="CirculatingItemDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="CirculatingItem">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="abstract">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Item"/>
+                  </values>
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Lendable"/>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Periodical class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Periodical" textToPrint="Periodical definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Periodical"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="PeriodicalDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Periodical">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="abstract">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Item"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;title&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;issuesPerYear&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EInt"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="lowerBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the AudioVisualItem class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="AudioVisualItem" textToPrint="AudioVisualItem definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="AudioVisualItem"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="AudioVisualItemDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="AudioVisualItem">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="CirculatingItem"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="abstract">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;title&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;minutesLength&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EInt"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="lowerBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;damaged&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EBoolean"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the BookOnTape class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="BookOnTape" textToPrint="BookOnTape definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="BookOnTape"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="BookOnTapeDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="BookOnTape">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="AudioVisualItem"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;reader&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Person"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;author&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Writer"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the VideoCassette class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="VideoCassette" textToPrint="VideoCassette definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="VideoCassette"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="VideoCassetteDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="VideoCassette">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="AudioVisualItem"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;cast&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Person"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="upperBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Borrower class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Borrower" textToPrint="Borrower definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Borrower"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="BorrowerDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Borrower">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Person"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value name="borrowed">
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;borrowed&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Lendable"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="upperBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;-1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eOpposite">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="lendable_borrowers"/>
+                        </values>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+  </chapters>
+  <chapters>
+    <title xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="Specification of the actor of an Extended Library : Employees and Borrowers"/>
+    </title>
+    <intentContent xmi:type="intentDU:DescriptionUnit">
+      <instructions xmi:type="intentDU:DescriptionBloc">
+        <descriptionBloc xmi:type="markup:SimpleContainer">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="In this part, we will take an interest on all the actors of an Extended Library."/>
+          </content>
+        </descriptionBloc>
+      </instructions>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Person class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Person" textToPrint="Person definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Person"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="PersonDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Person">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Addressable"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;firstName&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="lowerBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;lastName&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="lowerBound">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;1&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Employee class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Employee" textToPrint="Employee definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Employee"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="EmployeeDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Employee">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="eSuperTypes" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                    <referencedElement IntentHref="Person"/>
+                  </values>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EReference"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;manager&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="Employee"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+    <intentContent xmi:type="intentDocument:IntentSection">
+      <title xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="Presentation of the Addressable class."/>
+      </title>
+      <intentContent xmi:type="intentDU:DescriptionUnit">
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="Lorem ipsum dolor sit amet, consectetur adipisicing elit, " lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreak="true"/>
+              <content xmi:type="markup:Text" data="Ut enim ad "/>
+              <content xmi:type="markup:Text" data="minim">
+                <attributes/>
+                <format>strong</format>
+              </content>
+              <content xmi:type="markup:Text" data=" veniam, quis nostrud exercitation ullamco laboris"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelDeclaration" lineBreak="true" labelValue="Addressable" textToPrint="Addressable definition" type="EXPLICIT"/>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in" lineBreak="true"/>
+              <content xmi:type="markup:Text" data="reprehenderit in voluptate "/>
+              <content xmi:type="markup:Text" data="velit">
+                <attributes/>
+                <format>emphasis</format>
+                <format>code</format>
+              </content>
+              <content xmi:type="markup:Text" data=" esse cillum dolore eu fugiat"/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+        <instructions xmi:type="intentGU:LabelReferenceInstruction" type="EXPLICIT">
+          <referencedLabel IntentHref="Addressable"/>
+        </instructions>
+        <instructions xmi:type="intentDU:DescriptionBloc">
+          <descriptionBloc xmi:type="markup:SimpleContainer">
+            <content xmi:type="markup:Paragraph">
+              <attributes/>
+              <content xmi:type="markup:Text" data="nulla pariatur. Excepteur sint occaecat cupidatat non proident," lineBreak="true"/>
+              <content xmi:type="markup:Text" data="sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            </content>
+          </descriptionBloc>
+        </instructions>
+      </intentContent>
+      <intentContent xmi:type="intentMU:ModelingUnit" unitName="AddressableDefinition">
+        <instructions xmi:type="intentMU:ContributionInstruction" lineBreak="true">
+          <referencedElement IntentHref="extlibrary"/>
+          <contributions xmi:type="intentMU:StructuralFeatureAffectation" lineBreak="true" name="eClassifiers" usedOperator="MULTI_VALUED_AFFECTATION">
+            <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+              <value name="Addressable">
+                <metaType IntentHref="EClass"/>
+                <structuralFeatures lineBreak="true" name="abstract">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="interface">
+                  <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                </structuralFeatures>
+                <structuralFeatures lineBreak="true" name="eStructuralFeatures" usedOperator="MULTI_VALUED_AFFECTATION">
+                  <values xmi:type="intentMU:NewObjectValueForStructuralFeature">
+                    <value>
+                      <metaType IntentHref="EAttribute"/>
+                      <structuralFeatures lineBreak="true" name="name">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;address&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="eType">
+                        <values xmi:type="intentMU:ReferenceValueForStructuralFeature">
+                          <referencedElement IntentHref="EString"/>
+                        </values>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="changeable">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                      <structuralFeatures lineBreak="true" name="ordered">
+                        <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;true&quot;"/>
+                      </structuralFeatures>
+                    </value>
+                  </values>
+                </structuralFeatures>
+              </value>
+            </values>
+          </contributions>
+        </instructions>
+      </intentContent>
+    </intentContent>
+  </chapters>
+</intentDocument:IntentDocument>

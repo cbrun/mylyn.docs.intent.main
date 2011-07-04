@@ -1,0 +1,29 @@
+h1. Intent : launch configurations
+
+In this folder, you will find all the launch configurations used in the project.
+
+
+h2. CDO
+
+* LaunchCDOServer : Allow you to launch a CDOServer in tpc mode with an h2 database. 
+The database can be accessed in your Eclipse folder (folder @/database]).
+
+h2. Clients
+
+Allow you to launch Intent Models Clients.
+
+* Intent_workspaceClient1 : launches an Intent Client in Workspace Mode
+
+h2. Tests 
+
+Contains the launch configurations for all tests : 
+* Parser-All : tests the modeling unit parser (Xtext), the Markup langage parser (WikiText) and the general parser
+* Repository-Workspace : tests for the Repository using the Eclipse Workspace
+
+h2. Xtext
+
+* GenerateModelingUnitParser : 
+Generates the Modeling Unit Parser's code from the Xtext grammar (org.eclipse.mylyn.docs.intent.parser.modelingunit.Modelingunit.xtext).
+This generation causes an Exception fileNotFound ('..\org.eclipse.mylyn.docs.intent.parser.ui\META-INF\MANIFEST.MF').
+It's totally normal, as we have no UI project for our grammar.
+

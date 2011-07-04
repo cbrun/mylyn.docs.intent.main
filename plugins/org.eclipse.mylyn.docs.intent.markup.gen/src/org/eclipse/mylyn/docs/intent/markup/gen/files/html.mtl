@@ -1,0 +1,218 @@
+[comment]
+  Copyright (c) 2010, 2011 Obeo
+  All rights reserved.  This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License 1.0
+  
+  Any license can be applied to the files generated with this template
+  and Acceleo.
+[/comment]
+[comment encoding = UTF-8 /]
+[module html('http://www.eclipse.org/intent/markup/0.7')/]
+
+[template public generateSeverals(docs : Sequence(Document))]
+	[comment @main /]
+	[file ('index.html', false, 'UTF-8')]
+	[/file]
+[/template]
+
+[template public generate(e : Document)]
+	
+	[comment @main /]
+	[file (eResourceName().replace('textile','html'), false, 'UTF-8')]
+	<!doctype html> 
+	<html> 
+		<head>
+			<link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
+		    <style>
+		[styleSheet()/]
+		    </style>
+		  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	    </head>
+	    <body>
+	    <header>
+	    <nav>
+	      <ul>
+	    	[e.eContents(Section).toNav()/]
+	       </ul>
+	    </nav>
+	    </header>
+		[e.content.toHTML()/]
+		</body>	
+	</html>
+	[/file]
+	
+[/template]
+
+[template public toNav(e : Section)]
+<li><a href="#[e.id()/]">[e.title.toHTML()/]</a>
+[if (e.content.eContents(Section)->size() > 0)]
+	<ul>
+	[for (child : Section | e.eContents(Section))]
+		[child.toNav()/]
+	[/for]
+	</ul>
+[/if]
+</li>
+[/template]
+
+[template public styleSheet (e : Document) ]
+    
+body {
+	padding: 5px 20px;
+	background: #fff;
+	color: #000;
+	font-family: "PT Sans", sans-serif
+}
+	
+h1, h2 {
+	color: #456;
+	font-family: "PT Sans", sans-serif
+}
+h1 {
+	border-bottom: 1px solid #ccc;
+	letter-spacing: 1px;
+	text-shadow: 0px 0px 9px #ccc; 
+}
+p:first-child {
+	margin: 10px 0 30px 0;
+	color: #777;
+	font-style: italic;
+}
+blockquote {
+	border: 1px solid #ccc;
+	background-color: beige;
+}
+.section_level_1  {
+    page-break-before: always;
+    margin: 0 0 80px 0 ;
+	text-align: justify;
+	-moz-column-count: 3;
+	-moz-column-gap: 1.5em;
+	-moz-column-rule: 1px solid #c4c8cc;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 1.5em;
+	-webkit-column-rule: 1px solid #c4c8cc;
+}
+
+aside {
+	float: right;
+	width: 200px;
+	padding: 0 10px;
+	margin-left: 30px;
+	background-color: beige;
+	font-size: 0.9em;
+}
+footer {
+	border-top: 1px solid #ccc;
+	color: #777;
+}   
+
+/* [protected ('custom-css-directives')] */
+	
+/* [/protected] */
+[/template] 
+
+
+[template public toHTML (elem : OclAny) ]
+<!-- not handled yet  [elem.eClass().name/] -->
+[/template]
+
+[template public toHTML(e : Block)  ]
+	[e.content.toHTML()/]
+[/template]
+
+[template public toHTML(e : Section)  ]
+  <section id="[e.id()/]" class="section_level_[e.level/]">
+	<h[e.level/]>[e.title.content.toHTML()/]</h[e.level/]>
+	[e.content.toHTML()/]
+  </section>
+[/template]
+
+[template public toHTML(e : Paragraph)  ]
+<p>[e.content.toHTML()/]</p>
+[/template]
+
+
+[template public toHTML(e : Preformatted)  ]
+<pre>[content.toHTML()/]</pre>
+[/template]
+
+[template public toHTML(e : Code)  ]
+<pre>[content.toHTML()/]</pre>
+[/template]
+
+[template public toHTML(e : List)  ]
+	<ul> [content.toHTML()/] [items.toHTML()/]	
+	</ul>
+[/template]
+
+[template public toHTML(e : ListItem)  ]
+	<li>[e.items.toHTML()/][content.toHTML()/]</li>	
+[/template]
+
+[template public toHTML(e : Quote)  ]
+	<blockquote>[e.content.toHTML()/]</blockquote>	
+[/template]
+
+[template public id(e : HasAttributes )]
+[e.attributes.id/]
+[/template]
+[comment block content /]
+
+
+[template public toHTML(e : Image)  ]
+	<img src="[e.url/]"/>
+[/template]
+
+[template public toHTML(e : Text)  ]
+[for (format : Formatting | e.format)]
+    [comment TODO handle all formattings  /]
+	[if (format = markup::Formatting::code)]
+		<tt>
+	[elseif (format = markup::Formatting::italic)]
+		<i>
+    [elseif (format = markup::Formatting::emphasis)]
+		<em>
+	[elseif (format = markup::Formatting::strong)]
+		<strong>
+	[elseif (format = markup::Formatting::bold)]
+		<b>		
+	[/if]
+[/for]
+	<span>[e.data/]</span>
+[for (format : Formatting | e.format)]
+    [comment TODO handle all formattings  /]
+	[if (format = markup::Formatting::code)]
+		</tt>
+	[elseif (format = markup::Formatting::italic)]
+		</i>
+    [elseif (format = markup::Formatting::emphasis)]
+		<em>
+	[elseif (format = markup::Formatting::strong)]
+		</strong>
+	[elseif (format = markup::Formatting::bold)]
+		</b>		
+	[/if]
+[/for]
+	[if (e.lineBreak)]
+		<br/>
+	[/if]
+[/template]
+
+[template public toHTML(e : Entity)  ]
+&[e.data/];	
+[/template]
+
+[template public toHTML(e : Link) ?(e.hasBeenDeclaredWithHTMLSyntax and e.target <> null) ]
+<a href="[e.hrefOrHashName/]">[e.name/]</a>	
+[/template]
+
+[template public toHTML(e : Link) ?(not e.hasBeenDeclaredWithHTMLSyntax and e.target <> null) ]
+<span>->[e.name/]</span>
+[/template]
+
+
+[query public eResourceName(cur : OclAny) : String =
+  invoke('org.eclipse.mylyn.docs.intent.makup.gen.services.ResourceService', 'eResourceName(org.eclipse.emf.ecore.EObject)', Sequence{}) /]
+
+

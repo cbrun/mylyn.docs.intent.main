@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Intent - CDO : initialize content"
+            id="org.eclipse.mylyn.docs.intent.client.ui.cdo.init.command"
+            name="Intent - CDO : initialize content">
+      </command>
+      <command
+            description="Intent - CDO : launch all clients"
+            id="org.eclipse.mylyn.docs.intent.client.ui.cdo.launchclients.command"
+            name="Intent - CDO : launch all clients">
+      </command>
+           <command
+            description="Intent - CDO : open selection widget"
+            id="org.eclipse.mylyn.docs.intent.client.ui.cdo.selectionwidget.command"
+            name="Intent - CDO : open selection widget">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               icon="icon/cdo/cdoicon.gif"
+               id="org.eclipse.mylyn.docs.intent.editor.modelingunitsMenu"
+               label="Intent (CDO)"
+               mnemonic="v">
+            <command
+                  commandId="org.eclipse.mylyn.docs.intent.client.ui.cdo.init.command"
+              	  icon="icon/cdo/cdoicon.gif"
+                  id="org.eclipse.mylyn.docs.intent.client.ui.cdo.init.menu"
+                  label="Initialize Content"
+                  mnemonic="O"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               icon="icon/cdo/cdoicon.gif"
+               id="org.eclipse.mylyn.docs.intent.editor.modelingunitsMenu"
+               label="Intent (CDO)"
+               mnemonic="v">
+            <command
+                  commandId="org.eclipse.mylyn.docs.intent.client.ui.cdo.launchclients.command"
+              	  icon="icon/cdo/cdoicon.gif"
+                  id="org.eclipse.mylyn.docs.intent.client.ui.cdo.launchclients.menu"
+                  label="Launch clients"
+                  mnemonic="O"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               icon="icon/cdo/cdoicon.gif"
+               id="org.eclipse.mylyn.docs.intent.editor.modelingunitsMenu"
+               label="Intent (CDO)"
+               mnemonic="v">
+            <command
+                  commandId="org.eclipse.mylyn.docs.intent.client.ui.cdo.selectionwidget.command"
+              	  icon="icon/cdo/cdoicon.gif"
+                  id="org.eclipse.mylyn.docs.intent.modelingunit.openFirstModelingUnit"
+                  label="Open element..."
+                  mnemonic="O"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   
+    <extension point="org.eclipse.ui.handlers">
+      <handler class="org.eclipse.mylyn.docs.intent.client.ui.cdo.handlers.InitializeContent"
+               commandId="org.eclipse.mylyn.docs.intent.client.ui.cdo.init.command">
+      </handler>
+         <handler class="org.eclipse.mylyn.docs.intent.client.ui.cdo.handlers.LaunchAllClients"
+               commandId="org.eclipse.mylyn.docs.intent.client.ui.cdo.launchclients.command">
+      </handler>
+         <handler class="org.eclipse.mylyn.docs.intent.client.ui.cdo.handlers.ShowIndexHandler"
+               commandId="org.eclipse.mylyn.docs.intent.client.ui.cdo.selectionwidget.command">
+      </handler>
+   </extension>
+
+</plugin>

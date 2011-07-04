@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Paragraph">
+      <attributes/>
+      <content xmi:type="markup:Text" data="For example, we can force "/>
+      <content xmi:type="markup:Text" data="" lineBreak="true"/>
+      <content xmi:type="markup:Text" data="" lineBreak="true"/>
+      <content xmi:type="markup:Text" data="" lineBreak="true"/>
+      <content xmi:type="markup:Text" data=" return to lines." lineBreak="true"/>
+      <content xmi:type="markup:Text" data="We can also add "/>
+      <content xmi:type="markup:Entity" data="&lt;dd/>"/>
+      <content xmi:type="markup:Text" data=" tabulations." lineBreak="true"/>
+      <content xmi:type="markup:Text" data="One can add a "/>
+      <content xmi:type="markup:Text" data="title">
+        <attributes/>
+        <format>strong</format>
+      </content>
+      <content xmi:type="markup:Text" data=" to links : for example "/>
+      <content xmi:type="markup:Link" hrefOrHashName="#" hasBeenDeclaredWithHTMLSyntax="true">
+        <attributes title="my Titre"/>
+        <name>
+          <content xmi:type="markup:Text" data=" linkTitle example "/>
+        </name>
+      </content>
+      <content xmi:type="markup:Text" data="."/>
+    </content>
+    <attributes id="HTMLEntitites"/>
+    <title>
+      <content xmi:type="markup:Text" data="HTML Entitites"/>
+    </title>
+  </content>
+</markup:Document>

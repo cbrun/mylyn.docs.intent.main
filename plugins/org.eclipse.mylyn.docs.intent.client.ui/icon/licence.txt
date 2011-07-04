@@ -1,0 +1,28 @@
+all icons listed below are under the EPL licence and can be found at the following paths :
+
+		Intent_ICON										: Path
+=========================================================================================================================		
+## menus/categicon.gif 									: /org.eclipse.jdt.debug.ui/icons/full/elcl16/all_instances.gif
+
+## annotation/compiler-error.gif 						: /org.eclipse.team.svn.ui/icons/overlays/obstructed.gif
+## annotation/compiler-info.gif							: /org.eclipse.team.svn.ui/icons/discovery/message_info.gif
+## annotation/compiler-warning.gif  					: /org.eclipse.team.svn.ui/icons/discovery/message_warning.gif
+## annotation/sync-warning.gif 							: /org.eclipse.mylyn.tasks.ui/icons/etool16/repository-synchronize.gif
+## annotation/syntaxerror.gif 							: /org.eclipse.ui/icons/full/obj16/error_tsk.gif
+
+## outline/chapter.gif 									: /org.eclipse.jdt.ui/icons/full/obj16/classfo_obj.gif
+## outline/default.gif									: /org.eclipse.ui.forms.examples/icons/container_obj.gif
+## outline/document.gif 								: /org.eclipse.ui.forms.examples/icons/container_obj.gif
+## outline/descriptionBloc.gif 							: /org.eclipse.pde.ui/icons/obj16/xml_text_node.gif
+## outline/descriptionunit.gif 							: /org.eclipse.help.ui/icons/elcl16/showdesc_co.gif
+## outline/modelingunit.png								: [CHANGED COLOR : BLUE TO PURPLE] /org.eclipse.jdt.debug.ui\icons\full\obj16\jmeth_obj.gif
+## outline/labelorreference.gif							: /org.eclipse.pde.ui/icons/obj16/link_obj.gif
+## outline/labeldef.gif									: /org.eclipse.pde.ui/icons/obj16/toc_anchor_obj.gif
+## outline/modelingunit.png (base image) 				: /org.eclipse.mylyn.tasks.ui/icons/etool16/task-active-centered.gif
+## outline/modelingunit_new_element.png (decoration)	: /org.eclipse.xsd/icons/full/obj16/XSDIdentityConstraintDefinitionKeyReference.gif
+## outline/modelingunit_ref.png (decoration) 			: /org.eclipse.jdt.debug.ui/ovr16/entry_ovr.gif
+## outline/modelingunit_contribution.png (decoration)	: /org.eclipse.jdt.ui/ovr16/over_co.gif
+## outline/modelingunit_affect.png (decoration)			: /org.eclipse.jdt.debug.ui/icons/full/ovr16/exit_ovr.gif
+## outline/modelingunit_resource.gif					: /org.eclipse.emf.edit/icons/full/obj16/Resource.gif
+## outline/modelingunit_value.png 						: /org.eclipse.gmf.runtime.diagram.ui\icons\font_color.gif
+## outline/section.gif 									: /org.eclipse.jst.j2ee/icons/webtoolsicons/full/obj16/servlet.gif

@@ -1,0 +1,27 @@
+
+h1. Testlink
+
+
+h2. Test Internal links
+
+"this":#TestInternallinks - end link test.
+Links with title : 
+"link text(with title)":http://wiki.eclipse.org/Intent
+
+h2. Test 'href' links
+
+<a href="http://wiki.eclipse.org/Intent"> Intent </a> ok
+<a href="#"> Self </a>	
+"externalLinkButTextileSyntax":http://wiki.eclipse.org/Intent - end link test.
+
+h2. Embeded href and links
+
+* <a href="#"> Self </a>
+** <a href="http://wiki.eclipse.org/Intent"> Self </a>
+
+Do not consider the following list as a toc : 
+* "Testlink":#Testlink
+** "Test Internal links":#TestInternallinks
+** "Test href links":#Testhreflinks
+** "Embeded href and links":http://www.eclipse.org
+

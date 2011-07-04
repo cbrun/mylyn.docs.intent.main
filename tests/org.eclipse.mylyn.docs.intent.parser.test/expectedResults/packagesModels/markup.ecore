@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="markup"
+    nsURI="http://www.eclipse.org/intent/markup/0.7" nsPrefix="markup">
+  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Container"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleContainer" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Container"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StructureElement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="expectedResults/packagesModels/markup.ecore#//StructureElement expectedResults/packagesModels/markup.ecore#//Container expectedResults/packagesModels/markup.ecore#//HasAttributes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" lowerBound="1" eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//Block"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//StructureElement"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Image" eSuperTypes="expectedResults/packagesModels/markup.ecore#//BlockContent expectedResults/packagesModels/markup.ecore#//HasAttributes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Text"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="expectedResults/packagesModels/markup.ecore#//BlockContent expectedResults/packagesModels/markup.ecore#//HasAttributes">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" lowerBound="1"
+        upperBound="-1" eType="ecore:EEnum expectedResults/packagesModels/markup.ecore#//Formatting"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineBreak" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="expectedResults/packagesModels/markup.ecore#//BlockContent expectedResults/packagesModels/markup.ecore#//HasAttributes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//Block"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hrefOrHashName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//HasAttributes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasBeenDeclaredWithHTMLSyntax"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="expectedResults/packagesModels/markup.ecore#//StructureElement expectedResults/packagesModels/markup.ecore#//HasAttributes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//BlockContent"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Annotations">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CSSStyle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CSSClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HasAttributes" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//Annotations"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockContent" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Paragraph" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Tip" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Warning" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Information" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Note" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Panel" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Div" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FootNote" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Quote" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Preformatted" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Code" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="listType" lowerBound="1"
+        eType="ecore:EEnum expectedResults/packagesModels/markup.ecore#//ListType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+        eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//ListItem"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imbricationLevel" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListItem" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block expectedResults/packagesModels/markup.ecore#//List expectedResults/packagesModels/markup.ecore#//BlockContent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isList" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableRow" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block expectedResults/packagesModels/markup.ecore#//BlockContent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableCell" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Block expectedResults/packagesModels/markup.ecore#//BlockContent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCellHeader" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colsPan" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Formatting">
+    <eLiterals name="none"/>
+    <eLiterals name="emphasis" value="1"/>
+    <eLiterals name="strong" value="2"/>
+    <eLiterals name="italic" value="3"/>
+    <eLiterals name="bold" value="4"/>
+    <eLiterals name="citation" value="5"/>
+    <eLiterals name="deleted" value="6"/>
+    <eLiterals name="inserted" value="7"/>
+    <eLiterals name="superscript" value="8"/>
+    <eLiterals name="subscript" value="9"/>
+    <eLiterals name="span" value="10"/>
+    <eLiterals name="code" value="11"/>
+    <eLiterals name="monospace" value="12"/>
+    <eLiterals name="underlined" value="13"/>
+    <eLiterals name="quote" value="14"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ListType">
+    <eLiterals name="BULLETED" value="1"/>
+    <eLiterals name="NUMERIC" value="2"/>
+    <eLiterals name="TABLE_OF_CONTENT" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>

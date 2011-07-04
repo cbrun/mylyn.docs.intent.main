@@ -1,0 +1,5 @@
+@M @Annotation annotationID cle="val", cle2="val2"
+new A MyA {}
+@lazylabel "labelValue" "textToPrint"
+@Annotation annotationID cle="val", cle2="val2"
+M@

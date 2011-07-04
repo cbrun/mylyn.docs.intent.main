@@ -1,0 +1,24 @@
+@M completeModelingUnit1 
+@Annotation annotationID cle="val", cle2="val2"
+@label "myB" "instance de la classe B"
+new B myB {
+	myAttMulti += [ "val1" , "val2" ];
+	myAtt0 = "bAtt";
+}
+@see "Section1.2.3" "textToPrint"
+new A myA {
+	myAtt1 = "41";
+	myAtt2 = new B {
+		myAtt0 = "okAtt";
+	};
+	myAtt3 = myB;
+}
+myB {
+	myAtt1 = "41";
+	@label "myAtt2" "justification de mon Att2"
+myAtt2 = new B {
+		myAtt0 = "okAtt";
+	};
+	myAtt3 = myB;
+}
+M@

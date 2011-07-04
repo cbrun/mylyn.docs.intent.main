@@ -1,0 +1,25 @@
+@M completeModelingUnit2 [myResource2]
+@lazylabel "myA" "instance representative de la classe A"
+new A myA {
+	myAttMulti = "val2";
+	myAtt0 = "bAtt";
+}
+@label "myB"
+new B myB {
+	myAtt1 = "41";
+	myAtt2 = new B {
+		myAtt0 = "okAtt";
+	};
+	myAtt3 = myB;
+}
+@see "Mysection where I have defined by B"
+@see "Another Section" "reasons for separation of concerns"
+@Annotation associateBashFileID bashFile="bashFile1", mode="superAdmin"
+myB {
+	myAttCompleted = "that's all folks!";
+	myAtt2 = new C {
+		myAtt0 = "okAtt";
+	};
+	myAttCompleted += [ "that's all folks!" , "ok" ];
+}
+M@

@@ -1,0 +1,5 @@
+all icons listed below are under the EPL licence and can be found at the following paths :
+
+		Intent_ICON										: Path
+=========================================================================================================================
+## cdo/cdoicon.gif										: /org.eclipse.ui.browser/icons/obj16/internal_browser.gif

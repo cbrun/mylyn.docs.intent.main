@@ -1,0 +1,6 @@
+
+h1. HTML Entitites
+
+For example, we can force <br/><br/><br/> return to lines.
+We can also add <dd/> tabulations.
+One can add a *title* to links : for example <a href="#" title="my Titre"> linkTitle example </a>.

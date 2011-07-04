@@ -1,0 +1,6 @@
+@M @see "Section1" "textToPrint"
+new A MyA {}
+@see "Section2"
+@label "ok"
+@Annotation "ok"
+M@

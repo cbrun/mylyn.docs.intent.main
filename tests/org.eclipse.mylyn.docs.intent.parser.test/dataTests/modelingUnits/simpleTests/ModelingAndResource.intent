@@ -1,0 +1,11 @@
+@M IntentDocumentStructure
+Resource IntentDocument {
+	URI = "platform:/resource/myProjet/IntentDocumentPackage";
+	contentType = "ECore";
+	content += IntentDocumentPackage;
+}
+new EPackage IntentDocumentPackage {
+	nsURI = "http://www.eclipse.org/intent/intentdocument/0.7";
+	nsPrefix = "IntentDocument";
+}
+M@

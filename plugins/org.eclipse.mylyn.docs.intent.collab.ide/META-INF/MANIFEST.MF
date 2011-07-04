@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.mylyn.docs.intent.collab.ide
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.mylyn.docs.intent.collab.ide.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.mylyn.docs.intent.collab;visibility:=reexport,
+ org.eclipse.core.resources;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.mylyn.docs.intent.collab.ide.repository,
+ org.eclipse.mylyn.docs.intent.collab.ide.adapters,
+ org.eclipse.mylyn.docs.intent.collab.ide.utils,
+ org.eclipse.mylyn.docs.intent.collab.ide.notification
+Bundle-Vendor: %providerName

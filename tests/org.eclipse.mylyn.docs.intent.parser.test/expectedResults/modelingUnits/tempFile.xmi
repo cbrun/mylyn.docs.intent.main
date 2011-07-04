@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intentMU:ModelingUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intentMU="http://www.eclipse.org/intent/modelingunit/0.7" xsi:schemaLocation="http://www.eclipse.org/intent/modelingunit/0.7 expectedResults/packagesModels/org.eclipse.mylyn.docs.intent.core.modelingunit.ecore" unitName="IntentDocumentStructure">
+  <instructions xmi:type="intentMU:ResourceDeclaration" lineBreak="true" uri="&quot;platform:/resource/myProjet/IntentDocumentPackage&quot;" name="IntentDocument" contentType="&quot;ECore&quot;">
+    <content IntentHref="IntentDocumentPackage"/>
+  </instructions>
+  <instructions xmi:type="intentMU:InstanciationInstruction" lineBreak="true" name="IntentDocumentPackage">
+    <metaType IntentHref="EPackage"/>
+    <structuralFeatures lineBreak="true" name="nsURI">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;http://www.eclipse.org/intent/intentdocument/0.7&quot;"/>
+    </structuralFeatures>
+    <structuralFeatures lineBreak="true" name="nsPrefix">
+      <values xmi:type="intentMU:NativeValueForStructuralFeature" value="&quot;IntentDocument&quot;"/>
+    </structuralFeatures>
+  </instructions>
+</intentMU:ModelingUnit>

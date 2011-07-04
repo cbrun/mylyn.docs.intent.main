@@ -1,0 +1,5 @@
+@M @label "labelValue"
+new A MyA {}
+@label "labelValue" "textToPrint"
+@SOMETHING WICH MUST NOT BE RECOGNIZED
+M@

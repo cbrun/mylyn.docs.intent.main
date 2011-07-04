@@ -1,0 +1,7 @@
+all icons listed below are under the EPL licence and can be found at the following paths :
+
+		Intent_ICON										: Path
+=========================================================================================================================
+## ide/nature.gif										:  [RESIZED] /org.eclipse.ui.forms.examples/icons/container_obj.gif
+## ide/toggle_nature.gif								: /org.eclipse.ui.forms.examples/icons/container_obj.gif
+## workspaceicon.gif									: /org.eclipse.help.ui/icons/etool16/eclipse.gif

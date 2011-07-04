@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   
+
+   <extension point="org.eclipse.ui.commands">
+      <category
+            description="Commands related to the Intent editor"
+            id="org.eclipse.mylyn.docs.intent.client.ui.editor.category"
+            name="Intent editor">
+      </category>
+     
+      <command
+            categoryId="org.eclipse.ui.category.navigate"
+            description="Show Quick Outline View"
+            id="org.eclipse.mylyn.docs.intent.client.ui.show.outline"
+            name="Show QuickOutline">
+	</command>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="Intent ActionSet"
+            id="org.eclipse.mylyn.docs.intent.editorActionSet"
+            label="Intent ActionSet"
+            visible="true">
+         <action
+               allowLabelUpdate="true"
+               class="org.eclipse.mylyn.docs.intent.client.ui.actions.QuickOutlineAction"
+               definitionId="org.eclipse.mylyn.docs.intent.client.ui.show.outline"
+               enablesFor="*"
+               id="org.eclipse.mylyn.docs.intent.client.ui.editor.actions.show.outline"
+               label="Show Quick Outline View"
+               retarget="false"
+               tooltip="Show Quick Outline View">
+         </action>
+      </actionSet>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.mylyn.docs.intent.client.ui.editor.IntentEditor"
+            default="false"
+            icon="icon/outline/modelingunit.png"
+            id="org.eclipse.mylyn.docs.intent.client.ui.IntentEditor"
+            name="Intent Editor">
+      </editor>
+   </extension>
+
+	<extension
+      id="org.eclipse.mylyn.docs.intent.client.ui.annotation"
+      name="Intent Compiler Error"
+      point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            markerSeverity="2"
+            name="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error"
+            super="org.eclipse.ui.workbench.texteditor.error">
+      </type>
+   </extension>
+ <extension
+       id="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error.spec"
+       name="Intent Compiler Error Specifications"
+       point="org.eclipse.ui.editors.markerAnnotationSpecification">
+    <specification
+          annotationImageProvider="org.eclipse.mylyn.docs.intent.client.ui.editor.annotation.IntentAnnotationImageProvider"
+          annotationType="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error"
+          colorPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error.annotateElemColor"
+          colorPreferenceValue="255,140,0"
+          contributesToHeader="true"
+          highlightPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error.annotateElemHighlight"
+          highlightPreferenceValue="false"
+          icon="icon/annotation/compiler-error.gif"
+          includeOnPreferencePage="true"
+          isGoToNextNavigationTarget="true"
+          isGoToPreviousNavigationTarget="truetrue"
+          label="Intent Compilation Error"
+          overviewRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error.annotateElemOverviewRuler"
+          overviewRulerPreferenceValue="true"
+          showInNextPrevDropdownToolbarAction="true"
+          textPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error.annotateElemText"
+          textPreferenceValue="true"
+          textStylePreferenceValue="UNDERLINE"
+          verticalRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.error.annotateElemVerticalRuler"
+          verticalRulerPreferenceValue="true">
+    </specification>
+ </extension>
+   
+   <extension
+      id="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror"
+      name="Intent Syntax Error"
+      point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            markerSeverity="2"
+            name="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror"
+            super="org.eclipse.ui.workbench.texteditor.error">
+      </type>
+   </extension>
+   <extension
+         id="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror.spec"
+         name="Intent Syntax Error Specifications"
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationType="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror"
+            includeOnPreferencePage="true"
+            annotationImageProvider="org.eclipse.mylyn.docs.intent.client.ui.editor.annotation.IntentAnnotationImageProvider"
+            colorPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror.annotateElemColor"
+            colorPreferenceValue="139,35,35"
+            contributesToHeader="true"
+            highlightPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror.annotateElemHighlight"
+            highlightPreferenceValue="false"
+            icon="icon/annotation/compiler-warning.gif"
+            isGoToNextNavigationTarget="true"
+            isGoToPreviousNavigationTarget="truetrue"
+            label="Intent Warning"
+            overviewRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror.annotateElemOverviewRuler"
+            overviewRulerPreferenceValue="true"
+            showInNextPrevDropdownToolbarAction="true"
+            textPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror.annotateElemText"
+            textPreferenceValue="true"
+            textStylePreferenceValue="UNDERLINE"
+            verticalRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.syntaxerror.annotateElemVerticalRuler"
+            verticalRulerPreferenceValue="true">
+      </specification>
+   </extension>
+   
+   <extension
+      id="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning"
+      name="Intent Compiler Warning"
+      point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            markerSeverity="1"
+            name="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning"
+            super="org.eclipse.ui.workbench.texteditor.error">
+      </type>
+   </extension>
+   <extension
+         id="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning.spec"
+         name="Intent Compiler Warning Specifications"
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationImageProvider="org.eclipse.mylyn.docs.intent.client.ui.editor.annotation.IntentAnnotationImageProvider"
+            annotationType="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning"
+            colorPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning.annotateElemColor"
+            colorPreferenceValue="250,250,210"
+            contributesToHeader="true"
+            highlightPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning.annotateElemHighlight"
+            highlightPreferenceValue="false"
+            icon="icon/annotation/compiler-warning.gif"
+            includeOnPreferencePage="true"
+            isGoToNextNavigationTarget="true"
+            isGoToPreviousNavigationTarget="truetrue"
+            label="Intent Warning"
+            overviewRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning.annotateElemOverviewRuler"
+            overviewRulerPreferenceValue="true"
+            showInNextPrevDropdownToolbarAction="true"
+            textPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning.annotateElemText"
+            textPreferenceValue="true"
+            textStylePreferenceValue="UNDERLINE"
+            verticalRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.compiler.warning.annotateElemVerticalRuler"
+            verticalRulerPreferenceValue="true">
+      </specification>
+   </extension>
+   
+    <extension
+      id="org.eclipse.mylyn.docs.intent.client.ui.annotation.info"
+      name="Intent General Information"
+      point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            markerSeverity="0"
+            name="org.eclipse.mylyn.docs.intent.client.ui.annotation.info"
+            super="org.eclipse.ui.workbench.texteditor.error">
+      </type>
+   </extension>
+   
+   
+  
+
+   
+   <extension
+         id="org.eclipse.mylyn.docs.intent.client.ui.annotation.info.spec"
+         name="Intent Compiler Info Specifications"
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationImageProvider="org.eclipse.mylyn.docs.intent.client.ui.editor.annotation.IntentAnnotationImageProvider"
+            annotationType="org.eclipse.mylyn.docs.intent.client.ui.annotation.info"
+            colorPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.info.annotateElemColor"
+            colorPreferenceValue="139,35,35"
+            contributesToHeader="true"
+            highlightPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.info.annotateElemHighlight"
+            highlightPreferenceValue="true"
+            icon="icon/annotation/compiler-info.gif"
+            includeOnPreferencePage="true"
+            isGoToNextNavigationTarget="true"
+            isGoToPreviousNavigationTarget="true"
+            label="Intent General Information"
+            overviewRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.info.annotateElem"
+            overviewRulerPreferenceValue="true"
+            showInNextPrevDropdownToolbarAction="true"
+            textPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.info.annotateElem"
+            textPreferenceValue="true"
+            textStylePreferenceValue="SQUIGGLES"
+            verticalRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.info.annotateElemVerticalRuler"
+            verticalRulerPreferenceValue="true"/>
+   </extension>
+   
+   
+   <extension
+      id="org.eclipse.mylyn.docs.intent.client.ui.annotation"
+      name="Intent Synchronization Warning"
+      point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            markerSeverity="2"
+            name="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warning"
+            super="org.eclipse.ui.workbench.texteditor.error">
+      </type>
+   </extension>
+ <extension
+       id="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warning.spec"
+       name="Intent Synchronization Warning Specifications"
+       point="org.eclipse.ui.editors.markerAnnotationSpecification">
+    <specification
+          annotationImageProvider="org.eclipse.mylyn.docs.intent.client.ui.editor.annotation.IntentAnnotationImageProvider"
+          annotationType="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warning"
+          colorPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warning.annotateElemColor"
+          colorPreferenceValue="0,0,139"
+          contributesToHeader="true"
+          highlightPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warning.annotateElemHighlight"
+          highlightPreferenceValue="false"
+          icon="icon/annotation/sync-warning.gif"
+          includeOnPreferencePage="true"
+          isGoToNextNavigationTarget="true"
+          isGoToPreviousNavigationTarget="truetrue"
+          label="Intent Synchronization Warning"
+          overviewRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warning.annotateElemOverviewRuler"
+          overviewRulerPreferenceValue="true"
+          showInNextPrevDropdownToolbarAction="true"
+          textPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warningr.annotateElemText"
+          textPreferenceValue="true"
+          textStylePreferenceValue="DASHED_BOX"
+          verticalRulerPreferenceKey="org.eclipse.mylyn.docs.intent.client.ui.annotation.sync.warningr.annotateElemVerticalRuler"
+          verticalRulerPreferenceValue="true">
+    </specification>
+ </extension>
+ 
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.eclipse.mylyn.docs.intent.client.ui.show.outline"
+            contextId="org.eclipse.mylyn.docs.intent.client.ui.editor.context"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+O">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+      	 	name="Intent Editing context"
+            description="Intent Editing context"
+            id="org.eclipse.mylyn.docs.intent.client.ui.editor.context"           
+            parentId="org.eclipse.ui.textEditorScope">
+      </context>
+   </extension>
+</plugin>

@@ -1,0 +1,28 @@
+
+h1. Fancy texts and fancy blocs
+
+
+p<. 
+Left-aligned paragraph.
+
+
+h2>. Right Aligned section
+
+
+p<>. 
+Justified paragraph.
+
+
+h3=. Centered heading.
+
+
+
+h3. Paddings 
+
+
+p(. 
+Left padding of  1 em 
+
+p)). 
+Right padding of  2 em 
+

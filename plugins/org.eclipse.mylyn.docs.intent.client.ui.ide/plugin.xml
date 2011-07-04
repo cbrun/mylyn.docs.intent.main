@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+         point="org.eclipse.ui.commands">
+      <command
+            description="Intent - workspace : initialize content"
+            id="org.eclipse.mylyn.docs.intent.client.ui.workspace.init.command"
+            name="Intent - workspace : initialize content">
+      </command>
+      <command
+            description="Intent - workspace : launch all clients"
+            id="org.eclipse.mylyn.docs.intent.client.ui.workspace.launchclients.command"
+            name="Intent - workspace : launch all clients">
+      </command>
+           <command
+            description="Intent - workspace : open selection widget"
+            id="org.eclipse.mylyn.docs.intent.client.ui.workspace.selectionwidget.command"
+            name="Intent - workspace : open selection widget">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               icon="icon/ide/workspaceicon.gif"
+               id="org.eclipse.mylyn.docs.intent.editor.modelingunitsMenu"
+               label="Intent (workspace)"
+               mnemonic="v">
+            <command
+                  commandId="org.eclipse.mylyn.docs.intent.client.ui.workspace.init.command"
+              	  icon="icon/ide/workspaceicon.gif"
+                  id="org.eclipse.mylyn.docs.intent.client.ui.workspace.init.menu"
+                  label="Initialize Content"
+                  mnemonic="O"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+              icon="icon/ide/workspaceicon.gif"
+               id="org.eclipse.mylyn.docs.intent.editor.modelingunitsMenu"
+               label="Intent (workspace)"
+               mnemonic="v">
+            <command
+                  commandId="org.eclipse.mylyn.docs.intent.client.ui.workspace.launchclients.command"
+              	icon="icon/ide/workspaceicon.gif"
+                  id="org.eclipse.mylyn.docs.intent.client.ui.workspace.launchclients.menu"
+                  label="Launch clients"
+                  mnemonic="O"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+              icon="icon/ide/workspaceicon.gif"
+               id="org.eclipse.mylyn.docs.intent.editor.modelingunitsMenu"
+               label="Intent (workspace)"
+               mnemonic="v">
+            <command
+                  commandId="org.eclipse.mylyn.docs.intent.client.ui.workspace.selectionwidget.command"
+              	icon="icon/ide/workspaceicon.gif"
+                  id="org.eclipse.mylyn.docs.intent.modelingunit.openFirstModelingUnit"
+                  label="Open element..."
+                  mnemonic="O"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   
+    <extension point="org.eclipse.ui.handlers">
+      <handler class="org.eclipse.mylyn.docs.intent.client.ui.ide.handlers.InitializeContent"
+               commandId="org.eclipse.mylyn.docs.intent.client.ui.workspace.init.command">
+      </handler>
+         <handler class="org.eclipse.mylyn.docs.intent.client.ui.ide.handlers.LaunchAllClients"
+               commandId="org.eclipse.mylyn.docs.intent.client.ui.workspace.launchclients.command">
+      </handler>
+         <handler class="org.eclipse.mylyn.docs.intent.client.ui.ide.handlers.ShowIndexHandler"
+               commandId="org.eclipse.mylyn.docs.intent.client.ui.workspace.selectionwidget.command">
+      </handler>
+   </extension>
+   
+   
+   <!-- EXTENSIONS OF THE PROJECT EXPLORER -->
+    <extension
+          point="org.eclipse.ui.navigator.viewer">
+        <viewer
+              helpContext="org.eclipse.ui.navigator.ProjectExplorer.help"
+              inheritBindingsFromViewer="org.eclipse.ui.navigator.ProjectExplorer"
+              viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+       </viewer>
+       <viewerContentBinding
+             viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+          <includes>
+             <contentExtension
+                   isRoot="false"
+                   pattern="org.eclipse.mylyn.docs.intent.client.ui.ide.RepositoryContent">
+             </contentExtension>
+          </includes>
+       </viewerContentBinding>
+     
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.navigatorContent">
+       <navigatorContent
+             activeByDefault="true"
+             contentProvider="org.eclipse.mylyn.docs.intent.client.ui.ide.navigator.RepositoryContentProvider"
+             icon="icon/ide/workspaceicon.gif"
+             id="org.eclipse.mylyn.docs.intent.client.ui.ide.RepositoryContent"
+             labelProvider="org.eclipse.mylyn.docs.intent.client.ui.ide.navigator.RepositoryLabelProvider"
+             name="Repository Content"
+             priority="highest"
+             providesSaveables="false">
+          <triggerPoints>
+ 			<or>
+            	<adapt type="org.eclipse.core.resources.IProject">
+                	<and>
+                    	<test
+                        	property="org.eclipse.core.resources.projectNature"
+                            value="org.eclipse.mylyn.docs.intent.client.ui.ide.intentNature">
+                        </test>
+                    </and>
+                </adapt>                
+            </or>
+          </triggerPoints>
+ 		<possibleChildren>
+        	<or>
+            <instanceof
+                  value="org.eclipse.mylyn.docs.intent.core.indexer.IntentIndex">
+            </instanceof>
+            <instanceof
+                  value="org.eclipse.mylyn.docs.intent.core.indexer.IntentIndexEntry">
+            </instanceof>         
+        	</or>
+     	</possibleChildren>
+          <actionProvider
+                class="org.eclipse.mylyn.docs.intent.client.ui.ide.navigator.RepositoryActionProvider">
+          </actionProvider>
+       </navigatorContent>
+    </extension>
+    <extension
+          point="org.eclipse.ui.popupMenus">
+       <objectContribution
+             adaptable="true"
+             id="org.eclipse.mylyn.docs.intent.client.ui.ide.contribution1"
+             nameFilter="*"
+             objectClass="org.eclipse.core.resources.IProject">
+          <action
+                class="org.eclipse.mylyn.docs.intent.client.ui.ide.builder.ToggleNatureAction"
+                enablesFor="+"
+                icon="icon/ide/toggle_nature.gif"
+                id="org.eclipse.mylyn.docs.intent.client.ui.ide.addRemoveNatureAction"
+                label="Add/Remove Intent Nature"
+                menubarPath="additions">
+          </action>
+       </objectContribution>
+    </extension>
+    <extension
+          id="intentBuilder"
+          name="Intent Project Builder"
+          point="org.eclipse.core.resources.builders">
+       <builder
+             hasNature="true">
+          <run
+                class="org.eclipse.mylyn.docs.intent.client.ui.ide.builder.IntentBuilder">
+          </run>
+       </builder>
+    </extension>
+    <extension
+          id="intentNature"
+          name="Intent Project Nature"
+          point="org.eclipse.core.resources.natures">
+       <runtime>
+          <run
+                class="org.eclipse.mylyn.docs.intent.client.ui.ide.builder.IntentNature">
+          </run>
+       </runtime>
+       <builder
+             id="org.eclipse.mylyn.docs.intent.client.ui.ide.intentBuilder">
+       </builder>
+    </extension>
+    <extension
+          id="xmlProblem"
+          name="XML Problem"
+          point="org.eclipse.core.resources.markers">
+       <super
+             type="org.eclipse.core.resources.problemmarker">
+       </super>
+       <persistent
+             value="true">
+       </persistent>
+    </extension>
+    <extension
+          point="org.eclipse.ui.ide.projectNatureImages">
+       <image
+             icon="icon/ide/nature.gif"
+             id="org.eclipse.mylyn.docs.intent.client.ui.ide.intentNatureImage"
+             natureId="org.eclipse.mylyn.docs.intent.client.ui.ide.intentNature">
+       </image>
+    </extension>
+   
+   
+   
+   
+
+</plugin>

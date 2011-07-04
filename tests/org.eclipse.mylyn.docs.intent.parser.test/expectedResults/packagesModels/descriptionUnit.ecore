@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="descriptionunit"
+    nsURI="http://www.eclipse.org/intent/descriptionunit/0.7" nsPrefix="intentDU">
+  <eClassifiers xsi:type="ecore:EClass" name="DescriptionUnit" eSuperTypes="expectedResults/packagesModels/genericUnit.ecore#//GenericUnit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DescriptionUnitInstruction" abstract="true"
+      eSuperTypes="expectedResults/packagesModels/genericUnit.ecore#//UnitInstruction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DescriptionBloc" eSuperTypes="expectedResults/packagesModels/descriptionUnit.ecore#//DescriptionUnitInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="descriptionBloc" eType="ecore:EClass expectedResults/packagesModels/markup.ecore#//Container"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

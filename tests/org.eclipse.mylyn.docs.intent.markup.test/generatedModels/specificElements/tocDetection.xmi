@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Section" level="2">
+      <attributes id="TestInternallinks"/>
+      <title>
+        <content xmi:type="markup:Text" data="Test Internal links"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <attributes id="Testhreflinks"/>
+      <title>
+        <content xmi:type="markup:Text" data="Test "/>
+        <content xmi:type="markup:Entity" data="#8249"/>
+        <content xmi:type="markup:Text" data="href"/>
+        <content xmi:type="markup:Entity" data="#8250"/>
+        <content xmi:type="markup:Text" data=" links"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The following list should not be detected as a TOC"/>
+      </content>
+      <content xmi:type="markup:List">
+        <attributes/>
+        <items isList="true">
+          <attributes/>
+          <content xmi:type="markup:Link" hrefOrHashName="#Testlink" target="//@content.0">
+            <attributes/>
+            <name>
+              <content xmi:type="markup:Text" data="Testlink"/>
+            </name>
+          </content>
+          <items imbricationLevel="2" isList="true">
+            <attributes/>
+            <items imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#TestInternallinks" target="//@content.0/@content.0">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Test Internal links"/>
+                </name>
+              </content>
+            </items>
+            <items imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#Testhreflinks" target="//@content.0/@content.1">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Test href links"/>
+                </name>
+              </content>
+            </items>
+            <items imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="http://www.google.fr">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Embeded href and links"/>
+                </name>
+              </content>
+            </items>
+          </items>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="But of course this one should"/>
+      </content>
+      <content xmi:type="markup:List" listType="TABLE_OF_CONTENT">
+        <attributes CSSStyle="list-style: none;"/>
+        <items listType="NUMERIC" isList="true">
+          <attributes/>
+          <content xmi:type="markup:Link" hrefOrHashName="#Testlink" target="//@content.0">
+            <attributes/>
+            <name>
+              <content xmi:type="markup:Text" data="Testlink"/>
+            </name>
+          </content>
+          <items listType="TABLE_OF_CONTENT" imbricationLevel="2" isList="true">
+            <attributes CSSStyle="list-style: none;"/>
+            <items listType="NUMERIC" imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#TestInternallinks" target="//@content.0/@content.0">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Test Internal links"/>
+                </name>
+              </content>
+            </items>
+            <items listType="NUMERIC" imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#Testhreflinks" target="//@content.0/@content.1">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Test 'href' links"/>
+                </name>
+              </content>
+            </items>
+            <items listType="NUMERIC" imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#Embededhrefandlinks" target="//@content.0/@content.2">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Embeded href and links"/>
+                </name>
+              </content>
+            </items>
+          </items>
+        </items>
+      </content>
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="And this one also"/>
+      </content>
+      <content xmi:type="markup:List" listType="TABLE_OF_CONTENT">
+        <attributes/>
+        <items isList="true">
+          <attributes/>
+          <content xmi:type="markup:Link" hrefOrHashName="#Testlink" target="//@content.0">
+            <attributes/>
+            <name>
+              <content xmi:type="markup:Text" data="Testlink"/>
+            </name>
+          </content>
+          <items listType="TABLE_OF_CONTENT" imbricationLevel="2" isList="true">
+            <attributes/>
+            <items imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#TestInternallinks" target="//@content.0/@content.0">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Test Internal links"/>
+                </name>
+              </content>
+            </items>
+            <items imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#Testhreflinks" target="//@content.0/@content.1">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Test href links"/>
+                </name>
+              </content>
+            </items>
+            <items imbricationLevel="2">
+              <attributes/>
+              <content xmi:type="markup:Link" hrefOrHashName="#Embededhrefandlinks" target="//@content.0/@content.2">
+                <attributes/>
+                <name>
+                  <content xmi:type="markup:Text" data="Embeded href and links"/>
+                </name>
+              </content>
+            </items>
+          </items>
+        </items>
+      </content>
+      <attributes id="Embededhrefandlinks"/>
+      <title>
+        <content xmi:type="markup:Text" data="Embeded href and links"/>
+      </title>
+    </content>
+    <attributes id="Testlink"/>
+    <title>
+      <content xmi:type="markup:Text" data="Testlink"/>
+    </title>
+  </content>
+</markup:Document>

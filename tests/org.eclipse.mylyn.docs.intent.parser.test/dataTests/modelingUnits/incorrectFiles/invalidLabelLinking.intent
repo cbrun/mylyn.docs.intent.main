@@ -1,0 +1,4 @@
+@M @label "labelValue"
+new A MyA {}
+@lazylabel "labelValue" "textToPrint"
+M@

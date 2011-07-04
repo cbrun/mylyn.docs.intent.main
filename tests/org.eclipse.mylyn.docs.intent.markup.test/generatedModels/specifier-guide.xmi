@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ASCII"?>
+<markup:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:markup="http://www.eclipse.org/intent/markup/0.7">
+  <content xmi:type="markup:Section" level="1">
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Section" level="3">
+        <content xmi:type="markup:Paragraph">
+          <attributes/>
+          <content xmi:type="markup:Text" data="The reader should have a minimal knowledge about MDA concepts, the eclipse platform, and the java language."/>
+        </content>
+        <attributes id="Prerequisites"/>
+        <title>
+          <content xmi:type="markup:Text" data="Pre-requisites"/>
+        </title>
+      </content>
+      <attributes id="Introduction"/>
+      <title>
+        <content xmi:type="markup:Text" data="Introduction"/>
+      </title>
+    </content>
+    <content xmi:type="markup:Section" level="2">
+      <content xmi:type="markup:Paragraph">
+        <attributes/>
+        <content xmi:type="markup:Text" data="The main purpose of Intent is to allow developers to easily write a documentation up-to-date with any development artifact (models, code, environment...). The documentation, integrated with other Eclipse tools, then becomes truly useful and is no longer a burden that developer have to carry to please their customers or their project manager." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Based on Donald Knuth"/>
+        <content xmi:type="markup:Entity" data="#8217"/>
+        <content xmi:type="markup:Text" data="s Literate Programming concepts and allowing collaborative work around design tasks, Intent will be presented at Eclipse Con 2011." lineBreak="true"/>
+        <content xmi:type="markup:Text" data="Let us change our traditional attitude to the construction of programs: Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do." lineBreak="true">
+          <attributes/>
+          <format>italic</format>
+        </content>
+        <content xmi:type="markup:Text" data="Donald Knuth">
+          <attributes/>
+          <format>strong</format>
+        </content>
+        <content xmi:type="markup:Text" data=", Literate Programming (1984)"/>
+      </content>
+      <content xmi:type="markup:Section" level="3">
+        <content xmi:type="markup:Paragraph">
+          <attributes/>
+          <content xmi:type="markup:Text" data="To come."/>
+        </content>
+        <attributes id="Installation"/>
+        <title>
+          <content xmi:type="markup:Text" data="Installation"/>
+        </title>
+      </content>
+      <content xmi:type="markup:Section" level="3">
+        <content xmi:type="markup:Section" level="4">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="A language mixing the wiki syntax from WikiText with a syntax dedicated to the definition of model fragments. This can be seen as a literate modeling (like in literate programming) documentation language, having the ability to :"/>
+          </content>
+          <content xmi:type="markup:List">
+            <attributes/>
+            <items>
+              <attributes/>
+              <content xmi:type="markup:Text" data="organize the design of the system as a document, keeping in mind the targeted audience and not the constraints coming from the development artifacts ;"/>
+            </items>
+            <items>
+              <attributes/>
+              <content xmi:type="markup:Text" data="split the definition of formal elements among several sections or chapters, according to the need they allow to answer to."/>
+            </items>
+          </content>
+          <attributes id="Adocumentationlanguage"/>
+          <title>
+            <content xmi:type="markup:Text" data="A documentation language"/>
+          </title>
+        </content>
+        <content xmi:type="markup:Section" level="4">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="A complete IDE providing wizards, editors with syntax highlighting and code completion for the documentation language. Validation of the formal elements description will be fully integrated to this IDE."/>
+          </content>
+          <attributes id="Anauthoringtooling"/>
+          <title>
+            <content xmi:type="markup:Text" data="An authoring tooling"/>
+          </title>
+        </content>
+        <content xmi:type="markup:Section" level="4">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="The synchronization framework is responsible for interfacing the formalism with development artifacts :"/>
+          </content>
+          <content xmi:type="markup:List">
+            <attributes/>
+            <items>
+              <attributes/>
+              <content xmi:type="markup:Text" data="it compiles the document into complete models upon which constraints and predicates can be checked ;"/>
+            </items>
+            <items>
+              <attributes/>
+              <content xmi:type="markup:Text" data="it synchronizes these models with the real development artifacts providing the user two possibilities : updating the documentation or updating the artifact itself ;"/>
+            </items>
+            <items>
+              <attributes/>
+              <content xmi:type="markup:Text" data="it has the ability to be extended to provide better integration with other Eclipse projects, enabling for instance consistency check between PDE artifacts and the documentation."/>
+            </items>
+          </content>
+          <attributes id="Asynchronizationframework"/>
+          <title>
+            <content xmi:type="markup:Text" data="A synchronization framework"/>
+          </title>
+        </content>
+        <content xmi:type="markup:Section" level="4">
+          <content xmi:type="markup:Paragraph">
+            <attributes/>
+            <content xmi:type="markup:Text" data="Plugins dedicated to the document export into popular format will be developed."/>
+          </content>
+          <attributes id="Outputgenerators"/>
+          <title>
+            <content xmi:type="markup:Text" data="Output generators"/>
+          </title>
+        </content>
+        <attributes id="Features"/>
+        <title>
+          <content xmi:type="markup:Text" data="Features"/>
+        </title>
+      </content>
+      <attributes id="Overview"/>
+      <title>
+        <content xmi:type="markup:Text" data="Overview"/>
+      </title>
+    </content>
+    <attributes id="IntentUserGuide"/>
+    <title>
+      <content xmi:type="markup:Text" data="Intent User Guide"/>
+    </title>
+  </content>
+</markup:Document>
