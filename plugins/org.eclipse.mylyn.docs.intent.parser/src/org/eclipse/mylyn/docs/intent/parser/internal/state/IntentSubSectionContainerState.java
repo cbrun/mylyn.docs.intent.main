@@ -26,13 +26,20 @@ import org.eclipse.mylyn.docs.intent.markup.markup.StructureElement;
 import org.eclipse.mylyn.docs.intent.parser.IntentKeyWords;
 import org.eclipse.mylyn.docs.intent.parser.descriptionunit.DescriptionUnitParser;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ParseException;
+import org.eclipse.mylyn.docs.intent.serializer.IntentPositionManager;
 
 /**
  * Factorise the behavior of SChapter and SSection states.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
 public class IntentSubSectionContainerState extends IntentDefaultState {
+
+	/**
+	 * The parser to use for parsing Modeling Units.
+	 */
+	private static DescriptionUnitParser descriptionUnitParser;
 
 	/**
 	 * Mapping between an identifier and the associated SubSectionContainer.
@@ -48,13 +55,20 @@ public class IntentSubSectionContainerState extends IntentDefaultState {
 	/**
 	 * IntentSubSectionContainerState constructor.
 	 * 
+	 * @param offset
+	 *            the current element offset
+	 * @param declarationLength
+	 *            the current element declaration length
 	 * @param previous
 	 *            the previous state of the parser
 	 * @param currentElement
 	 *            the intentSubSectionContainer currently being parsed
+	 * @param positionManager
+	 *            the positionManager where to register positions
 	 */
-	public IntentSubSectionContainerState(IntentGenericState previous, EObject currentElement) {
-		super(previous, currentElement);
+	public IntentSubSectionContainerState(int offset, int declarationLength, IntentGenericState previous,
+			EObject currentElement, IntentPositionManager positionManager) {
+		super(offset, declarationLength, previous, currentElement, positionManager);
 		this.titleCanBeSet = true;
 	}
 
@@ -65,13 +79,12 @@ public class IntentSubSectionContainerState extends IntentDefaultState {
 	 *      java.util.List)
 	 */
 	@Override
-	public IntentGenericState beginSection() {
+	public IntentGenericState beginSection(int offset, int declarationLength) {
 		// The title of this Section cannot be set anymore
 		this.titleCanBeSet = false;
-
 		IntentSection subSection = IntentDocumentFactory.eINSTANCE.createIntentSection();
 		((IntentSubSectionContainer)currentElement).getIntentContent().add(subSection);
-		return new SSection(this, subSection);
+		return new SSection(offset, declarationLength, this, subSection, positionManager);
 	}
 
 	/**
@@ -82,14 +95,16 @@ public class IntentSubSectionContainerState extends IntentDefaultState {
 	 * @see org.eclipse.mylyn.docs.intent.parser.internal.state.IntentGenericState#desriptionUnitContent(java.lang.String)
 	 */
 	@Override
-	public IntentGenericState desriptionUnitContent(String descriptionUnitContent) throws ParseException {
-
+	public IntentGenericState descriptionUnitContent(int offset, int length, String descriptionUnitContent)
+			throws ParseException {
+		int titleLength = 0;
 		String descriptionUnitDescription = descriptionUnitContent;
 		// If this descriptionUnit defines the title of this Section
 		if (titleCanBeSet()) {
 			// We determine this title
 			if (descriptionUnitContent.trim().indexOf(IntentKeyWords.INTENT_LINEBREAK) != -1) {
-				createSectionTitle(descriptionUnitContent);
+				titleLength = createSectionTitle(offset, descriptionUnitContent)
+						+ IntentKeyWords.INTENT_LINEBREAK.length();
 				descriptionUnitDescription = descriptionUnitDescription.trim().substring(
 						descriptionUnitDescription.trim().indexOf(IntentKeyWords.INTENT_LINEBREAK));
 			}
@@ -99,26 +114,30 @@ public class IntentSubSectionContainerState extends IntentDefaultState {
 
 		// If the descriptionUnitContent isn't empty
 		if (descriptionUnitDescription.trim().length() > 0) {
-			DescriptionUnit descriptionUnit = new DescriptionUnitParser().parse(descriptionUnitDescription
-					.trim());
+			DescriptionUnit descriptionUnit = getDescriptionUnitParser().parse(descriptionUnitDescription);
 			((IntentSubSectionContainer)this.currentElement).getIntentContent().add(descriptionUnit);
+			positionManager.setPositionForInstruction(descriptionUnit, offset + titleLength, length
+					- titleLength);
 		}
+
 		return this;
 	}
 
 	/**
 	 * Creates the handled Section's title from the given descriptionUnit content.
 	 * 
+	 * @param offset
+	 *            the title offset
 	 * @param descriptionUnitContent
 	 *            the descriptionUnit defining the title of the handled section
+	 * @return the title length
 	 * @throws ParseException
 	 *             if the description unit parser detect any parse error
 	 */
-	private void createSectionTitle(String descriptionUnitContent) throws ParseException {
-
+	private int createSectionTitle(int offset, String descriptionUnitContent) throws ParseException {
 		String sectionTitle = descriptionUnitContent.substring(0,
 				descriptionUnitContent.trim().indexOf(IntentKeyWords.INTENT_LINEBREAK));
-		DescriptionUnit descriptionUnit = new DescriptionUnitParser().parse(sectionTitle.trim());
+		DescriptionUnit descriptionUnit = getDescriptionUnitParser().parse(sectionTitle.trim());
 
 		for (UnitInstruction title : descriptionUnit.getInstructions()) {
 			if (title instanceof DescriptionBloc) {
@@ -126,11 +145,16 @@ public class IntentSubSectionContainerState extends IntentDefaultState {
 				if (contents.size() != 1) {
 					throw new ParseException("The title of this section isn't well formed");
 				}
-				((IntentSubSectionContainer)this.currentElement).setTitle((Block)contents.get(0));
+
+				Block titleBlock = (Block)contents.get(0);
+				positionManager.setPositionForInstruction(titleBlock, offset, sectionTitle.trim().length());
+
+				((IntentSubSectionContainer)this.currentElement).setTitle(titleBlock);
 				((IntentSubSectionContainer)this.currentElement)
 						.setFormattedTitle(createFormattedTitle(sectionTitle));
 			}
 		}
+		return sectionTitle.length();
 	}
 
 	/**
@@ -176,7 +200,21 @@ public class IntentSubSectionContainerState extends IntentDefaultState {
 	 * @see org.eclipse.mylyn.docs.intent.parser.internal.state.IntentGenericState#endStructuredElement()
 	 */
 	@Override
-	public IntentGenericState endStructuredElement() {
+	public IntentGenericState endStructuredElement(int offset) {
+		positionManager.setDeclarationPositionForInstruction(getCurrentElement(), getOffset(), offset
+				- getOffset(), getDeclarationLength());
 		return previousState();
+	}
+
+	/**
+	 * Returns the parser to use for parsing Description Units. If the parser hasn't been created, creates it.
+	 * 
+	 * @return the parser to use for parsing Description Units
+	 */
+	private DescriptionUnitParser getDescriptionUnitParser() {
+		if (descriptionUnitParser == null) {
+			descriptionUnitParser = new DescriptionUnitParser();
+		}
+		return descriptionUnitParser;
 	}
 }

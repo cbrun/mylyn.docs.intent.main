@@ -28,7 +28,6 @@ import org.eclipse.mylyn.docs.intent.core.modelingunit.ResourceReference;
 import org.eclipse.mylyn.docs.intent.core.modelingunit.StructuralFeatureAffectation;
 import org.eclipse.mylyn.docs.intent.core.modelingunit.TypeReference;
 import org.eclipse.mylyn.docs.intent.core.modelingunit.util.ModelingUnitSwitch;
-
 import org.eclipse.mylyn.docs.intent.parser.IntentKeyWords;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ModelingUnitParser;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.serializer.ModelingUnitSerializer;
@@ -128,7 +127,7 @@ public class ModelingUnitElementDispatcher extends ModelingUnitSwitch<String> {
 		this.setPositionForInstruction(object, initialOffset, renderedForm.length());
 
 		// Adding the suffix
-		return renderedForm + ModelingUnitParser.MODELING_UNIT_SUFFIX;
+		return renderedForm + ModelingUnitParser.MODELING_UNIT_SUFFIX + IntentKeyWords.INTENT_LINEBREAK;
 
 	}
 

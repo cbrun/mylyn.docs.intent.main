@@ -12,7 +12,6 @@ package org.eclipse.mylyn.docs.intent.serializer.descriptionunit.internal;
 
 import org.eclipse.mylyn.docs.intent.core.descriptionunit.DescriptionBloc;
 import org.eclipse.mylyn.docs.intent.core.descriptionunit.util.DescriptionUnitSwitch;
-
 import org.eclipse.mylyn.docs.intent.serializer.descriptionunit.DescriptionUnitSerializer;
 
 /**
@@ -49,7 +48,7 @@ public class DescriptionUnitElementsDispatcher extends DescriptionUnitSwitch<Str
 	 */
 	@Override
 	public String caseDescriptionBloc(DescriptionBloc object) {
-		String serializedDescriptionBloc = DescriptionBlocSerializer.serialise(object, serializer,
+		String serializedDescriptionBloc = DescriptionBlocSerializer.serialize(object, serializer,
 				tabulationPrefix);
 
 		return serializedDescriptionBloc;

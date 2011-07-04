@@ -15,14 +15,21 @@ import org.eclipse.mylyn.docs.intent.parser.descriptionunit.DescriptionUnitParse
 import org.eclipse.mylyn.docs.intent.parser.internal.IntentDocumentParser;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ModelingUnitParserImpl;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ParseException;
+import org.eclipse.mylyn.docs.intent.serializer.IntentPositionManager;
+import org.eclipse.mylyn.docs.intent.serializer.ParsedElementPosition;
 
 /**
  * High-level parser that delegates the parsing to the correct parser according to the possible entry points
  * for a Modeling Unit.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
 public class IntentParser {
+	/**
+	 * The position manager that handle the mapping between Intent element to positions.
+	 */
+	private IntentPositionManager positionManager;
 
 	/**
 	 * Parser for IntentStructuredElements : IntentDocument, Chapter and Section.
@@ -46,14 +53,26 @@ public class IntentParser {
 		this.documentParser = new IntentDocumentParser();
 		this.modelingUnitParser = new ModelingUnitParserImpl();
 		this.descriptionUnitParser = new DescriptionUnitParser();
+		this.positionManager = new IntentPositionManager();
+	}
+
+	/**
+	 * Returns the position of the given instruction element.
+	 * 
+	 * @param element
+	 *            the element for witch we want the position
+	 * @return the position of the given instruction element (null if no position).
+	 */
+	public ParsedElementPosition getPositionForElement(EObject element) {
+		return this.positionManager.getPositionForElement(element);
 	}
 
 	/**
 	 * Parse the given content and return the described element.
 	 * 
 	 * @param contentToParse
-	 *            textual form of an Intent entity (can be a IntentDocument, a Section, a Chapter, a
-	 *            Modeling Unit or a Description Unit).
+	 *            textual form of an Intent entity (can be a IntentDocument, a Section, a Chapter, a Modeling
+	 *            Unit or a Description Unit).
 	 * @return the given content and return the described element
 	 * @throws ParseException
 	 *             if the given content contain error or doesn't describe an Intent entity
@@ -65,20 +84,15 @@ public class IntentParser {
 			// We have 3 possibilities for the type of the element to parse :
 			// If it matches "@M (.*) M@", it's a modelingUnit
 			if (modelingUnitParser.isParserFor(contentToParse)) {
-
 				generatedObject = modelingUnitParser.parseString(contentToParse);
-
 			} else {
 				// If it starts with a IntentDocument's Keyword (like "Section, Document, Chapter..."
 				if (documentParser.isParserFor(contentToParse)) {
-
 					generatedObject = documentParser.parse(contentToParse);
-
+					positionManager.addIntentPositionManagerInformations(documentParser.getPositionManager());
 				} else {
 					// In the other cases, we consider that the given contentToParse is a DescriptionUnit
-
 					generatedObject = descriptionUnitParser.parse(contentToParse);
-
 				}
 			}
 			return generatedObject;
@@ -91,4 +105,12 @@ public class IntentParser {
 
 	}
 
+	/**
+	 * Returns the position manager of this serializer.
+	 * 
+	 * @return the position manager of this serializer.
+	 */
+	public IntentPositionManager getPositionManager() {
+		return this.positionManager;
+	}
 }

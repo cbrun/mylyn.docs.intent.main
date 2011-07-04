@@ -13,15 +13,21 @@ package org.eclipse.mylyn.docs.intent.parser.internal.state;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ParseException;
+import org.eclipse.mylyn.docs.intent.serializer.IntentPositionManager;
 
 /**
  * Represents a generic State of a IntentDocument parsor StateMachine.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
 public class IntentGenericState {
+
+	/**
+	 * The position manager that handle the mapping between Intent element to positions.
+	 */
+	protected IntentPositionManager positionManager;
 
 	/**
 	 * The previous state of the stateMachine.
@@ -33,17 +39,31 @@ public class IntentGenericState {
 	 */
 	protected EObject currentElement;
 
+	private int fOffset;
+
+	private int fDeclarationLength;
+
 	/**
 	 * BuilderState constructor.
 	 * 
+	 * @param offset
+	 *            the offset of the current element
+	 * @param declarationLength
+	 *            the declaration length of the current element
 	 * @param currentElement
 	 *            the current parsed element
 	 * @param previous
 	 *            the previous state of the state machine.
+	 * @param positionManager
+	 *            the positionManager where to register positions
 	 */
-	public IntentGenericState(IntentGenericState previous, EObject currentElement) {
+	public IntentGenericState(int offset, int declarationLength, IntentGenericState previous,
+			EObject currentElement, IntentPositionManager positionManager) {
+		this.fOffset = offset;
 		this.previous = previous;
 		this.currentElement = currentElement;
+		this.positionManager = positionManager;
+		this.fDeclarationLength = declarationLength;
 	}
 
 	/**
@@ -56,29 +76,57 @@ public class IntentGenericState {
 	}
 
 	/**
+	 * Returns the offset of the current element.
+	 * 
+	 * @return the offset of the current element
+	 */
+	public int getOffset() {
+		return fOffset;
+	}
+
+	/**
+	 * Returns the declaration length of the current element.
+	 * 
+	 * @return the declaration length of the current element
+	 */
+	public int getDeclarationLength() {
+		return fDeclarationLength;
+	}
+
+	/**
 	 * Indicates the beginning of a Chapter.
 	 * 
+	 * @param offset
+	 *            the begin offset of the chapter
+	 * @param declarationLength
+	 *            the declaration length of the chapter
 	 * @return the new state of the state machine
 	 */
-	public IntentGenericState beginChapter() {
+	public IntentGenericState beginChapter(int offset, int declarationLength) {
 		return this;
 	}
 
 	/**
 	 * Indicates the end of a Chapter.
 	 * 
+	 * @param offset
+	 *            the ending offset of the chapter
 	 * @return the new state of the state machine
 	 */
-	public IntentGenericState endStructuredElement() {
+	public IntentGenericState endStructuredElement(int offset) {
 		return this;
 	}
 
 	/**
 	 * Indicates the beginning of a IntentSection.
 	 * 
+	 * @param offset
+	 *            the Section offset
+	 * @param declarationLength
+	 *            the Section declaration length
 	 * @return the new state of the state machine
 	 */
-	public IntentGenericState beginSection() {
+	public IntentGenericState beginSection(int offset, int declarationLength) {
 		return this;
 	}
 
@@ -99,28 +147,40 @@ public class IntentGenericState {
 	/**
 	 * Indicates the end of a Modeling Unit with the given content.
 	 * 
+	 * @param offset
+	 *            the Modeling Unit offset
+	 * @param length
+	 *            the Modeling Unit length
 	 * @param modelingUnitContent
 	 *            the content of this modeling Unit
 	 * @return the new state of the state machine
 	 * @throws ParseException
 	 *             if the modeling unit parser detect any parse error
 	 */
-	public IntentGenericState modelingUnitContent(String modelingUnitContent) throws ParseException {
-
+	public IntentGenericState modelingUnitContent(int offset, int length, String modelingUnitContent)
+			throws ParseException {
 		return this;
 	}
 
 	/**
 	 * Indicates a Description Unit with the given Content.
 	 * 
+	 * @param offset
+	 *            the Description Unit offset
+	 * @param length
+	 *            the Description Unit length
 	 * @param descriptionUnitContent
 	 *            the content of the description Unit
 	 * @return the new state of the state machine
 	 * @throws ParseException
 	 *             if the description unit parser detect any parse error
 	 */
-	public IntentGenericState desriptionUnitContent(String descriptionUnitContent) throws ParseException {
+	public IntentGenericState descriptionUnitContent(int offset, int length, String descriptionUnitContent)
+			throws ParseException {
 		return this;
 	}
 
+	public EObject getCurrentElement() {
+		return currentElement;
+	}
 }

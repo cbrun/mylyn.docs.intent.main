@@ -151,8 +151,6 @@ public class IntentPositionManager {
 	 */
 	public void setDeclarationPositionForInstruction(EObject instruction, int offset, int length,
 			int declarationLength) {
-		// System.out.println("Setting declaration position : for " + instruction + " : " + offset + "/"
-		// + declarationLength);
 		instructionToPosition.put(instruction, new ParsedElementPosition(offset, length));
 		instructionToDeclarationPosition.put(instruction,
 				new ParsedElementPosition(offset, declarationLength));

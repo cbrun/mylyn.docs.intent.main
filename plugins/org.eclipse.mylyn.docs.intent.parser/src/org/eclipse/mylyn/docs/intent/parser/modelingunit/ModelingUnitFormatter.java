@@ -40,7 +40,8 @@ public final class ModelingUnitFormatter {
 
 		// We also remove the prefix and suffix for this modeling Unit
 		formattedString = formattedString.replaceAll(ModelingUnitParser.MODELING_UNIT_PREFIX + "\\s*", "");
-		formattedString = formattedString.replace(ModelingUnitParser.MODELING_UNIT_SUFFIX, "");
+		formattedString = formattedString.replace(ModelingUnitParser.MODELING_UNIT_SUFFIX
+				+ ModelingUnitSerializer.LINE_BREAK, "");
 		return formattedString;
 	}
 

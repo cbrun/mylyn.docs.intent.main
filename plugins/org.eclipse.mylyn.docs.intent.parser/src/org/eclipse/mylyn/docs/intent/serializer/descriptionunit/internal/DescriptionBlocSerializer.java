@@ -11,7 +11,6 @@
 package org.eclipse.mylyn.docs.intent.serializer.descriptionunit.internal;
 
 import org.eclipse.mylyn.docs.intent.core.descriptionunit.DescriptionBloc;
-
 import org.eclipse.mylyn.docs.intent.parser.IntentKeyWords;
 import org.eclipse.mylyn.docs.intent.serializer.descriptionunit.DescriptionUnitSerializer;
 
@@ -33,14 +32,14 @@ public final class DescriptionBlocSerializer {
 	 * Serialize the given description bloc using the given serializer.
 	 * 
 	 * @param descriptionBloc
-	 *            the descriptionBloc to seriliaze
+	 *            the descriptionBloc to serialize
 	 * @param serializer
 	 *            the serialize to use
 	 * @param tabulationPrefix
 	 *            the Prefix to use for prefixing each line
 	 * @return the serialised form of the given DescriptionBloc
 	 */
-	public static String serialise(DescriptionBloc descriptionBloc, DescriptionUnitSerializer serializer,
+	public static String serialize(DescriptionBloc descriptionBloc, DescriptionUnitSerializer serializer,
 			String tabulationPrefix) {
 		boolean endsWithLineBreak = false;
 		String serializedDescriptionBloc = "";

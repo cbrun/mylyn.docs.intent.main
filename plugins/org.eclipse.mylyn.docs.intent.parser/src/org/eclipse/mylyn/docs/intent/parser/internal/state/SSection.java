@@ -18,11 +18,13 @@ import org.eclipse.mylyn.docs.intent.core.modelingunit.ModelingUnit;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ModelingUnitParser;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ModelingUnitParserImpl;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ParseException;
+import org.eclipse.mylyn.docs.intent.serializer.IntentPositionManager;
 
 /**
  * Represents the behavior of the parser when the current element is a Section.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
 public class SSection extends IntentSubSectionContainerState {
 
@@ -34,13 +36,20 @@ public class SSection extends IntentSubSectionContainerState {
 	/**
 	 * SSection constructor.
 	 * 
+	 * @param offset
+	 *            the begin offset of the section
+	 * @param declarationLength
+	 *            the declaration length of the section
 	 * @param previous
 	 *            the previous state of the parser
 	 * @param section
 	 *            the section currently beeing parsed
+	 * @param positionManager
+	 *            the positionManager where to register positions
 	 */
-	public SSection(IntentGenericState previous, IntentSection section) {
-		super(previous, section);
+	public SSection(int offset, int declarationLength, IntentGenericState previous, IntentSection section,
+			IntentPositionManager positionManager) {
+		super(offset, declarationLength, previous, section, positionManager);
 	}
 
 	/**
@@ -77,12 +86,16 @@ public class SSection extends IntentSubSectionContainerState {
 	 * @see org.eclipse.mylyn.docs.intent.parser.internal.state.IntentGenericState#modelingUnitContent(java.lang.String)
 	 */
 	@Override
-	public IntentGenericState modelingUnitContent(String modelingUnitContent) throws ParseException {
+	public IntentGenericState modelingUnitContent(int offset, int length, String modelingUnitContent)
+			throws ParseException {
 
 		// The title of this Section cannot be set anymore
 		this.titleCanBeSet = false;
 		ModelingUnit modelingUnit = (ModelingUnit)getModelingUnitParser().parseString(modelingUnitContent);
+
 		((IntentSection)this.currentElement).getIntentContent().add(modelingUnit);
+
+		positionManager.setPositionForInstruction(modelingUnit, offset, length);
 		return this;
 	}
 

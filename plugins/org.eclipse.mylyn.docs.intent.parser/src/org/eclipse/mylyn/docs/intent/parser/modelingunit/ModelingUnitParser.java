@@ -14,12 +14,11 @@ import java.io.IOException;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.mylyn.docs.intent.parser.modelingunit.serializer.ModelingUnitSerializer;
-
 /**
  * Parser of a Modeling Unit.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
 public interface ModelingUnitParser {
 
@@ -31,7 +30,7 @@ public interface ModelingUnitParser {
 	/**
 	 * Suffix that indicates the end of a Modeling Unit.
 	 */
-	String MODELING_UNIT_SUFFIX = "M@" + ModelingUnitSerializer.LINE_BREAK;
+	String MODELING_UNIT_SUFFIX = "M@";
 
 	/**
 	 * Parse the given String and return its AST.

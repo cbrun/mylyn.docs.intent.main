@@ -47,10 +47,9 @@ public final class IntentParserUtil {
 					+ IntentKeyWords.INTENT_KEYWORD_OPEN,
 			// @M
 			EXPREG_MANY_SPACES + ModelingUnitParser.MODELING_UNIT_PREFIX + EXPREG_MANY_SPACES,
-			// (visibility)? section ([(headers)])? {
-			"[" + IntentKeyWords.INTENT_KEYWORD_VISIBILITY_HIDDEN + "|" + IntentKeyWords.INTENT_KEYWORD_VISIBILITY_INTERNAL
-					+ "]?" + EXPREG_MANY_SPACES + IntentKeyWords.INTENT_KEYWORD_SECTION + EXPREG_MANY_SPACES
-					+ EXPREG_BACKSLASH + IntentKeyWords.INTENT_KEYWORD_OPEN,
+			// section ([(headers)])? {
+			IntentKeyWords.INTENT_KEYWORD_SECTION + EXPREG_MANY_SPACES + EXPREG_BACKSLASH
+					+ IntentKeyWords.INTENT_KEYWORD_OPEN,
 	};
 
 	/**

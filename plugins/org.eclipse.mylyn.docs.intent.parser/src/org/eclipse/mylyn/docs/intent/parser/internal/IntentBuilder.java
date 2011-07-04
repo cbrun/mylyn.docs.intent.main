@@ -28,14 +28,18 @@ import org.eclipse.mylyn.docs.intent.parser.internal.state.SChapter;
 import org.eclipse.mylyn.docs.intent.parser.internal.state.SDocument;
 import org.eclipse.mylyn.docs.intent.parser.internal.state.SSection;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ParseException;
+import org.eclipse.mylyn.docs.intent.serializer.IntentPositionManager;
 
 /**
  * Builder for an IntentStructuredElement : use a state machine to build Intent elements according to the
  * signal sent by a IntentParser.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
 public class IntentBuilder {
+
+	private IntentPositionManager positionManager;
 
 	/**
 	 * CurrentRoot of the document : can be a IntentStructuredElement (Chapter, Section), a Modeling Unit or a
@@ -60,9 +64,13 @@ public class IntentBuilder {
 
 	/**
 	 * IntentBuilder constructor.
+	 * 
+	 * @param positionManager
+	 *            the positionManager where to register positions
 	 */
-	public IntentBuilder() {
+	public IntentBuilder(IntentPositionManager positionManager) {
 		roots = new ArrayList<EObject>();
+		this.positionManager = positionManager;
 	}
 
 	/**
@@ -105,27 +113,22 @@ public class IntentBuilder {
 		this.currentImbricationLevel--;
 	}
 
-	// @Deprecated
-	// public String getTab() {
-	// String tab = "";
-	// for (int i = 0; i < currentImbricationLevel; i++) {
-	// tab += "\t";
-	// }
-	// return tab;
-	// }
-
 	/**
 	 * Indicates the beginning of a Document.
 	 * 
+	 * @param offset
+	 *            the begin offset of the document
+	 * @param declarationLength
+	 *            the declaration length of the document
 	 * @throws ParseException
 	 *             if the document can't be opened in the current state of the parser
 	 */
-	public void beginDocument() throws ParseException {
-		// System.out.println(getTab() + "IntentBuilder.beginDocument() / " + currentState);
+	public void beginDocument(int offset, int declarationLength) throws ParseException {
 		if (currentState == null) {
 			currentRoot = IntentDocumentFactory.eINSTANCE.createIntentDocument();
 			roots.add(currentRoot);
-			currentState = new SDocument(null, (IntentDocument)currentRoot);
+			currentState = new SDocument(offset, declarationLength, null, (IntentDocument)currentRoot,
+					positionManager);
 			increaseImbricationLevel();
 		} else {
 			throw new ParseException("Can't open any document here.");
@@ -134,33 +137,59 @@ public class IntentBuilder {
 
 	/**
 	 * Indicates the beginning of a Chapter.
+	 * 
+	 * @param offset
+	 *            the begin offset of the Chapter
+	 * @param declarationLength
+	 *            the declaration length of the Chapter
 	 */
-	public void beginChapter() {
-		// System.out.println(getTab() + "IntentBuilder.beginChapter() / " + currentState);
+	public void beginChapter(int offset, int declarationLength) {
 		increaseImbricationLevel();
 		if (currentState == null) {
 			currentRoot = IntentDocumentFactory.eINSTANCE.createIntentChapter();
 			roots.add(currentRoot);
-			currentState = new SChapter(null, (IntentChapter)currentRoot);
+			currentState = new SChapter(offset, declarationLength, null, (IntentChapter)currentRoot,
+					positionManager);
 
 		} else {
-			currentState = currentState.beginChapter();
+			currentState = currentState.beginChapter(offset, declarationLength);
+		}
+	}
+
+	/**
+	 * Indicates the beginning of a IntentSection.
+	 * 
+	 * @param offset
+	 *            the begin offset of the Section
+	 * @param declarationLength
+	 *            the declaration length of the Section
+	 */
+	public void beginSection(int offset, int declarationLength) {
+		increaseImbricationLevel();
+		if (currentState == null) {
+			currentRoot = IntentDocumentFactory.eINSTANCE.createIntentSection();
+			roots.add(currentRoot);
+			currentState = new SSection(offset, declarationLength, null, (IntentSection)currentRoot,
+					positionManager);
+		} else {
+			currentState = currentState.beginSection(offset, declarationLength);
 		}
 	}
 
 	/**
 	 * Indicates the end of a Structured Element (Document, Chapter or Section).
 	 * 
+	 * @param offset
+	 *            the ending offset of the structured element
 	 * @throws ParseException
 	 *             if there is no structured element to end
 	 */
-	public void endStructuredElement() throws ParseException {
-		// System.out.println(getTab() + "IntentBuilder.endStructuredElement() / " + currentState);
+	public void endStructuredElement(int offset) throws ParseException {
 		if (currentImbricationLevel == 0) {
 			throw new ParseException("There is no element to close.");
 		}
 		if (currentState != null) {
-			currentState = currentState.endStructuredElement();
+			currentState = currentState.endStructuredElement(offset);
 			decreaseImbricationLevel();
 		} else {
 			addStatusOnElement(getRoot(), "Syntax Error on token \"{\" : no element to close.");
@@ -190,22 +219,6 @@ public class IntentBuilder {
 	}
 
 	/**
-	 * Indicates the beginning of a IntentSection.
-	 */
-	public void beginSection() {
-		// System.out.println(getTab() + "IntentBuilder.beginSection() / " + currentState);
-		increaseImbricationLevel();
-		if (currentState == null) {
-			currentRoot = IntentDocumentFactory.eINSTANCE.createIntentSection();
-			roots.add(currentRoot);
-			currentState = new SSection(null, (IntentSection)currentRoot);
-
-		} else {
-			currentState = currentState.beginSection();
-		}
-	}
-
-	/**
 	 * Indicates the detection of section options (visibility and header References).
 	 * 
 	 * @param visibility
@@ -221,41 +234,31 @@ public class IntentBuilder {
 	/**
 	 * Indicates a Modeling Unit with the given content.
 	 * 
+	 * @param offset
+	 *            the begin offset of the modeling unit
 	 * @param modelingUnitContent
 	 *            the content of this modeling Unit
 	 * @throws ParseException
 	 *             if the modeling unit parser detect any parse error
 	 */
-	public void modelingUnitContent(String modelingUnitContent) throws ParseException {
-		// System.out.println(getTab() + "IntentBuilder.modelingUnitContent() / " + currentState);
-		currentState = currentState
-				.modelingUnitContent(formatUsingImbricationLevel(modelingUnitContent, true));
+	public void modelingUnitContent(int offset, String modelingUnitContent) throws ParseException {
+		currentState = currentState.modelingUnitContent(offset, modelingUnitContent.length(),
+				formatUsingImbricationLevel(modelingUnitContent, true));
 	}
 
 	/**
 	 * Indicates a Description Unit with the given Content.
 	 * 
+	 * @param offset
+	 *            the begin offset of the description unit
 	 * @param descriptionUnitContent
 	 *            the content of the description Unit
 	 * @throws ParseException
 	 *             if the description unit parser detect any parse error.
 	 */
-	public void descriptionUnitContent(String descriptionUnitContent) throws ParseException {
-		// System.out.println(getTab() + "IntentBuilder.descriptionUnitContent()" + currentState);
-		// if (descriptionUnitContent.length() > 15) {
-		// System.out.println(getTab()
-		// + "=> "
-		// + descriptionUnitContent.replace("\n", "").substring(0, 15)
-		// + "..."
-		// + descriptionUnitContent.replace("\n", "").substring(
-		// descriptionUnitContent.replace("\n", "").length() - 15));
-		// } else {
-		// System.out.println(getTab() + "=> " + descriptionUnitContent.replace("\n", ""));
-		// }
-		// We format this descriptionUnit according to the imbrication level.
-
-		currentState = currentState.desriptionUnitContent(formatUsingImbricationLevel(descriptionUnitContent,
-				false));
+	public void descriptionUnitContent(int offset, String descriptionUnitContent) throws ParseException {
+		currentState = currentState.descriptionUnitContent(offset, descriptionUnitContent.length(),
+				formatUsingImbricationLevel(descriptionUnitContent, false));
 	}
 
 	/**

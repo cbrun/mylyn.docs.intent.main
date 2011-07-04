@@ -23,6 +23,5 @@ public class ModelingUnitValidatorManual {
 //
 // public class ModelingUnitValidatorManual extends EValidatorAdapter {
 // public ModelingUnitValidatorManual() {
-// System.out.println("CONSTRUCTUED : MODELING UNIT VALIDATOR MANUAL");
 // }
 // }
