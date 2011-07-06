@@ -21,40 +21,24 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.cdo.eresource.EresourcePackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.mylyn.docs.intent.client.compiler.launcher.CompilerCreator;
 import org.eclipse.mylyn.docs.intent.client.compiler.repositoryconnection.CompilerRepositoryClient;
 import org.eclipse.mylyn.docs.intent.client.indexer.IndexerRepositoryClient;
-import org.eclipse.mylyn.docs.intent.client.indexer.launcher.IndexerCreator;
 import org.eclipse.mylyn.docs.intent.client.synchronizer.SynchronizerRepositoryClient;
-import org.eclipse.mylyn.docs.intent.client.synchronizer.launcher.SynchronizerCreator;
 import org.eclipse.mylyn.docs.intent.client.ui.ide.builder.IntentNature;
-import org.eclipse.mylyn.docs.intent.client.ui.ide.generatedelementlistener.IDEGeneratedElementListener;
-import org.eclipse.mylyn.docs.intent.client.ui.ide.structurer.IntentWorkspaceRepositoryStructurer;
+import org.eclipse.mylyn.docs.intent.client.ui.ide.navigator.ProjectExplorerRefresher;
 import org.eclipse.mylyn.docs.intent.client.ui.logger.IntentUiLogger;
 import org.eclipse.mylyn.docs.intent.collab.common.location.IntentLocations;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.ReadOnlyException;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.RepositoryAdapter;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.SaveException;
-import org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotificationFactoryHolder;
-import org.eclipse.mylyn.docs.intent.collab.ide.notification.WorkspaceRepositoryChangeNotificationFactory;
-import org.eclipse.mylyn.docs.intent.collab.ide.repository.WorkspaceConfig;
-import org.eclipse.mylyn.docs.intent.collab.ide.utils.MonitoringUtil;
-import org.eclipse.mylyn.docs.intent.collab.ide.utils.WorkspaceRepositoryCreator;
 import org.eclipse.mylyn.docs.intent.collab.repository.Repository;
 import org.eclipse.mylyn.docs.intent.collab.repository.RepositoryConnectionException;
 import org.eclipse.mylyn.docs.intent.collab.utils.RepositoryCreatorHolder;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerFactory;
-import org.eclipse.mylyn.docs.intent.core.compiler.CompilerPackage;
-import org.eclipse.mylyn.docs.intent.core.descriptionunit.DescriptionUnitPackage;
-import org.eclipse.mylyn.docs.intent.core.document.IntentDocumentPackage;
-import org.eclipse.mylyn.docs.intent.core.genericunit.GenericUnitPackage;
 import org.eclipse.mylyn.docs.intent.core.indexer.IntentIndexerFactory;
-import org.eclipse.mylyn.docs.intent.core.indexer.IntentIndexerPackage;
-import org.eclipse.mylyn.docs.intent.core.modelingunit.ModelingUnitPackage;
 import org.eclipse.mylyn.docs.intent.parser.IntentParser;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.ParseException;
 import org.eclipse.mylyn.docs.intent.parser.modelingunit.parser.utils.FileToStringConverter;
@@ -74,50 +58,13 @@ public final class IDEApplicationManager {
 
 	private static IndexerRepositoryClient indexerClient;
 
+	private static ProjectExplorerRefresher refresher;
+
 	/**
 	 * IDEApplicationManager constructor.
 	 */
 	private IDEApplicationManager() {
 
-	}
-
-	/**
-	 * Initialize the repository and the RepositoryCreator (if needed).
-	 * 
-	 * @param project
-	 *            the project to connect
-	 * @throws RepositoryConnectionException
-	 *             if the connection to the repository is invalid
-	 */
-	public static void connect(IProject project) throws RepositoryConnectionException {
-		if (getRepository(project) == null) {
-			// We first create a configuration
-			WorkspaceConfig wpConfig = new WorkspaceConfig(project, IntentLocations.INDEXES_LIST);
-
-			// We define the structurer used to split the resources
-			IntentWorkspaceRepositoryStructurer structurer = new IntentWorkspaceRepositoryStructurer();
-			// We initialize the creator that will be used for creating RepositoryAdapter
-			RepositoryCreatorHolder.setCreator(new WorkspaceRepositoryCreator(structurer));
-			RepositoryChangeNotificationFactoryHolder
-					.setChangeNotificationFactory(new WorkspaceRepositoryChangeNotificationFactory());
-
-			// Package registry initilialization
-			Repository repository = RepositoryCreatorHolder.getCreator().createRepository(wpConfig);
-			// repository.getPackageRegistry().put(MarkupPackage.eNS_URI, MarkupPackage.eINSTANCE);
-			repository.getPackageRegistry().put(IntentIndexerPackage.eNS_URI, IntentIndexerPackage.eINSTANCE);
-			repository.getPackageRegistry().put(CompilerPackage.eNS_URI, CompilerPackage.eINSTANCE);
-			repository.getPackageRegistry().put(IntentDocumentPackage.eNS_URI,
-					IntentDocumentPackage.eINSTANCE);
-			repository.getPackageRegistry().put(ModelingUnitPackage.eNS_URI, ModelingUnitPackage.eINSTANCE);
-			repository.getPackageRegistry().put(DescriptionUnitPackage.eNS_URI,
-					DescriptionUnitPackage.eINSTANCE);
-			repository.getPackageRegistry().put(GenericUnitPackage.eNS_URI, GenericUnitPackage.eINSTANCE);
-			repository.getPackageRegistry().put(EresourcePackage.eNS_URI, EresourcePackage.eINSTANCE);
-
-			repositories.put(project, repository);
-
-		}
-		getRepository(project).getOrCreateSession();
 	}
 
 	/**
@@ -130,7 +77,7 @@ public final class IDEApplicationManager {
 			try {
 				if (project.isAccessible() && project.getNature(IntentNature.NATURE_ID) != null) {
 					try {
-						connect(project);
+						IntentProjectManager.getInstance(project).connect();
 						List<String> filesToLoad = new ArrayList<String>();
 						if (project.exists()) {
 							if (!project.isOpen()) {
@@ -142,7 +89,8 @@ public final class IDEApplicationManager {
 						// Step 2 : if the file exists, initializes the repository content with it
 						if (fileToLoad.exists()) {
 							filesToLoad.add(fileToLoad.getLocationURI().toString().replace("file:", ""));
-							initializeWithSampleContent(getRepository(project), filesToLoad);
+							initializeWithSampleContent(IntentProjectManager.getRepository(project),
+									filesToLoad);
 						}
 					} catch (RepositoryConnectionException e) {
 						IntentUiLogger.logError(e);
@@ -157,57 +105,28 @@ public final class IDEApplicationManager {
 	}
 
 	/**
-	 * Returns the current open repository managed by this .
+	 * Initializes the project with sample content.
 	 * 
 	 * @param project
-	 *            the project which contains the repository
-	 * @return the repository
+	 *            the project to initialize
+	 * @param initialContent
+	 *            the initialContent
 	 */
-	public static Repository getRepository(IProject project) {
-		return repositories.get(project);
-	}
-
-	/**
-	 * Creates and Launch all the clients needed by the Intent application (Compiler, Synchronizer, Indexer).
-	 */
-	public static void createAndLaunchClients() {
-		IProject[] allProjects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-		for (IProject project : allProjects) {
-			try {
-				if (project.isAccessible() && project.getNature(IntentNature.NATURE_ID) != null) {
-					try {
-						connect(project);
-
-						// Clients creation (if needed)
-						// Compiler
-						if (compilerClient == null) {
-							compilerClient = CompilerCreator.createCompilerClient(getRepository(project));
-						}
-
-						// Synchronizer
-						if (synchronizerClient == null) {
-							synchronizerClient = SynchronizerCreator.createSynchronizer(
-									getRepository(project), MonitoringUtil.createProgressMonitor(null),
-									new IDEGeneratedElementListener());
-						}
-
-						// Indexer
-						if (indexerClient == null) {
-							indexerClient = IndexerCreator.launchIndexer(getRepository(project));
-						}
-
-						// FIXME: deactivated to avoid bug
-						// Launches the needed client
-						// compilerClient.handleChangeNotification(null);
-						indexerClient.handleChangeNotification(null);
-
-					} catch (RepositoryConnectionException e) {
-						IntentUiLogger.logError(e);
+	public static void initializeContent(IProject project, String initialContent) {
+		try {
+			if (project.isAccessible()) {
+				IntentProjectManager.getInstance(project).connect();
+				if (project.exists()) {
+					if (!project.isOpen()) {
+						project.open(null);
 					}
 				}
-			} catch (CoreException e) {
-				IntentUiLogger.logError(e);
+				initializeWithSampleContent(IntentProjectManager.getRepository(project), initialContent);
 			}
+		} catch (CoreException e) {
+			IntentUiLogger.logError(e);
+		} catch (RepositoryConnectionException e) {
+			IntentUiLogger.logError(e);
 		}
 	}
 
@@ -216,6 +135,17 @@ public final class IDEApplicationManager {
 	 * the Project Explorer provides a similar behavior).
 	 */
 	public static void openElement() {
+		IProject[] allProjects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+		for (IProject project : allProjects) {
+			try {
+				if (project.isAccessible() && project.getNature(IntentNature.NATURE_ID) != null) {
+					IntentProjectManager.getInstance(project).launchIndexer();
+				}
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		// do nothing
 		// TODO review semantics
 		// try {
@@ -225,6 +155,62 @@ public final class IDEApplicationManager {
 		// } catch (RepositoryConnectionException e) {
 		// IntentUiLogger.logError(e);
 		// }
+	}
+
+	/**
+	 * Initializes the given repository using the given list of files to load.
+	 * 
+	 * @param repositoryToInitialize
+	 *            the repository to initialize
+	 * @throws RepositoryConnectionException
+	 *             if the connection to the repository is invalid
+	 */
+	private static void initializeWithSampleContent(Repository repositoryToInitialize, String initialContent)
+			throws RepositoryConnectionException {
+		RepositoryAdapter wpAdapter = RepositoryCreatorHolder.getCreator()
+				.createRepositoryAdapterForRepository(repositoryToInitialize);
+
+		try {
+
+			Resource wpResourceIndex = wpAdapter.getOrCreateResource(IntentLocations.GENERAL_INDEX_PATH);
+			wpResourceIndex.getContents().add(IntentIndexerFactory.eINSTANCE.createIntentIndex());
+			Resource wpCompilStatusIndex = wpAdapter
+					.getOrCreateResource(IntentLocations.COMPILATION_STATUS_INDEX_PATH);
+			wpCompilStatusIndex.getContents().add(CompilerFactory.eINSTANCE.createCompilationStatusManager());
+			Resource wpTracabilityIndexResource = wpAdapter
+					.getOrCreateResource(IntentLocations.TRACEABILITY_INFOS_INDEX_PATH);
+			wpTracabilityIndexResource.getContents().add(CompilerFactory.eINSTANCE.createTraceabilityIndex());
+
+			Resource repositoryIntentResource;
+
+			repositoryIntentResource = wpAdapter.getOrCreateResource(IntentLocations.INTENT_INDEX);
+
+			if (repositoryIntentResource.getContents().size() == 0) {
+				repositoryIntentResource.getContents().clear();
+
+				List<EObject> elementsToUpload = new ArrayList<EObject>();
+				IntentParser parser = new IntentParser();
+
+				EObject parsedObject = parser.parse(initialContent);
+				elementsToUpload.add(parsedObject);
+
+				for (EObject objectToCopy : elementsToUpload) {
+					repositoryIntentResource.getContents().add(EcoreUtil.copy(objectToCopy));
+				}
+
+				// Step : closing the session
+				wpAdapter.save();
+			} else {
+				wpAdapter.undo();
+			}
+		} catch (ParseException e) {
+			IntentUiLogger.logError(e);
+		} catch (ReadOnlyException e) {
+			IntentUiLogger.logError(e);
+		} catch (SaveException e) {
+			IntentUiLogger.logError(e);
+		}
+		wpAdapter.closeContext();
 	}
 
 	/**

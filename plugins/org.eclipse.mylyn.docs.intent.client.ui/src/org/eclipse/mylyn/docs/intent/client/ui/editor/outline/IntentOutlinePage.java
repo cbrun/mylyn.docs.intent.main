@@ -144,7 +144,7 @@ public class IntentOutlinePage extends ContentOutlinePage implements IContentOut
 	public void refreshInternalContainer(Object element) {
 
 		TreePath[] treePaths = getTreeViewer().getExpandedTreePaths();
-		getTreeViewer().refresh();
+		getTreeViewer().setInput(new IntentOutlineInformationHolder((EObject)element, true));
 		getTreeViewer().setExpandedTreePaths(treePaths);
 	}
 

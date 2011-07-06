@@ -22,13 +22,13 @@ import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WhitespaceRule;
 import org.eclipse.jface.text.rules.WordRule;
+import org.eclipse.mylyn.docs.intent.client.ui.editor.IntentDocumentProvider;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.ColorManager;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentColorConstants;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentFontConstants;
 import org.eclipse.mylyn.docs.intent.parser.IntentKeyWords;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-
 
 /**
  * Scanner for detecting Description Units.
@@ -37,7 +37,8 @@ import org.eclipse.swt.graphics.Color;
  */
 public class IntentDescriptionUnitScanner extends IntentStructuredElementScanner {
 
-	public static final String[] KEYWORDS = new String[] {IntentKeyWords.INTENT_FCT_EXPLICIT_LABEL_DECLARATION,
+	public static final String[] KEYWORDS = new String[] {
+			IntentKeyWords.INTENT_FCT_EXPLICIT_LABEL_DECLARATION,
 			IntentKeyWords.INTENT_FCT_LAZY_LABEL_DECLARATION, IntentKeyWords.INTENT_FCT_REFERENCE,
 	};
 
@@ -59,10 +60,13 @@ public class IntentDescriptionUnitScanner extends IntentStructuredElementScanner
 		IToken keyWordToken = new Token(new TextAttribute(keyWordForeGroundColor, backgroundColor, SWT.BOLD));
 
 		Color stringforeGroundColor = colorManager.getColor(IntentColorConstants.MU_STRING_FOREGROUND);
+
+		setDefaultReturnToken(defaultToken);
 		List<IRule> rules = new ArrayList<IRule>();
 		rules.add(computeKeyWordRule(defaultToken, keyWordToken));
 		rules.addAll(computeStringRules(stringforeGroundColor));
 		rules.add(new WhitespaceRule(new IntentWhiteSpaceDetector()));
+		rules.addAll(computeCustomRules(defaultforeGroundColor));
 		setRules(rules.toArray(new IRule[rules.size()]));
 	}
 
@@ -93,13 +97,27 @@ public class IntentDescriptionUnitScanner extends IntentStructuredElementScanner
 	}
 
 	/**
+	 * Create all the custom rules, currently related to Textile.
+	 * 
+	 * @return a list containing all the rules
+	 */
+	private Collection<? extends IRule> computeCustomRules(Color stringforeGroundColor) {
+		List<IRule> rules = new ArrayList<IRule>();
+		rules.add(new SingleLineRule("_", "_", new Token(new TextAttribute(stringforeGroundColor, null,
+				SWT.ITALIC)), '\\'));
+		rules.add(new SingleLineRule("*", "*", new Token(new TextAttribute(stringforeGroundColor, null,
+				SWT.BOLD)), '\\'));
+		return rules;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.AbstractIntentScanner#getConfiguredContentType()
 	 */
 	@Override
 	public String getConfiguredContentType() {
-		return IntentPartitionScanner.INTENT_DESCRIPTIONUNIT;
+		return IntentDocumentProvider.INTENT_DESCRIPTIONUNIT;
 	}
 
 }

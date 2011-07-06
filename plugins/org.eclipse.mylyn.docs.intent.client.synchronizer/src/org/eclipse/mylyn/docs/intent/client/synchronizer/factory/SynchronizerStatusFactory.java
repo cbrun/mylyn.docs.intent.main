@@ -29,6 +29,7 @@ import org.eclipse.mylyn.docs.intent.core.compiler.CompilationMessageType;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerFactory;
+import org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndexEntry;
 import org.eclipse.mylyn.docs.intent.core.document.IntentGenericElement;
 
@@ -65,12 +66,16 @@ public final class SynchronizerStatusFactory {
 
 		// If we have a unitary diffElement
 		if (difference.getSubDiffElements().isEmpty()) {
-			CompilationStatus status = CompilerFactory.eINSTANCE.createCompilationStatus();
+			SynchronizerCompilationStatus status = CompilerFactory.eINSTANCE
+					.createSynchronizerCompilationStatus();
 
 			status.setSeverity(CompilationStatusSeverity.WARNING);
 			status.setType(CompilationMessageType.SYNCHRONIZER_WARNING);
-			IntentGenericElement targetInstruction = getTargetInstructionFromDiffElement(indexEntry, difference);
+			IntentGenericElement targetInstruction = getTargetInstructionFromDiffElement(indexEntry,
+					difference);
 			status.setMessage(SynchronizerMessageProvider.createMessageFromDiffElement(difference));
+			status.setWorkingCopyResourceURI(indexEntry.getResourceDeclaration().getUri().toString());
+			status.setCompiledResourceURI(indexEntry.getGeneratedResourcePath());
 			if (targetInstruction != null) {
 				status.setTarget(targetInstruction);
 				statusList.add(status);
@@ -96,8 +101,8 @@ public final class SynchronizerStatusFactory {
 	 * @return the instruction that defined the target of the given diffElement ; if not element found,
 	 *         returns the resourceDeclaration that defined this element
 	 */
-	private static IntentGenericElement getTargetInstructionFromDiffElement(TraceabilityIndexEntry indexEntry,
-			DiffElement difference) {
+	private static IntentGenericElement getTargetInstructionFromDiffElement(
+			TraceabilityIndexEntry indexEntry, DiffElement difference) {
 		// We get the compiled Element target of this diffElement
 		EObject compiledElement = getCompiledElementTargetFromDiffElement(difference);
 		IntentGenericElement targetInstruction = null;

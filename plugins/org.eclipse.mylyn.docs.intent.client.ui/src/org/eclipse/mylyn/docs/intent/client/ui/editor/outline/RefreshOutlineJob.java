@@ -26,6 +26,12 @@ class RefreshOutlineJob {
 	private static final String REFRESH_VIEW_JOB_NAME = "refreshIntentOutlineView";
 
 	/**
+	 * Time to wait before actually refreshing the outline (in case another notification is received by the
+	 * document Provider.
+	 */
+	private static final long OUTLINE_REFESH_DELAY = 200;
+
+	/**
 	 * The element to refresh.
 	 */
 	Object element;
@@ -83,7 +89,6 @@ class RefreshOutlineJob {
 		};
 		refreshJob.setPriority(Job.DECORATE);
 		refreshJob.setSystem(true);
-		final int schedule = 2000;
-		refreshJob.schedule(schedule);
+		refreshJob.schedule(OUTLINE_REFESH_DELAY);
 	}
 }

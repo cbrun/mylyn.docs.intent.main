@@ -78,7 +78,7 @@ public class ToggleNatureAction implements IObjectActionDelegate {
 	 * @param project
 	 *            to have intent nature added or removed
 	 */
-	private void toggleNature(IProject project) {
+	public static void toggleNature(IProject project) {
 		try {
 			IProjectDescription description = project.getDescription();
 			String[] natures = description.getNatureIds();

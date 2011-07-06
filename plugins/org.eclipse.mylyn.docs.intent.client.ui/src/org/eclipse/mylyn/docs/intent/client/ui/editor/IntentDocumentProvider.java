@@ -19,16 +19,16 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.Position;
-import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.mylyn.docs.intent.client.ui.IntentEditorActivator;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.annotation.IntentAnnotationModelManager;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.jobs.RefreshDocumentJob;
-import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentBufferedPartitionScanner;
 import org.eclipse.mylyn.docs.intent.client.ui.logger.IntentUiLogger;
 import org.eclipse.mylyn.docs.intent.collab.handlers.ReadWriteRepositoryObjectHandler;
 import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient;
@@ -52,10 +52,37 @@ import org.eclipse.ui.texteditor.AbstractDocumentProvider;
  * DocumentProvider for the IntentDocument documents.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
 // Suppress Warnings added for using WorkspaceOperationRunner
 @SuppressWarnings("restriction")
 public class IntentDocumentProvider extends AbstractDocumentProvider implements RepositoryClient {
+	/**
+	 * Represents an Intent structural content (like section or chapter).
+	 */
+	public static final String INTENT_STRUCTURAL_CONTENT = "__Intent__structuralcontent";
+
+	/**
+	 * Represents an Intent Modeling Unit (from '@M' to 'M@').
+	 */
+	public static final String INTENT_MODELINGUNIT = "__Intent__modelingunit";
+
+	/**
+	 * Represents an Intent Description Unit.
+	 */
+	public static final String INTENT_DESCRIPTIONUNIT = "__Intent__descriptionunit";
+
+	/**
+	 * Represents an Intent title ( only for Structured element).
+	 */
+	public static final String INTENT_TITLE = "__Intent__title";
+
+	/**
+	 * Represents all the content types handled by this partionner.
+	 */
+	public static final String[] LEGAL_CONTENT_TYPES = new String[] {INTENT_STRUCTURAL_CONTENT,
+			INTENT_MODELINGUNIT, INTENT_DESCRIPTIONUNIT, INTENT_TITLE,
+	};
 
 	/**
 	 * The repository to use for creating and closing GET and POST connections.
@@ -104,7 +131,7 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 	/**
 	 * Represents the partionner used to identify the partitions of the document.
 	 */
-	private FastPartitioner partitioner;
+	private IDocumentPartitioner partitioner;
 
 	/**
 	 * The job used to refresh the document.
@@ -152,7 +179,8 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 					posit = new ParsedElementPosition(0, 0);
 				}
 
-				annotationModelManager.addAnnotationFromStatus(status,
+				annotationModelManager.addAnnotationFromStatus(
+						this.listenedElementsHandler.getRepositoryAdapter(), status,
 						new Position(posit.getOffset(), posit.getLength()));
 			}
 		}
@@ -186,8 +214,7 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 		documentRoot = ((IntentEditorInput)element).getIntentElement();
 		createdDocument = new IntentEditorDocument((EObject)documentRoot);
 
-		partitioner = new IntentFastPartitionner(new IntentBufferedPartitionScanner(),
-				IntentBufferedPartitionScanner.LEGAL_CONTENT_TYPES, this.associatedEditor);
+		partitioner = new IntentPartitioner(LEGAL_CONTENT_TYPES);
 		partitioner.connect(createdDocument);
 		createdDocument.setDocumentPartitioner(partitioner);
 
@@ -239,7 +266,7 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 		EObject localAST = null;
 		// We first parse the current text to obtain the ast.
 		localAST = parser.parse(document.get());
-		this.associatedEditor.refreshOutlineView(localAST);
+
 		if (setAST) {
 			document.reloadFromAST(localAST, false);
 		}
@@ -250,7 +277,13 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 		// refreshDocumentJob.refreshDocument();
 	}
 
-	public void refreshOL(EObject newAST) {
+	/**
+	 * Refreshes the outline View.
+	 * 
+	 * @param newAST
+	 *            the newAST to base the outline on
+	 */
+	public void refreshOutline(EObject newAST) {
 		associatedEditor.refreshOutlineView(newAST);
 	}
 
@@ -267,17 +300,35 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 		if (document instanceof IntentEditorDocument) {
 			IntentEditorDocument intentDocument = (IntentEditorDocument)document;
 
-			EObject localAST;
+			final EObject localAST;
 			try {
 				this.removeSyntaxErrors();
 				localAST = reparseDocument((IntentEditorDocument)document, false);
+				this.associatedEditor.refreshTitle(localAST);
+
 				// Then we try to merge the parsed AST with the old one
 				IntentASTMerger merger = new IntentASTMerger();
 				boolean mustUndo = false;
 				try {
 					this.listenedElementsHandler.getRepositoryAdapter().openSaveContext();
-					merger.mergeFromLocalToRepository(localAST, (EObject)intentDocument.getAST());
-					this.listenedElementsHandler.getRepositoryAdapter().save();
+					final EObject remoteAST = (EObject)intentDocument.getAST();
+					merger.mergeFromLocalToRepository(localAST, remoteAST);
+					Job job = new Job("Saving " + this.associatedEditor.getTitle()) {
+						@Override
+						protected IStatus run(IProgressMonitor monitor) {
+							try {
+								listenedElementsHandler.getRepositoryAdapter().save();
+							} catch (ReadOnlyException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SaveException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							return Status.OK_STATUS;
+						}
+					};
+					job.schedule();
 
 					// We update the mapping between elements and documents
 					addAllContentAsIntentElement(documentRoot, (IntentEditorDocument)document);
@@ -288,11 +339,6 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 				} catch (NullPointerException npe) {
 					mustUndo = true;
 					IntentUiLogger.logError(npe);
-				} catch (SaveException e) {
-					mustUndo = true;
-					IntentUiLogger.logError(e);
-				} catch (ReadOnlyException e) {
-					mustUndo = true;
 				}
 
 				if (mustUndo) {
@@ -356,8 +402,7 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 			Object modifiedObjectIdentifier = listenedElementsHandler.getRepositoryAdapter()
 					.getIDFromElement(documentRoot);
 			if (elementsToDocuments.get(modifiedObjectIdentifier) != null) {
-				for (IntentEditorDocument relatedDocument : elementsToDocuments
-						.get(modifiedObjectIdentifier)) {
+				for (IntentEditorDocument relatedDocument : elementsToDocuments.get(modifiedObjectIdentifier)) {
 					relatedDocument.unsynchronize();
 				}
 			}
@@ -394,9 +439,14 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 					// associatedEditor.setCursor(cursor);
 
 					// We reconnect the partitioner to the document
-					partitioner.disconnect();
-					partitioner.connect(createdDocument);
+					// partitioner.disconnect();
+					// partitioner.connect(createdDocument);
 				}
+				// In any case, we launch the syntax coloring
+				partitioner.computePartitioning(0, 1);
+
+				// Finally, we refresh the outline
+				refreshOutline(documentRoot);
 			} else {
 				System.err.println("unknown element");
 			}
@@ -436,7 +486,8 @@ public class IntentDocumentProvider extends AbstractDocumentProvider implements 
 
 			// Step 2.2 : Adding this annotation to the model (will update overview and vertical rulers of
 			// the editor)
-			annotationModelManager.addAnnotationFromStatus(statusToAdd, position);
+			annotationModelManager.addAnnotationFromStatus(
+					this.listenedElementsHandler.getRepositoryAdapter(), statusToAdd, position);
 		}
 	}
 

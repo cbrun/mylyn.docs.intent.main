@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.mylyn.docs.intent.client.ui.ide.launcher.IDEApplicationManager;
+import org.eclipse.mylyn.docs.intent.client.ui.ide.launcher.IntentProjectManager;
 import org.eclipse.mylyn.docs.intent.client.ui.utils.IntentEditorOpener;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.RepositoryAdapter;
 import org.eclipse.mylyn.docs.intent.collab.repository.Repository;
@@ -62,13 +62,12 @@ public class OpenEditorAction extends Action {
 			try {
 				if (element.eResource() != null) {
 					IProject project = findProjectForModelURI(element.eResource().getURI());
-					Repository repository = IDEApplicationManager.getRepository(project);
+					Repository repository = IntentProjectManager.getRepository(project);
 					RepositoryAdapter repositoryAdapter = RepositoryCreatorHolder.getCreator()
 							.createRepositoryAdapterForRepository(repository);
 
 					IntentEditorOpener.openIntentEditor(repository,
-							repositoryAdapter.getIDFromElement(repositoryAdapter.reload(element)), false,
-							forceNewEditor);
+							repositoryAdapter.getIDFromElement(element), false, forceNewEditor);
 				} else {
 					// FIXME: the viewer needs a refresh
 				}

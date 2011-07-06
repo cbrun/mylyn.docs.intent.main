@@ -15,7 +15,6 @@ import java.util.Map;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
-import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
@@ -29,41 +28,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 public class IntentBuilder extends IncrementalProjectBuilder {
 
 	/**
-	 * The project delta visitor.
-	 */
-	class IntentDeltaVisitor implements IResourceDeltaVisitor {
-		/**
-		 * {@inheritDoc}
-		 * 
-		 * @see org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse.core.resources.IResourceDelta)
-		 */
-		public boolean visit(IResourceDelta delta) throws CoreException {
-			IResource resource = delta.getResource();
-			switch (delta.getKind()) {
-				case IResourceDelta.ADDED:
-					// handle added resource
-					break;
-				case IResourceDelta.REMOVED:
-					// handle removed resource
-					break;
-				case IResourceDelta.CHANGED:
-					// handle changed resource
-					break;
-				default:
-					break;
-			}
-			// return true to continue visiting children.
-			return true;
-		}
-	}
-
-	/**
 	 * The intent resource visitor.
 	 */
 	class IntentResourceVisitor implements IResourceVisitor {
-		/** 
+		/**
 		 * {@inheritDoc}
-		 *
+		 * 
 		 * @see org.eclipse.core.resources.IResourceVisitor#visit(org.eclipse.core.resources.IResource)
 		 */
 		public boolean visit(IResource resource) {
@@ -104,6 +74,6 @@ public class IntentBuilder extends IncrementalProjectBuilder {
 
 	protected void incrementalBuild(IResourceDelta delta, IProgressMonitor monitor) throws CoreException {
 		// the visitor does the work.
-		delta.accept(new IntentDeltaVisitor());
+		delta.accept(new IntentBuilderDeltaVisitor());
 	}
 }

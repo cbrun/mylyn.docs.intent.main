@@ -157,6 +157,7 @@ public final class IntentEditorOpener {
 				} catch (NullPointerException e) {
 					status = new Status(IStatus.ERROR, IntentEditorActivator.PLUGIN_ID,
 							"An unexpected error has occured");
+					throw new PartInitException(status);
 				}
 			}
 
@@ -164,9 +165,8 @@ public final class IntentEditorOpener {
 		} catch (RepositoryConnectionException e) {
 			status = new Status(IStatus.ERROR, IntentEditorActivator.PLUGIN_ID,
 					"Editor cannot be openned : can't connect to the repository ");
-
+			throw new PartInitException(status);
 		}
-		throw new PartInitException(status);
 	}
 
 	/**

@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.client.compiler.repositoryconnection;
 
+import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.emf.compare.util.EclipseModelUtils;
 import org.eclipse.mylyn.docs.intent.client.compiler.saver.CompilerInformationsSaver;
 import org.eclipse.mylyn.docs.intent.client.compiler.utils.IntentCompilerInformationHolder;
 import org.eclipse.mylyn.docs.intent.collab.handlers.ReadWriteRepositoryObjectHandler;
@@ -49,6 +51,11 @@ public class CompilerRepositoryClient implements RepositoryClient {
 	private Thread currentThread;
 
 	/**
+	 * The progressMonitor to use for compilation ; if canceled, the compilation will stop immediately.
+	 */
+	private Monitor progressMonitor;
+
+	/**
 	 * Sets the repository to use for saving and closing getConnexion.
 	 * 
 	 * @param repository
@@ -85,29 +92,29 @@ public class CompilerRepositoryClient implements RepositoryClient {
 	 * 
 	 * @see org.eclipse.mylyn.docs.intent.handlers.RepositoryClient#handleChangeNotification(org.eclipse.mylyn.docs.intent.handlers.notification.RepositoryChangeNotification)
 	 */
-	// We are sure that calling stop on the thread cannot dommage our application.
 	public void handleChangeNotification(RepositoryChangeNotification notification) {
 
-		System.err.println("[Compiler] Received Notification " + notification);
-		if (compilationOperation == null) {
-			compilationOperation = new CompilationOperation(repositoryObjectHandler, repository, this);
-		}
+		System.err.println("[Compiler] Received Notification ");
 
 		// If a compilationOperation is currently running
-		// we cancel it and wait for the thread to die
-		if ((currentThread != null) && (currentThread.isAlive())) {
-			compilationOperation.setCanceled(true);
-			System.err.println("[Compiler] cancelling...");
+		if (progressMonitor != null && !progressMonitor.isCanceled()) {
+
+			// we cancel it
+			progressMonitor.setCanceled(true);
 			try {
-				currentThread.join();
+				System.err.println("[Compiler] cancelling...");
+				currentThread.join(1);
+				System.err.println("[Compiler] cancelled");
 			} catch (InterruptedException e) {
-				// TODO handle such a case
+				e.printStackTrace();
 			}
+
 		}
 
-		// Then we launch a new compilation Operation
-		compilationOperation.setCanceled(false);
-		System.err.println("[Compiler] compiling...");
+		// We then launch a new Compilation Operation
+		progressMonitor = EclipseModelUtils.createProgressMonitor(null);
+		compilationOperation = new CompilationOperation(repositoryObjectHandler, repository, this,
+				progressMonitor);
 		currentThread = new Thread(compilationOperation);
 		currentThread.start();
 	}
@@ -120,9 +127,10 @@ public class CompilerRepositoryClient implements RepositoryClient {
 	 */
 	public void saveCompilationInformations(IntentCompilerInformationHolder compilationInformationHolder) {
 		repositoryObjectHandler.getRepositoryAdapter().openSaveContext();
-		CompilerInformationsSaver saver = new CompilerInformationsSaver();
-		saver.saveOnRepository(compilationInformationHolder, repositoryObjectHandler);
-
+		CompilerInformationsSaver saver = new CompilerInformationsSaver(progressMonitor);
+		if (progressMonitor != null && !progressMonitor.isCanceled()) {
+			saver.saveOnRepository(compilationInformationHolder, repositoryObjectHandler);
+		}
 		try {
 			repositoryObjectHandler.getRepositoryAdapter().save();
 		} catch (ReadOnlyException e) {

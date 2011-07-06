@@ -713,13 +713,86 @@ public interface CompilerPackage extends EPackage {
 	int COMPILED_ELEMENT_TO_INSTRUCTION_ENTRY_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.mylyn.docs.intent.core.compiler.impl.SynchronizerCompilationStatusImpl <em>Synchronizer Compilation Status</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.mylyn.docs.intent.core.compiler.impl.SynchronizerCompilationStatusImpl
+	 * @see org.eclipse.mylyn.docs.intent.core.compiler.impl.CompilerPackageImpl#getSynchronizerCompilationStatus()
+	 * @generated
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS = 16;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS__TARGET = COMPILATION_STATUS__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS__MESSAGE = COMPILATION_STATUS__MESSAGE;
+
+	/**
+	 * The feature id for the '<em><b>Severity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS__SEVERITY = COMPILATION_STATUS__SEVERITY;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS__TYPE = COMPILATION_STATUS__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Working Copy Resource URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS__WORKING_COPY_RESOURCE_URI = COMPILATION_STATUS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Compiled Resource URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS__COMPILED_RESOURCE_URI = COMPILATION_STATUS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Synchronizer Compilation Status</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNCHRONIZER_COMPILATION_STATUS_FEATURE_COUNT = COMPILATION_STATUS_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity <em>Compilation Status Severity</em>}' enum.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity
 	 * @see org.eclipse.mylyn.docs.intent.core.compiler.impl.CompilerPackageImpl#getCompilationStatusSeverity()
 	 * @generated
 	 */
-	int COMPILATION_STATUS_SEVERITY = 16;
+	int COMPILATION_STATUS_SEVERITY = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.mylyn.docs.intent.core.compiler.CompilationMessageType <em>Compilation Message Type</em>}' enum.
@@ -728,7 +801,7 @@ public interface CompilerPackage extends EPackage {
 	 * @see org.eclipse.mylyn.docs.intent.core.compiler.impl.CompilerPackageImpl#getCompilationMessageType()
 	 * @generated
 	 */
-	int COMPILATION_MESSAGE_TYPE = 17;
+	int COMPILATION_MESSAGE_TYPE = 18;
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To EObject</em>}'. <!--
@@ -1327,6 +1400,38 @@ public interface CompilerPackage extends EPackage {
 	EReference getCompiledElementToInstructionEntry_Value();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus <em>Synchronizer Compilation Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Synchronizer Compilation Status</em>'.
+	 * @see org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus
+	 * @generated
+	 */
+	EClass getSynchronizerCompilationStatus();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus#getWorkingCopyResourceURI <em>Working Copy Resource URI</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Working Copy Resource URI</em>'.
+	 * @see org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus#getWorkingCopyResourceURI()
+	 * @see #getSynchronizerCompilationStatus()
+	 * @generated
+	 */
+	EAttribute getSynchronizerCompilationStatus_WorkingCopyResourceURI();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus#getCompiledResourceURI <em>Compiled Resource URI</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Compiled Resource URI</em>'.
+	 * @see org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus#getCompiledResourceURI()
+	 * @see #getSynchronizerCompilationStatus()
+	 * @generated
+	 */
+	EAttribute getSynchronizerCompilationStatus_CompiledResourceURI();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity <em>Compilation Status Severity</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Compilation Status Severity</em>'.
@@ -1868,6 +1973,34 @@ public interface CompilerPackage extends EPackage {
 		 */
 		EReference COMPILED_ELEMENT_TO_INSTRUCTION_ENTRY__VALUE = eINSTANCE
 				.getCompiledElementToInstructionEntry_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.mylyn.docs.intent.core.compiler.impl.SynchronizerCompilationStatusImpl <em>Synchronizer Compilation Status</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.mylyn.docs.intent.core.compiler.impl.SynchronizerCompilationStatusImpl
+		 * @see org.eclipse.mylyn.docs.intent.core.compiler.impl.CompilerPackageImpl#getSynchronizerCompilationStatus()
+		 * @generated
+		 */
+		EClass SYNCHRONIZER_COMPILATION_STATUS = eINSTANCE.getSynchronizerCompilationStatus();
+
+		/**
+		 * The meta object literal for the '<em><b>Working Copy Resource URI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYNCHRONIZER_COMPILATION_STATUS__WORKING_COPY_RESOURCE_URI = eINSTANCE
+				.getSynchronizerCompilationStatus_WorkingCopyResourceURI();
+
+		/**
+		 * The meta object literal for the '<em><b>Compiled Resource URI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYNCHRONIZER_COMPILATION_STATUS__COMPILED_RESOURCE_URI = eINSTANCE
+				.getSynchronizerCompilationStatus_CompiledResourceURI();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity <em>Compilation Status Severity</em>}' enum.

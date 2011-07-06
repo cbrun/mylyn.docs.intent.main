@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.mylyn.docs.intent.client.compiler.errors.CompilationErrorType;
 import org.eclipse.mylyn.docs.intent.client.compiler.errors.CompilationException;
 import org.eclipse.mylyn.docs.intent.client.compiler.errors.InvalidValueException;
@@ -71,19 +71,27 @@ public class ModelingUnitGenerator extends ModelingUnitSwitch<List<Object>> {
 	private IntentCompilerInformationHolder informationHolder;
 
 	/**
+	 * The progressMonitor to use for compilation ; if canceled, the compilation will stop immediately.
+	 */
+	private Monitor progressMonitor;
+
+	/**
 	 * ModelingUnitGenerator constructor.
 	 * 
 	 * @param linkResolver
 	 *            the linkResolver to use for resolving links
 	 * @param informationHolder
 	 *            the information holder to use for register the generated elements.
+	 * @param progressMonitor
+	 *            the progress Monitor to use
 	 */
 	public ModelingUnitGenerator(ModelingUnitLinkResolver linkResolver,
-			IntentCompilerInformationHolder informationHolder) {
+			IntentCompilerInformationHolder informationHolder, Monitor progressMonitor) {
 		this.linkResolver = linkResolver;
 		this.resourceDeclarations = new ArrayList<ResourceDeclaration>();
 		this.generateOnlyEPackages = false;
 		this.informationHolder = informationHolder;
+		this.progressMonitor = progressMonitor;
 	}
 
 	/**
@@ -100,7 +108,8 @@ public class ModelingUnitGenerator extends ModelingUnitSwitch<List<Object>> {
 	/**
 	 * Returns the list of the Intent resources declared in the compiled modelingUnits.
 	 * 
-	 * @return the resourceDeclarations the list of the Intent resources declared in the compiled modelingUnits
+	 * @return the resourceDeclarations the list of the Intent resources declared in the compiled
+	 *         modelingUnits
 	 */
 	public List<ResourceDeclaration> getResourceDeclarations() {
 		return resourceDeclarations;
@@ -135,15 +144,17 @@ public class ModelingUnitGenerator extends ModelingUnitSwitch<List<Object>> {
 			// We generate the elements (in other cases we simply do nothing)
 			currentImportedPackages = getImportedPackages(modelingUnit);
 			for (UnitInstruction instruction : modelingUnit.getInstructions()) {
-				doSwitch(instruction);
+				if (!progressMonitor.isCanceled()) {
+					doSwitch(instruction);
+				}
 			}
 		}
 		return createdObject;
 	}
 
 	/**
-	 * Returns true if the given org.eclipse.mylyn.docs.intent.core.modelingunit must be considered,
-	 * according to the mode of the generator (generate only EPackages declarations mode or not).
+	 * Returns true if the given org.eclipse.mylyn.docs.intent.core.modelingunit must be considered, according
+	 * to the mode of the generator (generate only EPackages declarations mode or not).
 	 * 
 	 * @param modelingUnit
 	 *            the modeling unit to consider
@@ -173,22 +184,23 @@ public class ModelingUnitGenerator extends ModelingUnitSwitch<List<Object>> {
 		boolean isDescribingEPackages = false;
 
 		for (UnitInstruction instruction : modelingUnit.getInstructions()) {
+			if (!progressMonitor.isCanceled()) {
+				// At least one instruction must match an EPackage instanciation
+				if (instruction instanceof InstanciationInstruction) {
+					isDescribingEPackages = isDescribingEPackages
+							|| InstanciationInstructionGenerator
+									.isEPackageInstanciation((InstanciationInstruction)instruction);
+				}
 
-			// At least one instruction must match an EPackage instanciation
-			if (instruction instanceof InstanciationInstruction) {
-				isDescribingEPackages = isDescribingEPackages
-						|| InstanciationInstructionGenerator
-								.isEPackageInstanciation((InstanciationInstruction)instruction);
-			}
-
-			// or a completion (we can't know by advance if it's completing an EPackage
-			if (instruction instanceof ContributionInstruction) {
-				ContributionInstruction contributionInstruction = (ContributionInstruction)instruction;
-				// this.getInformationHolder().addUnresolvedContribution(
-				// contribution.getReferencedElement().getHref(), contribution);
-				// ContributionInstructionGenerator.generate(contribution, this, linkResolver, null);
-				// isDescribingEPackages = true;
-				ContributionInstructionGenerator.generate(contributionInstruction, this, linkResolver);
+				// or a completion (we can't know by advance if it's completing an EPackage
+				if (instruction instanceof ContributionInstruction) {
+					ContributionInstruction contributionInstruction = (ContributionInstruction)instruction;
+					// this.getInformationHolder().addUnresolvedContribution(
+					// contribution.getReferencedElement().getHref(), contribution);
+					// ContributionInstructionGenerator.generate(contribution, this, linkResolver, null);
+					// isDescribingEPackages = true;
+					ContributionInstructionGenerator.generate(contributionInstruction, this, linkResolver);
+				}
 			}
 		}
 		return isDescribingEPackages;
@@ -282,9 +294,7 @@ public class ModelingUnitGenerator extends ModelingUnitSwitch<List<Object>> {
 	 */
 	@Deprecated
 	public List<String> getImportedPackages(ModelingUnit mu) {
-		List<String> importedPackages = new ArrayList<String>();
-		importedPackages.add(EcorePackage.eINSTANCE.getNsURI());
-		return importedPackages;
+		return informationHolder.getCurrentImportedPackages();
 	}
 
 	/* IGNORED DECLARATIONS IN STEP ONE */

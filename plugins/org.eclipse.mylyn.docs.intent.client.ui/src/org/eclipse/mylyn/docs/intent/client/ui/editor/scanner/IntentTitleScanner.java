@@ -14,6 +14,7 @@ import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IRule;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
+import org.eclipse.mylyn.docs.intent.client.ui.editor.IntentDocumentProvider;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.ColorManager;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentColorConstants;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentFontConstants;
@@ -58,6 +59,6 @@ public class IntentTitleScanner extends IntentDescriptionUnitScanner {
 	 */
 	@Override
 	public String getConfiguredContentType() {
-		return IntentBufferedPartitionScanner.INTENT_TITLE;
+		return IntentDocumentProvider.INTENT_TITLE;
 	}
 }

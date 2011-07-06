@@ -14,3 +14,5 @@ Export-Package: org.eclipse.mylyn.docs.intent.collab.ide.repository,
  org.eclipse.mylyn.docs.intent.collab.ide.utils,
  org.eclipse.mylyn.docs.intent.collab.ide.notification
 Bundle-Vendor: %providerName
+Import-Package: com.google.common.base,
+ com.google.common.collect

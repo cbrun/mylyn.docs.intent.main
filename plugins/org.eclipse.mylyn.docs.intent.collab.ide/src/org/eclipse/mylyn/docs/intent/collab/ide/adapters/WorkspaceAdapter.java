@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.collab.ide.adapters;
 
+import com.google.common.base.Predicate;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -96,6 +98,18 @@ public class WorkspaceAdapter implements RepositoryAdapter {
 	 * </p>
 	 */
 	private List<String> resourcesToIgnorePaths;
+
+	/**
+	 * A {@link Predicate} that returns true if the considered resource must not be unloaded when undoing
+	 * changes, false otherwise.
+	 */
+	private Predicate<Resource> unloadableResourcePredicate = new Predicate<Resource>() {
+
+		public boolean apply(Resource input) {
+			// Default implementation considers that all resources should be unloaded when undoing changes
+			return false;
+		}
+	};
 
 	/**
 	 * WorkspaceAdapterconstructor.
@@ -286,12 +300,35 @@ public class WorkspaceAdapter implements RepositoryAdapter {
 		// For undo all the modifications, we unload all the resources
 		synchronized(this.repository.getResourceSet()) {
 			for (Resource resource : this.repository.getResourceSet().getResources()) {
-				if (resource != null) {
+				if (resource != null && !isUnloadableResource(resource)) {
 					resource.unload();
 				}
 			}
 
 		}
+	}
+
+	/**
+	 * Sets a predicate that will be used to determine which resource must not be unloaded when undoing
+	 * changes.
+	 * 
+	 * @param unloadableResourcePredicate
+	 *            a {@link Predicate} that returns true if the considered resource must not be unloaded when
+	 *            undoing changes, false otherwise
+	 */
+	public void setUnloadableResourcePredicate(Predicate<Resource> unloadableResourcePredicate) {
+		this.unloadableResourcePredicate = unloadableResourcePredicate;
+	}
+
+	/**
+	 * Indicates whether the given Resource should not be unloaded when undoing any operation.
+	 * 
+	 * @param resource
+	 *            the resource to test
+	 * @return false if the Resource should be unloaded when undoing changes, true otherwise
+	 */
+	private boolean isUnloadableResource(Resource resource) {
+		return unloadableResourcePredicate.apply(resource);
 	}
 
 	/**
@@ -509,6 +546,11 @@ public class WorkspaceAdapter implements RepositoryAdapter {
 		EObject resolve = elementToReload;
 		if (elementToReload.eIsProxy()) {
 			resolve = EcoreUtil.resolve(elementToReload, this.repository.getResourceSet());
+		}
+		synchronized(this.repository.getResourceSet()) {
+			for (Resource resource : this.repository.getResourceSet().getResources()) {
+				resource.setTrackingModification(true);
+			}
 		}
 		return resolve;
 	}

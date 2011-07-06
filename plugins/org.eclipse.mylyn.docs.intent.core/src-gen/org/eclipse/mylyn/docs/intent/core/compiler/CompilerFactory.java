@@ -99,6 +99,15 @@ public interface CompilerFactory extends EFactory {
 	TraceabilityIndexEntry createTraceabilityIndexEntry();
 
 	/**
+	 * Returns a new object of class '<em>Synchronizer Compilation Status</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Synchronizer Compilation Status</em>'.
+	 * @generated
+	 */
+	SynchronizerCompilationStatus createSynchronizerCompilationStatus();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the package supported by this factory.

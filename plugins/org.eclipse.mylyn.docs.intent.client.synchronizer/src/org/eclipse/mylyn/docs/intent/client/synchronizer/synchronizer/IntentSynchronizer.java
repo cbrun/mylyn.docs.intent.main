@@ -142,11 +142,13 @@ public class IntentSynchronizer {
 			// We must remove the synchronization statuses from the instruction that generated this element
 			IntentGenericElement instruction = indexEntry.getContainedElementToInstructions().get(
 					containedElement);
-			Iterator<CompilationStatus> iterator = instruction.getCompilationStatus().iterator();
-			while (iterator.hasNext()) {
-				CompilationStatus status = iterator.next();
-				if (status.getType().equals(CompilationMessageType.SYNCHRONIZER_WARNING)) {
-					iterator.remove();
+			if (instruction != null) {
+				Iterator<CompilationStatus> iterator = instruction.getCompilationStatus().iterator();
+				while (iterator.hasNext()) {
+					CompilationStatus status = iterator.next();
+					if (status.getType().equals(CompilationMessageType.SYNCHRONIZER_WARNING)) {
+						iterator.remove();
+					}
 				}
 			}
 		}
@@ -350,12 +352,21 @@ public class IntentSynchronizer {
 	 */
 	private List<DiffElement> compareResource(Resource leftResource, Resource rightResource)
 			throws InterruptedException {
-		// TODO : treat differently models and meta-models : this match isn't efficient on
-		// simple meta-models instances
-		MatchModel matchModel = MatchService.doResourceMatch(leftResource, rightResource,
-				new HashMap<String, Object>());
-		DiffModel diff = DiffService.doDiff(matchModel, false);
-		return diff.getDifferences();
+
+		try {
+			// TODO : treat differently models and meta-models : this match isn't efficient on
+			// simple meta-models instances
+			MatchModel matchModel = MatchService.doResourceMatch(leftResource, rightResource,
+					new HashMap<String, Object>());
+			DiffModel diff = DiffService.doDiff(matchModel, false);
+			return diff.getDifferences();
+			// CHECKSTYLE:OFF
+		} catch (Exception e) {
+			// CHECKSTYLE :ON
+			// TODO create a Status which has the left resource has target
+			return new ArrayList<DiffElement>();
+		}
+
 	}
 
 }

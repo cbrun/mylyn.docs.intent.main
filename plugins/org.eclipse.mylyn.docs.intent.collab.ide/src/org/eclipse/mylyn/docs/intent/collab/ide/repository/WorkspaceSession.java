@@ -148,8 +148,10 @@ public class WorkspaceSession implements IResourceChangeListener {
 			}
 
 			// Finally, we treat each removed or changed resource.
-			treatRemovedResources(removedResources);
-			treatChangeResources(changedResources);
+			synchronized(this.repository.getResourceSet()) {
+				treatRemovedResources(removedResources);
+				treatChangeResources(changedResources);
+			}
 
 		} catch (CoreException e) {
 			// TODO define a standard reaction to this exception :
@@ -288,7 +290,7 @@ public class WorkspaceSession implements IResourceChangeListener {
 	 * @param savedResource
 	 *            the new save resource
 	 */
-	public void addSavedResource(Resource savedResource) {
+	public synchronized void addSavedResource(Resource savedResource) {
 		if (!savedResources.contains(savedResource)) {
 			savedResources.add(savedResource);
 		}

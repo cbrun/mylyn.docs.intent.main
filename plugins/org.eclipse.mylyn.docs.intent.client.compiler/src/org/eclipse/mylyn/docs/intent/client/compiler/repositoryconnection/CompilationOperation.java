@@ -13,6 +13,7 @@ package org.eclipse.mylyn.docs.intent.client.compiler.repositoryconnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.mylyn.docs.intent.client.compiler.ModelingUnitCompiler;
@@ -44,9 +45,9 @@ public class CompilationOperation implements Runnable {
 	private CompilerRepositoryClient compilerRepositoryClient;
 
 	/**
-	 * Indicates if the current operation has been canceled by the repository client.
+	 * The progressMonitor to use for compilation ; if canceled, the compilation will stop immediately.
 	 */
-	private boolean isCanceled;
+	private Monitor progressMonitor;
 
 	/**
 	 * CompilationOperation constructor.
@@ -59,10 +60,11 @@ public class CompilationOperation implements Runnable {
 	 *            the client that launched this compilation operation
 	 */
 	public CompilationOperation(RepositoryObjectHandler repositoryObjectHandler, Repository repository,
-			CompilerRepositoryClient compilerRepositoryClient) {
+			CompilerRepositoryClient compilerRepositoryClient, Monitor progressMonitor) {
 		this.repositoryObjectHandler = repositoryObjectHandler;
 		this.repository = repository;
 		this.compilerRepositoryClient = compilerRepositoryClient;
+		this.progressMonitor = progressMonitor;
 	}
 
 	/**
@@ -73,8 +75,7 @@ public class CompilationOperation implements Runnable {
 	public void run() {
 		try {
 
-			if (!isCanceled) {
-
+			if (!progressMonitor.isCanceled()) {
 				ModelingUnitCompiler compiler = null;
 				ModelingUnitLinkResolver resolver = null;
 				List<ModelingUnit> modelingUnitsToCompile = new ArrayList<ModelingUnit>();
@@ -83,18 +84,20 @@ public class CompilationOperation implements Runnable {
 				final Resource resourceIndex = repositoryObjectHandler.getRepositoryAdapter().getResource(
 						IntentLocations.INTENT_INDEX);
 
-				IntentCompilerInformationHolder informationHolder = IntentCompilerInformationHolder.getInstance();
+				IntentCompilerInformationHolder informationHolder = IntentCompilerInformationHolder
+						.getInstance();
 				informationHolder.initialize();
 
 				// LinkResolver initialization
 
-				if (!isCanceled) {
+				if (!progressMonitor.isCanceled()) {
 					resolver = new ModelingUnitLinkResolver(repository, informationHolder);
 				}
 
 				// Compiler initialization
-				if (!isCanceled) {
-					compiler = new ModelingUnitCompiler(resolver, informationHolder);
+				if (!progressMonitor.isCanceled()) {
+					compiler = new ModelingUnitCompiler(repository, resolver, informationHolder,
+							progressMonitor);
 
 					for (EObject resourceContent : resourceIndex.getContents()) {
 						modelingUnitsToCompile.addAll(UnitGetter
@@ -103,32 +106,25 @@ public class CompilationOperation implements Runnable {
 				}
 
 				// Compilation
-				if (!isCanceled) {
+				if (!progressMonitor.isCanceled()) {
 					compiler.compile(modelingUnitsToCompile);
 				}
 				// Saving the new compilations errors
-				if (!isCanceled) {
+				if (!progressMonitor.isCanceled()) {
 					System.err.println("[Compiler] compiled : "
 							+ informationHolder.getDeclaredResources().size() + " resources. ");
 					System.err.println("[Compiler] saving...");
 					compilerRepositoryClient.saveCompilationInformations(informationHolder);
-					System.err.println("[Compiler] saved.");
-
+					System.err.println("[Compiler] =====================> saved.");
 				}
 			}
+			Thread.currentThread().join(1);
 		} catch (RepositoryConnectionException e) {
 			e.printStackTrace();
 			System.err.println("[Compiler] Compilation  Failed");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Cancels the current operation.
-	 * 
-	 * @param canceled
-	 *            indicates if the current operation is canceled or not.
-	 */
-	public void setCanceled(boolean canceled) {
-		this.isCanceled = canceled;
 	}
 }

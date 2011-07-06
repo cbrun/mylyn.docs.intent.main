@@ -13,7 +13,6 @@ package org.eclipse.mylyn.docs.intent.client.ui.ide.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.mylyn.docs.intent.client.ui.ide.launcher.IDEApplicationManager;
 
 /**
  * Handler that print a widget allowing the user to select the Intent element to open.
@@ -35,7 +34,7 @@ public class LaunchAllClients extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IDEApplicationManager.createAndLaunchClients();
+		// TODO remove action (unused)
 		return null;
 	}
 }

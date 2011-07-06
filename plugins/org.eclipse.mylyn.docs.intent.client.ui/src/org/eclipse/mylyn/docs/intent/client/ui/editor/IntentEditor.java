@@ -30,7 +30,6 @@ import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentEditor
 import org.eclipse.mylyn.docs.intent.client.ui.editor.outline.IntentOutlinePage;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.outline.IntentQuickOutlineControl;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.outline.QuickOutlineInformationProvider;
-import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentBufferedPartitionScanner;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.ModelingUnitDecorationPainter;
 import org.eclipse.mylyn.docs.intent.client.ui.utils.IntentEditorOpener;
 import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler;
@@ -317,13 +316,11 @@ public class IntentEditor extends TextEditor {
 		informationPresenter.install(getSourceViewer());
 		IInformationProvider provider = new QuickOutlineInformationProvider(this);
 		informationPresenter.setInformationProvider(provider, IDocument.DEFAULT_CONTENT_TYPE);
+		informationPresenter.setInformationProvider(provider, IntentDocumentProvider.INTENT_DESCRIPTIONUNIT);
+		informationPresenter.setInformationProvider(provider, IntentDocumentProvider.INTENT_MODELINGUNIT);
 		informationPresenter.setInformationProvider(provider,
-				IntentBufferedPartitionScanner.INTENT_DESCRIPTIONUNIT);
-		informationPresenter.setInformationProvider(provider,
-				IntentBufferedPartitionScanner.INTENT_MODELINGUNIT);
-		informationPresenter.setInformationProvider(provider,
-				IntentBufferedPartitionScanner.INTENT_STRUCTURAL_CONTENT);
-		informationPresenter.setInformationProvider(provider, IntentBufferedPartitionScanner.INTENT_TITLE);
+				IntentDocumentProvider.INTENT_STRUCTURAL_CONTENT);
+		informationPresenter.setInformationProvider(provider, IntentDocumentProvider.INTENT_TITLE);
 
 		final int minimalWidth = 50;
 		final int minimalHeight = 30;
@@ -450,6 +447,17 @@ public class IntentEditor extends TextEditor {
 		boolean containsElement = IntentHelper.containsElement((IntentGenericElement)this.getIntentContent(),
 				elementToOpen);
 		return containsElement;
+	}
+
+	/**
+	 * Refreshes the title according to the new AST.
+	 * 
+	 * @param newAST
+	 *            the new AST to compute the title from
+	 */
+	public void refreshTitle(EObject newAST) {
+		String titleFromElement = ((IntentEditorInput)this.getEditorInput()).getTitleFromElement(newAST);
+		setPartName(titleFromElement);
 	}
 
 }

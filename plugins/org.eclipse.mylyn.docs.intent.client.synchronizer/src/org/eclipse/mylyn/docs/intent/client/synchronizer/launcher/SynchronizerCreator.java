@@ -11,9 +11,11 @@
 package org.eclipse.mylyn.docs.intent.client.synchronizer.launcher;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.mylyn.docs.intent.client.synchronizer.SynchronizerRepositoryClient;
@@ -30,6 +32,7 @@ import org.eclipse.mylyn.docs.intent.collab.repository.RepositoryConnectionExcep
 import org.eclipse.mylyn.docs.intent.collab.utils.RepositoryCreatorHolder;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerFactory;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndex;
+import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndexEntry;
 
 /**
  * Creates a Synchronizer client.
@@ -90,6 +93,15 @@ public final class SynchronizerCreator {
 				(TraceabilityIndex)traceAbilityIndex, progressMonitor);
 		synchronizerClient.addRepositoryObjectHandler(handler);
 		synchronizerClient.setGeneratedElementListener(generatedElementListener);
+
+		// Step 4 : we ask the generatedElementListener to listen to all generated resources
+		Iterator<TraceabilityIndexEntry> indexEntryIterator = ((TraceabilityIndex)traceAbilityIndex)
+				.getEntries().iterator();
+		while (indexEntryIterator.hasNext()) {
+			TraceabilityIndexEntry indexEntry = indexEntryIterator.next();
+			generatedElementListener.addElementToListen(URI.createURI(indexEntry.getResourceDeclaration()
+					.getUri().toString()));
+		}
 
 		// We don't need to launch the synchronizer until the change of the compiler's generatedElement index.
 		// TODO REMOVE THIS CALL

@@ -16,9 +16,11 @@ import java.util.List;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
+import org.eclipse.jface.text.quickassist.IQuickAssistAssistant;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.IntentEditor;
+import org.eclipse.mylyn.docs.intent.client.ui.editor.quickfix.IntentQuickAssistant;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.AbstractIntentScanner;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentDescriptionUnitScanner;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentModelingUnitScanner;
@@ -113,5 +115,16 @@ public class IntentEditorConfiguration extends TextSourceViewerConfiguration {
 			reconciler.setRepairer(dr, scanner.getConfiguredContentType());
 		}
 		return reconciler;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.editors.text.TextSourceViewerConfiguration#getQuickAssistAssistant(org.eclipse.jface.text.source.ISourceViewer)
+	 */
+	@Override
+	public IQuickAssistAssistant getQuickAssistAssistant(ISourceViewer sourceViewer) {
+		// We create an IntentQuickAssistant
+		return new IntentQuickAssistant();
 	}
 }

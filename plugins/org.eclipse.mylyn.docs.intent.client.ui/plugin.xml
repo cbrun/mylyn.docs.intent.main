@@ -44,7 +44,7 @@
       <editor
             class="org.eclipse.mylyn.docs.intent.client.ui.editor.IntentEditor"
             default="false"
-            icon="icon/outline/modelingunit.png"
+            icon="icon/outline/document.gif"
             id="org.eclipse.mylyn.docs.intent.client.ui.IntentEditor"
             name="Intent Editor">
       </editor>

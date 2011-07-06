@@ -22,6 +22,7 @@ import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusManager;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerPackage;
 import org.eclipse.mylyn.docs.intent.core.compiler.StringToEObjectMap;
+import org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndex;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndexEntry;
 import org.eclipse.mylyn.docs.intent.core.compiler.UnresolvedContributionHolder;
@@ -207,6 +208,15 @@ public class CompilerSwitch<T> {
 				@SuppressWarnings("unchecked")
 				Map.Entry<EObject, IntentGenericElement> compiledElementToInstructionEntry = (Map.Entry<EObject, IntentGenericElement>)theEObject;
 				T result = caseCompiledElementToInstructionEntry(compiledElementToInstructionEntry);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case CompilerPackage.SYNCHRONIZER_COMPILATION_STATUS: {
+				SynchronizerCompilationStatus synchronizerCompilationStatus = (SynchronizerCompilationStatus)theEObject;
+				T result = caseSynchronizerCompilationStatus(synchronizerCompilationStatus);
+				if (result == null)
+					result = caseCompilationStatus(synchronizerCompilationStatus);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -433,6 +443,21 @@ public class CompilerSwitch<T> {
 	 * @generated
 	 */
 	public T caseCompiledElementToInstructionEntry(Map.Entry<EObject, IntentGenericElement> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Synchronizer Compilation Status</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Synchronizer Compilation Status</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSynchronizerCompilationStatus(SynchronizerCompilationStatus object) {
 		return null;
 	}
 

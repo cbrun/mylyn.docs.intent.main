@@ -260,8 +260,7 @@ public class IntentEditorDocument extends AbstractDocument implements IDocument 
 	 * @return the size of the decoration added by this document before the given Modeling Unit
 	 */
 	public int getModelingUnitPrefixDecorationSize(ModelingUnit element) {
-		return MODELING_PREFIX_DECORATION.length()
-				+ this.serializer.getIndentationLevelForElement(element);
+		return MODELING_PREFIX_DECORATION.length() + this.serializer.getIndentationLevelForElement(element);
 	}
 
 	/**

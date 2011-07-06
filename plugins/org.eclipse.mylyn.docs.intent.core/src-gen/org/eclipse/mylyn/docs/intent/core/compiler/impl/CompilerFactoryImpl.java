@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.mylyn.docs.intent.core.compiler.*;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationInformationHolder;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationMessageType;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatus;
@@ -108,6 +109,8 @@ public class CompilerFactoryImpl extends EFactoryImpl implements CompilerFactory
 				return (EObject)createTraceabilityIndexEntry();
 			case CompilerPackage.COMPILED_ELEMENT_TO_INSTRUCTION_ENTRY:
 				return (EObject)createCompiledElementToInstructionEntry();
+			case CompilerPackage.SYNCHRONIZER_COMPILATION_STATUS:
+				return (EObject)createSynchronizerCompilationStatus();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName()
 						+ "' is not a valid classifier");
@@ -293,6 +296,16 @@ public class CompilerFactoryImpl extends EFactoryImpl implements CompilerFactory
 	public Map.Entry<EObject, IntentGenericElement> createCompiledElementToInstructionEntry() {
 		CompiledElementToInstructionEntryImpl compiledElementToInstructionEntry = new CompiledElementToInstructionEntryImpl();
 		return compiledElementToInstructionEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SynchronizerCompilationStatus createSynchronizerCompilationStatus() {
+		SynchronizerCompilationStatusImpl synchronizerCompilationStatus = new SynchronizerCompilationStatusImpl();
+		return synchronizerCompilationStatus;
 	}
 
 	/**

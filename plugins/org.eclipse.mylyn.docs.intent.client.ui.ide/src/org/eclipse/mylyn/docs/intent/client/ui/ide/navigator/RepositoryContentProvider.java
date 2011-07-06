@@ -16,7 +16,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.mylyn.docs.intent.client.ui.ide.launcher.IDEApplicationManager;
+import org.eclipse.mylyn.docs.intent.client.ui.ide.launcher.IntentProjectManager;
 import org.eclipse.mylyn.docs.intent.collab.common.location.IntentLocations;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.RepositoryAdapter;
 import org.eclipse.mylyn.docs.intent.collab.ide.repository.WorkspaceConfig;
@@ -55,10 +55,10 @@ public class RepositoryContentProvider implements ITreeContentProvider {
 			IFile file = (IFile)parentElement;
 			// We connect to the repository
 			try {
-				IDEApplicationManager.connect(file.getProject());
+				IntentProjectManager.getInstance(file.getProject()).connect();
 				RepositoryAdapter repositoryAdapter = RepositoryCreatorHolder.getCreator()
 						.createRepositoryAdapterForRepository(
-								IDEApplicationManager.getRepository(file.getProject()));
+								IntentProjectManager.getRepository(file.getProject()));
 				repositoryAdapter.openReadOnlyContext();
 				Resource resource = repositoryAdapter.getResource(IntentLocations.GENERAL_INDEX_PATH);
 				if (resource.getContents().size() > 0) {
@@ -74,7 +74,8 @@ public class RepositoryContentProvider implements ITreeContentProvider {
 			children = ((IntentIndex)parentElement).getEntries().toArray();
 		}
 		if (parentElement instanceof IntentIndexEntry) {
-			// IntentIndexEntry reloaded = (IntentIndexEntry)repositoryAdapter.reload((IntentIndexEntry)parentElement);
+			// IntentIndexEntry reloaded =
+			// (IntentIndexEntry)repositoryAdapter.reload((IntentIndexEntry)parentElement);
 			// children = reloaded.getSubEntries().toArray();
 			children = ((IntentIndexEntry)parentElement).getSubEntries().toArray();
 		}

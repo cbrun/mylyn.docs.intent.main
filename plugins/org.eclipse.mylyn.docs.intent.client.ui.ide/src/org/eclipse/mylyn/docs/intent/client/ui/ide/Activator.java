@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.client.ui.ide;
 
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.mylyn.docs.intent.client.ui.ide.builder.IntentProjectListener;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -20,10 +23,19 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plugin ID.
+	 */
 	public static final String PLUGIN_ID = "org.eclipse.mylyn.docs.intent.client.ui.ide"; //$NON-NLS-1$
 
-	// The shared instance
+	/**
+	 * The registered {@link IntentProjectListener}, in charge of handling the workspace's Intent projects.
+	 */
+	private static IntentProjectListener intentProjectListener;
+
+	/**
+	 * The shared instance of this plugin.
+	 */
 	private static Activator plugin;
 
 	/**
@@ -39,6 +51,10 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		// Registering a Workspace Listener to handle opening/closing of Intent projects
+		intentProjectListener = new IntentProjectListener();
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		workspace.addResourceChangeListener(intentProjectListener);
 		plugin = this;
 	}
 
@@ -49,6 +65,8 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		workspace.removeResourceChangeListener(intentProjectListener);
 		super.stop(context);
 	}
 

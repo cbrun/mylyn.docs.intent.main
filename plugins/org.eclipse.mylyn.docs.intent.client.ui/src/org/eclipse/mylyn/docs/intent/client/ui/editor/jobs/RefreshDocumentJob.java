@@ -226,7 +226,6 @@ public class RefreshDocumentJob {
 			// We update the document Provider
 			// We update the mapping between elements and documents
 			documentProvider.addAllContentAsIntentElement(newAST, (IntentEditorDocument)document);
-			documentProvider.refreshOL(newAST);
 
 			// We refresh the document partitioner
 			partitioner.disconnect();

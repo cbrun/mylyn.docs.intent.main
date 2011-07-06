@@ -51,28 +51,7 @@ public class IntentEditorInput implements IEditorInput {
 	 */
 	public IntentEditorInput(EObject elementToOpen) {
 		this.element = elementToOpen;
-		if (element instanceof ModelingUnit) {
-			this.elementTitle = ((ModelingUnit)element).getUnitName();
-			if ((elementTitle == null) || (elementTitle.length() < 1)) {
-				this.elementTitle = "Untitled ModelingUnit";
-			}
-		}
-		if (element instanceof DescriptionUnit) {
-			this.elementTitle = DescriptionUnitHelper.getDescriptionUnitTitle((DescriptionUnit)element,
-					MAX_TITLE_SIZE);
-		}
-		if (element instanceof IntentStructuredElement) {
-			this.elementTitle = StructuredElementHelper.getTitle((IntentStructuredElement)element);
-			if ((elementTitle == null) || (elementTitle.length() < 1)) {
-				this.elementTitle = element.eClass().getName();
-			}
-		}
-		if (this.elementTitle.length() > MAX_TITLE_SIZE) {
-			this.elementTitle = this.elementTitle.substring(0, MAX_TITLE_SIZE);
-		}
-
-		// Object image = new IntentOutlinePageItemProvider(new IntentOutlinePageItemProviderAdapterFactory())
-		// .getImage(this.element);
+		this.elementTitle = getTitleFromElement(elementToOpen);
 	}
 
 	/**
@@ -82,6 +61,37 @@ public class IntentEditorInput implements IEditorInput {
 	 */
 	public EObject getIntentElement() {
 		return element;
+	}
+
+	/**
+	 * Returns the title of the editor according to the given element.
+	 * 
+	 * @param newElement
+	 *            the element to compute the title from
+	 * @return the new title of the editor 
+	 */
+	public String getTitleFromElement(EObject newElement) {
+		String newTitle = "";
+		if (newElement instanceof ModelingUnit) {
+			newTitle = ((ModelingUnit)newElement).getUnitName();
+			if ((newTitle == null) || (newTitle.length() < 1)) {
+				newTitle = "Untitled ModelingUnit";
+			}
+		}
+		if (newElement instanceof DescriptionUnit) {
+			newTitle = DescriptionUnitHelper.getDescriptionUnitTitle((DescriptionUnit)newElement,
+					MAX_TITLE_SIZE);
+		}
+		if (newElement instanceof IntentStructuredElement) {
+			newTitle = StructuredElementHelper.getTitle((IntentStructuredElement)newElement);
+			if ((newTitle == null) || (newTitle.length() < 1)) {
+				newTitle = newElement.eClass().getName();
+			}
+		}
+		if (newTitle.length() > MAX_TITLE_SIZE) {
+			newTitle = newTitle.substring(0, MAX_TITLE_SIZE);
+		}
+		return newTitle;
 	}
 
 	/**

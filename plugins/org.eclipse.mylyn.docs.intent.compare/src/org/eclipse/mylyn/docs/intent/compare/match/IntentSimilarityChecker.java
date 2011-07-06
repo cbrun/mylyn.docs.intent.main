@@ -13,6 +13,9 @@ package org.eclipse.mylyn.docs.intent.compare.match;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.match.statistic.MetamodelFilter;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.mylyn.docs.intent.core.descriptionunit.DescriptionBloc;
+import org.eclipse.mylyn.docs.intent.core.document.IntentSection;
+import org.eclipse.mylyn.docs.intent.markup.markup.Block;
 
 /**
  * Similarity checker using the Intent semantics to compare two Intent elements.
@@ -53,16 +56,33 @@ public class IntentSimilarityChecker extends StatisticBasedSimilarityChecker {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.mylyn.docs.intent.compare.match.StatisticBasedSimilarityChecker#isSimilar(org.eclipse.emf.ecore.EObject,
+	 * @see org.eclipse.mylyn.docs.intent.compare.match.matcher.StatisticBasedSimilarityChecker#isSimilar(org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	public boolean isSimilar(EObject obj1, EObject obj2) throws FactoryException {
+
+		boolean isSimilar = false;
+		boolean haveSpecificMatcher = false;
 		// If the two objects are the roots, we consider that they are similar in any circumstance
 		if (areRoots(obj1, obj2)) {
-			return true;
+			isSimilar = true;
+			haveSpecificMatcher = true;
+		} else {
+			if (obj1 instanceof DescriptionBloc && obj2 instanceof DescriptionBloc) {
+				isSimilar = areSimilarDescriptionBlocs((DescriptionBloc)obj1, (DescriptionBloc)obj2);
+				haveSpecificMatcher = true;
+			} else {
+				if (obj1 instanceof IntentSection && obj2 instanceof IntentSection) {
+					isSimilar = areSimilarSessions((IntentSection)obj1, (IntentSection)obj2);
+					haveSpecificMatcher = true;
+				}
+			}
 		}
-		return super.isSimilar(obj1, obj2);
+		if (!haveSpecificMatcher) {
+			isSimilar = super.isSimilar(obj1, obj2);
+		}
+		return isSimilar;
 	}
 
 	/**
@@ -81,7 +101,7 @@ public class IntentSimilarityChecker extends StatisticBasedSimilarityChecker {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.mylyn.docs.intent.client.ui.editor.merger.match.StatisticBasedSimilarityChecker#absoluteMetric(org.eclipse.emf.ecore.EObject,
+	 * @see org.eclipse.mylyn.docs.intent.compare.match.matcher.client.ui.editor.merger.match.StatisticBasedSimilarityChecker#absoluteMetric(org.eclipse.emf.ecore.EObject,
 	 *      org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
@@ -106,4 +126,43 @@ public class IntentSimilarityChecker extends StatisticBasedSimilarityChecker {
 		return (obj1 == localRoot) && (obj2 == repositoryRoot);
 	}
 
+	/**
+	 * Indicates if the first session matches the second one.
+	 * 
+	 * @param session1
+	 *            the session to match
+	 * @param session2
+	 *            the candidate session
+	 * @return true if the first session matches the second one, false otherwise
+	 * @throws FactoryException
+	 *             - on error accessing features.
+	 */
+	protected boolean areSimilarSessions(IntentSection session1, IntentSection session2)
+			throws FactoryException {
+		// 2 session are equals if :
+		// they have the same title
+		Block title1 = session1.getTitle();
+		Block title2 = session2.getTitle();
+
+		return isSimilar(title1, title2);
+	}
+
+	/**
+	 * Indicates if the first description bloc matches the second one.
+	 * 
+	 * @param obj1
+	 *            the description bloc to match
+	 * @param obj2
+	 *            the candidate description bloc
+	 * @return true if the first description bloc matches the second one, false otherwise
+	 */
+	private boolean areSimilarDescriptionBlocs(DescriptionBloc obj1, DescriptionBloc obj2) {
+		// FIXME : first verify that both description blocs are part of the same DU
+
+		// Two description blocs are equals if they have the same position in their container
+		int positionInContainer1 = obj1.eContainer().eContents().indexOf(obj1);
+		int positionInContainer2 = obj2.eContainer().eContents().indexOf(obj2);
+		boolean haveSamePositionInContainer = positionInContainer1 == positionInContainer2;
+		return haveSamePositionInContainer;
+	}
 }

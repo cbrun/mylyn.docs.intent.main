@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.text.ISynchronizable;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
@@ -21,6 +22,7 @@ import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.RepositoryAdapter;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatus;
+import org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.document.IntentGenericElement;
 
 /**
@@ -70,14 +72,28 @@ public class IntentAnnotationModelManager {
 	 * Adds the given compilation status as an Annotation in the handled annotationModel at the given
 	 * position.
 	 * 
+	 * @param repositoryAdapter
+	 *            the Repository Adapter to use
 	 * @param status
 	 *            the compilation status to add
 	 * @param position
 	 *            the position of this annotation
 	 */
-	public void addAnnotationFromStatus(CompilationStatus status, Position position) {
+	public void addAnnotationFromStatus(RepositoryAdapter repositoryAdapter, CompilationStatus status,
+			Position position) {
 		if (!(handledCompilationStatus.containsKey(status))) {
-			Annotation annotation = IntentAnnotationFactory.createAnnotationFromCompilationStatus(status);
+			// If the status is a Synchronization Status
+			URI uri = null;
+			if (status instanceof SynchronizerCompilationStatus) {
+				// We use the repository Adapter to get the Resource containing
+				// the target of the synchronization error
+				uri = repositoryAdapter.getResource(
+						((SynchronizerCompilationStatus)status).getCompiledResourceURI()).getURI();
+			}
+
+			// We create an annotation from the status and add it to the annotation model
+			Annotation annotation = IntentAnnotationFactory
+					.createAnnotationFromCompilationStatus(uri, status);
 			addAnnotation(annotation, position);
 			handledCompilationStatus.put(status, annotation);
 		}

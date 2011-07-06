@@ -23,6 +23,7 @@ import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WhitespaceRule;
 import org.eclipse.jface.text.rules.WordRule;
+import org.eclipse.mylyn.docs.intent.client.ui.editor.IntentDocumentProvider;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.ColorManager;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentColorConstants;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentFontConstants;
@@ -144,7 +145,7 @@ public class IntentModelingUnitScanner extends AbstractIntentScanner {
 	 */
 	@Override
 	public String getConfiguredContentType() {
-		return IntentPartitionScanner.INTENT_MODELINGUNIT;
+		return IntentDocumentProvider.INTENT_MODELINGUNIT;
 	}
 
 }

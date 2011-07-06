@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.mylyn.docs.intent.client.compiler.errors.AbstractRuntimeCompilationException;
@@ -29,6 +30,8 @@ import org.eclipse.mylyn.docs.intent.client.compiler.generator.modelgeneration.S
 import org.eclipse.mylyn.docs.intent.client.compiler.generator.modellinking.ModelingUnitLinkResolver;
 import org.eclipse.mylyn.docs.intent.client.compiler.utils.IntentCompilerInformationHolder;
 import org.eclipse.mylyn.docs.intent.client.compiler.validator.GeneratedElementValidator;
+import org.eclipse.mylyn.docs.intent.collab.repository.Repository;
+import org.eclipse.mylyn.docs.intent.collab.repository.RepositoryConnectionException;
 import org.eclipse.mylyn.docs.intent.core.compiler.UnresolvedContributionHolder;
 import org.eclipse.mylyn.docs.intent.core.compiler.UnresolvedReferenceHolder;
 import org.eclipse.mylyn.docs.intent.core.modelingunit.ModelingUnit;
@@ -71,19 +74,35 @@ public class ModelingUnitCompiler {
 	private final ModelingUnitLinkResolver linkResolver;
 
 	/**
+	 * The repository containing the modeling units to compile (and define available EPackages).
+	 */
+	private Repository repository;
+
+	/**
+	 * The progressMonitor to use for compilation ; if canceled, the compilation will stop immediately.
+	 */
+	private Monitor progressMonitor;
+
+	/**
 	 * ModelingUnitCompiler constructor.
 	 * 
+	 * @param repository
+	 *            the repository containing the modeling units to compile
 	 * @param linkResolver
 	 *            the linkResolver used to resolved the links in modelingUnits
 	 * @param informationHolder
 	 *            the entity used to hold informations about compilation
+	 * @param progressMonitor
+	 *            the progressMonitor to use for compilation
 	 */
-	public ModelingUnitCompiler(ModelingUnitLinkResolver linkResolver,
-			IntentCompilerInformationHolder informationHolder) {
-
+	public ModelingUnitCompiler(Repository repository, ModelingUnitLinkResolver linkResolver,
+			IntentCompilerInformationHolder informationHolder, Monitor progressMonitor) {
+		this.repository = repository;
 		this.informationHolder = informationHolder;
-		this.modelingUnitGenerator = new ModelingUnitGenerator(linkResolver, informationHolder);
+		this.modelingUnitGenerator = new ModelingUnitGenerator(linkResolver, informationHolder,
+				progressMonitor);
 		this.linkResolver = linkResolver;
+		this.progressMonitor = progressMonitor;
 	}
 
 	/**
@@ -95,29 +114,36 @@ public class ModelingUnitCompiler {
 	 *         mapping to resources).
 	 */
 	public IntentCompilerInformationHolder compile(List<ModelingUnit> modelingUnits) {
+		if (!progressMonitor.isCanceled()) {
+			// Step 0 : initialization of the information Holder
+			informationHolder.initialize();
+		}
 
-		// Step 0 : initialization of the information Holder
-		informationHolder.initialize();
+		if (!progressMonitor.isCanceled()) {
+			// Step 1 : compiling modeling units defining EPackages
+			compileAllWithMode(modelingUnits, EPACKAGE_DECLARATION_ONLY);
+		}
 
-		// Step 1 : compiling modeling units defining EPackages
-		compileAllWithMode(modelingUnits, EPACKAGE_DECLARATION_ONLY);
+		if (!progressMonitor.isCanceled()) {
+			// Step 2 : compiling all the other modeling units
+			compileAllWithMode(modelingUnits, ALL_MODELING_UNITS_EXCEPT_EPACKAGES_DECLARATION);
+		}
 
-		// Step 2 : compiling all the other modeling units
-		compileAllWithMode(modelingUnits, ALL_MODELING_UNITS_EXCEPT_EPACKAGES_DECLARATION);
-
-		// Step 3 : handle the unresolved contribution instructions
-		for (String unresolvedName : informationHolder.getAllUnresolvedContributionsNames()) {
-			// For each contribution instruction, we generate a compilationStatus
-			for (UnresolvedContributionHolder unresolvedContributionHolder : informationHolder
-					.getUnresolvedContributions(unresolvedName)) {
-				if (!unresolvedContributionHolder.isResolved()) {
-					informationHolder
-							.registerCompilationExceptionAsCompilationStatus(new CompilationException(
-									unresolvedContributionHolder.getReferencedContribution(),
-									CompilationErrorType.INVALID_REFRENCE_ERROR,
-									"The element "
-											+ unresolvedName
-											+ " cannot be resolved. This contribution instruction will be ignored. "));
+		if (!progressMonitor.isCanceled()) {
+			// Step 3 : handle the unresolved contribution instructions
+			for (String unresolvedName : informationHolder.getAllUnresolvedContributionsNames()) {
+				// For each contribution instruction, we generate a compilationStatus
+				for (UnresolvedContributionHolder unresolvedContributionHolder : informationHolder
+						.getUnresolvedContributions(unresolvedName)) {
+					if (!unresolvedContributionHolder.isResolved()) {
+						informationHolder
+								.registerCompilationExceptionAsCompilationStatus(new CompilationException(
+										unresolvedContributionHolder.getReferencedContribution(),
+										CompilationErrorType.INVALID_REFRENCE_ERROR,
+										"The element "
+												+ unresolvedName
+												+ " cannot be resolved. This contribution instruction will be ignored. "));
+					}
 				}
 			}
 		}
@@ -141,18 +167,24 @@ public class ModelingUnitCompiler {
 		// list
 		// (without resolving links)
 		for (ModelingUnit modelingUnitToCompile : modelingUnits) {
-			this.compileModelingUnit(modelingUnitToCompile, generateOnlyEPackages);
+			if (!progressMonitor.isCanceled()) {
+				this.compileModelingUnit(modelingUnitToCompile, generateOnlyEPackages);
+			}
 		}
 
 		// Step 2.3 : link Resolving
-		resolveLinks();
+		if (!progressMonitor.isCanceled()) {
+			resolveLinks();
+		}
 
 		// Step 2.4 : we associate each generated object in the given resource
-		mapResourceDeclarationToGeneratedObjects();
-
+		if (!progressMonitor.isCanceled()) {
+			mapResourceDeclarationToGeneratedObjects();
+		}
 		// Step 2.5 : Validation
-		validateGeneratedElement();
-
+		if (!progressMonitor.isCanceled()) {
+			validateGeneratedElement();
+		}
 		// TODO Handle compilation Time.
 
 	}
@@ -236,16 +268,21 @@ public class ModelingUnitCompiler {
 	 * @param modelingUnitToCompile
 	 *            the modelingUnit to inspect
 	 * @param generateOnlyEPackages
+	 *            indicates if the compiler is currently genereting EPackages only
 	 * @return the packages imported by the given modelingUnit
 	 */
 	@Deprecated
 	protected List<String> getImportedPackages(ModelingUnit modelingUnitToCompile,
 			boolean generateOnlyEPackages) {
-		// TODO Once we'll have handled Headers parsing, use this header to get imported packages
+		// TODO define a priority between EPackages to consider
 		List<String> importedPackages = new ArrayList<String>();
-		importedPackages.add(EcorePackage.eINSTANCE.getNsURI());
-		if (!generateOnlyEPackages) {
-			// FIXME register valid URI:	importedPackages.add("http://Extlibrary/1.0.0");
+		try {
+			importedPackages.add(EcorePackage.eINSTANCE.getNsURI());
+			for (String ePackage : repository.getPackageRegistry().keySet()) {
+				importedPackages.add(ePackage);
+			}
+		} catch (RepositoryConnectionException e) {
+			// Nothing to do, packages will not be correctly computed and a compilation error will be thrown
 		}
 		return importedPackages;
 	}

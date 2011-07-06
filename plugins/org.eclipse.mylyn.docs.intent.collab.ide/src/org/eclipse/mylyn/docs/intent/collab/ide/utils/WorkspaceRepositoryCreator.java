@@ -70,7 +70,7 @@ public class WorkspaceRepositoryCreator implements RepositoryCreator {
 	 * @throws RepositoryConnectionException
 	 *             if the repository connection cannot be established
 	 */
-	private void initialisePackageRegistry(Repository repository) throws RepositoryConnectionException {
+	protected void initialisePackageRegistry(Repository repository) throws RepositoryConnectionException {
 
 	}
 

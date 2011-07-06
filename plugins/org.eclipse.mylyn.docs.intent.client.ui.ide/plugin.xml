@@ -200,6 +200,21 @@
              natureId="org.eclipse.mylyn.docs.intent.client.ui.ide.intentNature">
        </image>
     </extension>
+    <extension
+          point="org.eclipse.ui.newWizards">
+       <category
+             id="org.eclipse.mylyn.docs.intent.client.ui.ide"
+             name="Intent">
+       </category>
+       <wizard
+             category="org.eclipse.mylyn.docs.intent.client.ui.ide"
+             class="org.eclipse.mylyn.docs.intent.client.ui.ide.wizards.NewIntentProjectWizard"
+             icon="icon/ide/toggle_nature.gif"
+             id="org.eclipse.mylyn.docs.intent.client.ui.ide.wizards.NewIntentProjectWizard"
+             name="Intent project"
+             project="true">
+       </wizard>
+    </extension>
    
    
    

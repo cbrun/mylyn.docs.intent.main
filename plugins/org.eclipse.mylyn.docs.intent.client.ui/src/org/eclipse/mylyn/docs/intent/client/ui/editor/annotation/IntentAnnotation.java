@@ -10,6 +10,10 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.client.ui.editor.annotation;
 
+import java.util.Set;
+
+import org.eclipse.core.runtime.AssertionFailedException;
+import org.eclipse.jface.text.quickassist.IQuickFixableAnnotation;
 import org.eclipse.jface.text.source.Annotation;
 
 /**
@@ -17,13 +21,20 @@ import org.eclipse.jface.text.source.Annotation;
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
  */
-public class IntentAnnotation extends Annotation {
+public class IntentAnnotation extends Annotation implements IQuickFixableAnnotation {
 
 	/**
 	 * Message type corresponding to this annotation (represents the semantic value of this annotation : can
 	 * be COMPILER.ERROR, PARSER.WARNING...).
 	 */
 	private IntentAnnotationMessageType messageType;
+
+	private boolean quickFixableState;
+
+	/**
+	 * Additional informations relative to this Annotation.
+	 */
+	private Set<String> additionalInformations;
 
 	/**
 	 * IntentAnnotation constructor.
@@ -56,6 +67,55 @@ public class IntentAnnotation extends Annotation {
 	 */
 	public void setMessageType(IntentAnnotationMessageType messageType) {
 		this.messageType = messageType;
+	}
+
+	/**
+	 * Returns additional informations relative to this Annotation.
+	 * 
+	 * @return additional informations relative to this Annotation
+	 */
+	public Set<String> getAdditionalInformations() {
+		return additionalInformations;
+	}
+
+	/**
+	 * Sets the additional informations relative to this Annotation.
+	 * 
+	 * @param additionalInformations
+	 *            the additional informations relative to this Annotation
+	 */
+	public void setAdditionalInformations(Set<String> additionalInformations) {
+		this.additionalInformations = additionalInformations;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.text.quickassist.IQuickFixableAnnotation#setQuickFixable(boolean)
+	 */
+	@Override
+	public void setQuickFixable(boolean state) {
+		this.quickFixableState = state;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.text.quickassist.IQuickFixableAnnotation#isQuickFixableStateSet()
+	 */
+	@Override
+	public boolean isQuickFixableStateSet() {
+		return quickFixableState;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.text.quickassist.IQuickFixableAnnotation#isQuickFixable()
+	 */
+	@Override
+	public boolean isQuickFixable() throws AssertionFailedException {
+		return true;
 	}
 
 }

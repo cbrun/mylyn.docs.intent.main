@@ -21,6 +21,7 @@ import org.eclipse.jface.text.rules.MultiLineRule;
 import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WordRule;
+import org.eclipse.mylyn.docs.intent.client.ui.editor.IntentDocumentProvider;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.ColorManager;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentColorConstants;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.configuration.IntentFontConstants;
@@ -104,6 +105,6 @@ public class IntentStructuredElementScanner extends AbstractIntentScanner {
 	 */
 	@Override
 	public String getConfiguredContentType() {
-		return IntentBufferedPartitionScanner.INTENT_STRUCTURAL_CONTENT;
+		return IntentDocumentProvider.INTENT_STRUCTURAL_CONTENT;
 	}
 }

@@ -26,6 +26,7 @@ import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerFactory;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerPackage;
 import org.eclipse.mylyn.docs.intent.core.compiler.StringToEObjectMap;
+import org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndex;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndexEntry;
 import org.eclipse.mylyn.docs.intent.core.compiler.UnresolvedContributionHolder;
@@ -140,6 +141,13 @@ public class CompilerPackageImpl extends EPackageImpl implements CompilerPackage
 	 * @generated
 	 */
 	private EClass compiledElementToInstructionEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass synchronizerCompilationStatusEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -695,6 +703,33 @@ public class CompilerPackageImpl extends EPackageImpl implements CompilerPackage
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSynchronizerCompilationStatus() {
+		return synchronizerCompilationStatusEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSynchronizerCompilationStatus_WorkingCopyResourceURI() {
+		return (EAttribute)synchronizerCompilationStatusEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSynchronizerCompilationStatus_CompiledResourceURI() {
+		return (EAttribute)synchronizerCompilationStatusEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -825,6 +860,12 @@ public class CompilerPackageImpl extends EPackageImpl implements CompilerPackage
 		createEReference(compiledElementToInstructionEntryEClass,
 				COMPILED_ELEMENT_TO_INSTRUCTION_ENTRY__VALUE);
 
+		synchronizerCompilationStatusEClass = createEClass(SYNCHRONIZER_COMPILATION_STATUS);
+		createEAttribute(synchronizerCompilationStatusEClass,
+				SYNCHRONIZER_COMPILATION_STATUS__WORKING_COPY_RESOURCE_URI);
+		createEAttribute(synchronizerCompilationStatusEClass,
+				SYNCHRONIZER_COMPILATION_STATUS__COMPILED_RESOURCE_URI);
+
 		// Create enums
 		compilationStatusSeverityEEnum = createEEnum(COMPILATION_STATUS_SEVERITY);
 		compilationMessageTypeEEnum = createEEnum(COMPILATION_MESSAGE_TYPE);
@@ -865,6 +906,7 @@ public class CompilerPackageImpl extends EPackageImpl implements CompilerPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		synchronizerCompilationStatusEClass.getESuperTypes().add(this.getCompilationStatus());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eStringToEObjectEClass, Map.Entry.class, "EStringToEObject", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1060,6 +1102,15 @@ public class CompilerPackageImpl extends EPackageImpl implements CompilerPackage
 				theIntentDocumentPackage.getIntentGenericElement(), null, "value", null, 1, 1,
 				Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(synchronizerCompilationStatusEClass, SynchronizerCompilationStatus.class,
+				"SynchronizerCompilationStatus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSynchronizerCompilationStatus_WorkingCopyResourceURI(), ecorePackage.getEString(),
+				"workingCopyResourceURI", null, 0, 1, SynchronizerCompilationStatus.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSynchronizerCompilationStatus_CompiledResourceURI(), ecorePackage.getEString(),
+				"compiledResourceURI", null, 0, 1, SynchronizerCompilationStatus.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(compilationStatusSeverityEEnum, CompilationStatusSeverity.class,

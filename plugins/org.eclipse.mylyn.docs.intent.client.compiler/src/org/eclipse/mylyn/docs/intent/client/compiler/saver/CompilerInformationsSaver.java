@@ -20,6 +20,7 @@ import java.util.Map;
 import org.eclipse.emf.cdo.util.ObjectNotFoundException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.mylyn.docs.intent.client.compiler.utils.IntentCompilerInformationHolder;
@@ -46,6 +47,22 @@ public class CompilerInformationsSaver {
 	private Map<ResourceDeclaration, Map<EObject, IntentGenericElement>> resourceToTraceabilityElementIndexEntry;
 
 	/**
+	 * Progress monitor allowing to cancel a save operation if another notification has been received by the
+	 * CompilerRepositoryClient.
+	 */
+	private Monitor progressMonitor;
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param progressMonitor
+	 *            the progress monitor to use
+	 */
+	public CompilerInformationsSaver(Monitor progressMonitor) {
+		this.progressMonitor = progressMonitor;
+	}
+
+	/**
 	 * Save the useful informations contained in the given IntentCompilerInformationHolder on the repository,
 	 * merging with the current repository content.
 	 * 
@@ -58,14 +75,22 @@ public class CompilerInformationsSaver {
 			RepositoryObjectHandler handler) {
 		resourceToTraceabilityElementIndexEntry = new HashMap<ResourceDeclaration, Map<EObject, IntentGenericElement>>();
 		try {
-			// We first save the generated elements
-			Map<ResourceDeclaration, String> resourceToGeneratedPath = saveGeneratedResources(
-					informationHolder, handler);
-			// We also save the status informations.
-			saveStatusInformations(informationHolder, handler);
 
-			// We finally save the traceability informations
-			saveTraceabilityInformations(resourceToGeneratedPath, handler);
+			// We first save the generated elements
+			if (!progressMonitor.isCanceled()) {
+				Map<ResourceDeclaration, String> resourceToGeneratedPath = saveGeneratedResources(
+						informationHolder, handler);
+
+				// We also save the status informations.
+				if (!progressMonitor.isCanceled()) {
+					saveStatusInformations(informationHolder, handler);
+				}
+
+				// We finally save the traceability informations
+				if (!progressMonitor.isCanceled()) {
+					saveTraceabilityInformations(resourceToGeneratedPath, handler);
+				}
+			}
 			// CHECKSTYLE:OFF : for now on we would like to print any exception
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,17 +120,19 @@ public class CompilerInformationsSaver {
 		Map<ResourceDeclaration, String> resourceInfos = new HashMap<ResourceDeclaration, String>();
 		// We save each generated resource in a CDOResource
 		for (ResourceDeclaration resource : informationHolder.getDeclaredResources()) {
-			String internalResourcePath = getInternalResourcePath(resource);
+			if (!progressMonitor.isCanceled()) {
+				String internalResourcePath = getInternalResourcePath(resource);
 
-			Resource generatedResource = handler.getRepositoryAdapter().getOrCreateResource(
-					internalResourcePath);
-			resourceInfos.put(resource, internalResourcePath);
-			generatedResource.getContents().clear();
+				Resource generatedResource = handler.getRepositoryAdapter().getOrCreateResource(
+						internalResourcePath);
+				resourceInfos.put(resource, internalResourcePath);
+				generatedResource.getContents().clear();
 
-			// We update the resourceToTraceabilityElementIndexEntry map using this resource content
-			updateTraceabilityFromResourceContent(resource, informationHolder,
-					informationHolder.getResourceContent(resource));
-			generatedResource.getContents().addAll(informationHolder.getResourceContent(resource));
+				// We update the resourceToTraceabilityElementIndexEntry map using this resource content
+				updateTraceabilityFromResourceContent(resource, informationHolder,
+						informationHolder.getResourceContent(resource));
+				generatedResource.getContents().addAll(informationHolder.getResourceContent(resource));
+			}
 		}
 		return resourceInfos;
 	}
@@ -126,19 +153,21 @@ public class CompilerInformationsSaver {
 
 		// For each element contained in the resource
 		for (EObject element : elementsToConsider) {
-			// We get the instruction that defined this element
-			UnitInstruction instruction = informationHolder.getInstructionByCreatedElement(element);
+			if (!progressMonitor.isCanceled()) {
+				// We get the instruction that defined this element
+				UnitInstruction instruction = informationHolder.getInstructionByCreatedElement(element);
 
-			if (instruction != null) {
-				// We add an entry to the traceability map
-				if (resourceToTraceabilityElementIndexEntry.get(resource) == null) {
-					resourceToTraceabilityElementIndexEntry.put(resource,
-							new HashMap<EObject, IntentGenericElement>());
+				if (instruction != null) {
+					// We add an entry to the traceability map
+					if (resourceToTraceabilityElementIndexEntry.get(resource) == null) {
+						resourceToTraceabilityElementIndexEntry.put(resource,
+								new HashMap<EObject, IntentGenericElement>());
+					}
+					resourceToTraceabilityElementIndexEntry.get(resource).put(element, instruction);
+
+					// We do the same for each contained element
+					updateTraceabilityFromResourceContent(resource, informationHolder, element.eContents());
 				}
-				resourceToTraceabilityElementIndexEntry.get(resource).put(element, instruction);
-
-				// We do the same for each contained element
-				updateTraceabilityFromResourceContent(resource, informationHolder, element.eContents());
 			}
 		}
 	}
@@ -164,9 +193,10 @@ public class CompilerInformationsSaver {
 		}
 		CompilationStatusManager manager = (CompilationStatusManager)resourceForCompilationStatusList
 				.getContents().get(0);
-
-		mergeCompilationStatusManager(informationHolder.getStatusManager(), manager,
-				resourceForCompilationStatusList);
+		if (!progressMonitor.isCanceled()) {
+			mergeCompilationStatusManager(informationHolder.getStatusManager(), manager,
+					resourceForCompilationStatusList);
+		}
 	}
 
 	/**
@@ -292,37 +322,38 @@ public class CompilerInformationsSaver {
 		for (CompilationStatus compilationStatus : repositoryStatusManager.getCompilationStatusList()) {
 			// System.err.println(compilationStatus.getTarget());
 			genEl.add(compilationStatus.getTarget());
-
 		}
 
 		List<EObject> cleanTargets = new ArrayList<EObject>();
 		// Step 2 : adding all the new compilation status
 		for (ModelingUnit mu : localStatusManager.getModelingUnitToStatusList().keySet()) {
 			for (CompilationStatus status : localStatusManager.getModelingUnitToStatusList().get(mu)) {
-				if (!isContainedCompilationStatus(
-						repositoryStatusManager.getModelingUnitToStatusList().get(mu), status)) {
+				if (!progressMonitor.isCanceled()) {
+					if (!isContainedCompilationStatus(repositoryStatusManager.getModelingUnitToStatusList()
+							.get(mu), status)) {
 
-					if (!repositoryStatusManager.getCompilationStatusList().contains(status)) {
-						repositoryStatusManager.getCompilationStatusList().add(status);
-						if (!status.getTarget().getCompilationStatus().contains(status)) {
-							if (!cleanTargets.contains(status.getTarget())) {
-								cleanTargets.add(status.getTarget());
-								status.getTarget().getCompilationStatus().clear();
+						if (!repositoryStatusManager.getCompilationStatusList().contains(status)) {
+							repositoryStatusManager.getCompilationStatusList().add(status);
+							if (!status.getTarget().getCompilationStatus().contains(status)) {
+								if (!cleanTargets.contains(status.getTarget())) {
+									cleanTargets.add(status.getTarget());
+									status.getTarget().getCompilationStatus().clear();
+								}
+								status.getTarget().getCompilationStatus().add(status);
 							}
-							status.getTarget().getCompilationStatus().add(status);
 						}
-					}
-					if (repositoryStatusManager.getModelingUnitToStatusList().get(mu) == null) {
-						repositoryStatusManager.getModelingUnitToStatusList().put(mu,
-								new BasicEList<CompilationStatus>());
-					}
-					try {
-						repositoryStatusManager.getModelingUnitToStatusList().get(mu).add(status);
-					} catch (NullPointerException e) {
-						// TODO remove this catch, only for test
-						e.printStackTrace();
-					}
+						if (repositoryStatusManager.getModelingUnitToStatusList().get(mu) == null) {
+							repositoryStatusManager.getModelingUnitToStatusList().put(mu,
+									new BasicEList<CompilationStatus>());
+						}
+						try {
+							repositoryStatusManager.getModelingUnitToStatusList().get(mu).add(status);
+						} catch (NullPointerException e) {
+							// TODO remove this catch, only for test
+							e.printStackTrace();
+						}
 
+					}
 				}
 			}
 		}
