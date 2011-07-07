@@ -14,5 +14,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.cdo;visibility:=reexport,
  org.eclipse.core.resources,
- com.google.collect;bundle-version="0.8.0"
+ com.google.collect;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
