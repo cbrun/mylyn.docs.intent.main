@@ -107,10 +107,10 @@ blockquote {
     page-break-before: always;
     margin: 0 0 80px 0 ;
 	text-align: justify;
-	-moz-column-count: [nbColumns/] ;
+	-moz-column-count: [style.nbColumns/] ;
 	-moz-column-gap: 1.5em;
 	-moz-column-rule: 1px solid #c4c8cc;
-	-webkit-column-count: [nbColumns/];
+	-webkit-column-count: [style.nbColumns/];
 	-webkit-column-gap: 1.5em;
 	-webkit-column-rule: 1px solid #c4c8cc;
 }

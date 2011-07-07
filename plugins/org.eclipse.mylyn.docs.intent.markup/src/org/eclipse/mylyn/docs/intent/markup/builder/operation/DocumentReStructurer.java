@@ -11,8 +11,8 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.markup.builder.operation;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
 
 import java.util.Iterator;
 import java.util.Stack;
@@ -46,7 +46,7 @@ public class DocumentReStructurer {
 		Stack<Container> stack = new Stack<Container>();
 		stack.push(root);
 		Iterator<EObject> it = root.eAllContents();
-		Multimap<Container, StructureElement> roots2Childs = Multimaps.newHashMultimap();
+		Multimap<Container, StructureElement> roots2Childs = HashMultimap.create();
 		while (it.hasNext()) {
 			EObject cur = it.next();
 			if (cur instanceof StructureElement) {

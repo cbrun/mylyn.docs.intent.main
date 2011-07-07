@@ -11,9 +11,9 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.markup.builder.query;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
 
 import java.util.Iterator;
 
@@ -45,7 +45,7 @@ public class DocumentQuery {
 
 	public Container getLastContainer(int i) {
 
-		Multimap<Integer, Container> levelToContainers = Multimaps.newHashMultimap();
+		Multimap<Integer, Container> levelToContainers = HashMultimap.create();
 		levelToContainers.put(Integer.valueOf(0), doc);
 		updateLevelMap(0, levelToContainers, doc);
 

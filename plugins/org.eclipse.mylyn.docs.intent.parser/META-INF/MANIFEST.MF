@@ -7,7 +7,6 @@ Bundle-SymbolicName: org.eclipse.mylyn.docs.intent.parser; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.common,
  org.eclipse.emf.ecore,
- com.google.inject,
  org.eclipse.mylyn.docs.intent.core,
  org.eclipse.mylyn.docs.intent.markup,
  org.eclipse.mylyn.wikitext.core,
@@ -19,4 +18,3 @@ Export-Package: org.eclipse.mylyn.docs.intent.parser,
  org.eclipse.mylyn.docs.intent.parser.modelingunit.parser.utils,
  org.eclipse.mylyn.docs.intent.parser.modelingunit.serializer,
  org.eclipse.mylyn.docs.intent.serializer
-Import-Package: org.apache.log4j
