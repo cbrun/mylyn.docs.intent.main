@@ -137,13 +137,13 @@ public class IntentSimilarityChecker extends StatisticBasedSimilarityChecker {
 	 * @throws FactoryException
 	 *             - on error accessing features.
 	 */
-	protected boolean areSimilarSessions(IntentSection session1, IntentSection session2)
+	protected boolean areSimilarSessions(IntentSection session1, IntentSection session2) //TODO FIXME [naming] section should be better than session
 			throws FactoryException {
 		// 2 session are equals if :
 		// they have the same title
 		Block title1 = session1.getTitle();
 		Block title2 = session2.getTitle();
-
+		// TODO FIXME if section don't have any title yet, NPE
 		return isSimilar(title1, title2);
 	}
 

@@ -257,6 +257,7 @@ public class IntentBuilder {
 	 *             if the description unit parser detect any parse error.
 	 */
 	public void descriptionUnitContent(int offset, String descriptionUnitContent) throws ParseException {
+		// TODO FIXME sometimes currentState can be null
 		currentState = currentState.descriptionUnitContent(offset, descriptionUnitContent.length(),
 				formatUsingImbricationLevel(descriptionUnitContent, false));
 	}
