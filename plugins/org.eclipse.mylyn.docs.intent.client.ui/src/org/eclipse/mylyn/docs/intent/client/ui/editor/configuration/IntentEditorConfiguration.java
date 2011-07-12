@@ -22,10 +22,6 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.IntentEditor;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.quickfix.IntentQuickAssistant;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.AbstractIntentScanner;
-import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentDescriptionUnitScanner;
-import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentModelingUnitScanner;
-import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentStructuredElementScanner;
-import org.eclipse.mylyn.docs.intent.client.ui.editor.scanner.IntentTitleScanner;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
@@ -74,10 +70,10 @@ public class IntentEditorConfiguration extends TextSourceViewerConfiguration {
 	protected AbstractIntentScanner[] getScanners() {
 		if (scanners == null) {
 			List<AbstractIntentScanner> list = new ArrayList<AbstractIntentScanner>();
-			list.add(new IntentModelingUnitScanner(editor.getColorManager()));
-			list.add(new IntentDescriptionUnitScanner(editor.getColorManager()));
-			list.add(new IntentStructuredElementScanner(editor.getColorManager()));
-			list.add(new IntentTitleScanner(editor.getColorManager()));
+//			list.add(new IntentModelingUnitScanner(editor.getColorManager()));
+//			list.add(new IntentDescriptionUnitScanner(editor.getColorManager()));
+//			list.add(new IntentStructuredElementScanner(editor.getColorManager()));
+//			list.add(new IntentTitleScanner(editor.getColorManager()));
 			scanners = list.toArray(new AbstractIntentScanner[list.size()]);
 		}
 		return scanners;
