@@ -1,7 +1,17 @@
-h1. Eclipse Configuration Files for Intent
+h1. Configure your workspace for Intent
+
+h2. Eclipse Configuration Files for Intent
 
 This @/dev/code@ folder contains configuration files for Eclipse which should be installed by every Intent team member to ensure a common coding style.
 
 * @formatter.xml@ : the Java source formatter configuration to use for Intent. Import it from __Preferences > Java > Code Style > Formatter__ and make sure the new __Intent__ profile is the one enabled.
 * @CheckstyleConfiguration.xml@: the configuration file for CheckStyle v4. Import it from __Preferences > CheckStyle__.
-* @codeTemplates.xml@ : the Intent code templates (copyright...). Import it from __Preferences > Java > Code Style > Code templates__.
+* @codeTemplates.xml@ : the Intent code templates (copyright...). Import it from __Preferences > Java > Code Style > Code templates__
+
+h2. Other actions
+
+* set your file encoding to UTF-8 and your line delimiter to UNIX ( _Preferences > General > Workspace_)
+* configure your save actions to format source code and organize import ( _Preferences > Java > Editor > Save Actions_).
+* set the API Baseline problems to be considered as warnings ( _Plugin-Development > API Baselines_).
+
+

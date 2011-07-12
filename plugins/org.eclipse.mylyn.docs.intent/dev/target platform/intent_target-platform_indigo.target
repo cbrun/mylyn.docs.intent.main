@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="Intent - Indigo TP" sequenceNumber="21">
+<locations>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="1.5.0.v20110608-1400"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.7.0.v20110606-0949"/>
+<unit id="org.eclipse.acceleo.sdk.feature.group" version="3.1.0.v20110607-0602"/>
+<unit id="org.eclipse.emf.cdo.sdk.feature.group" version="4.0.0.v20110608-1747"/>
+<unit id="org.eclipse.emf.compare.sdk.feature.group" version="1.2.0.v20110607-2028"/>
+<unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.5.0.v20110502-1600-67O-96SGR55YJeZPedcQnghI6uFA"/>
+<repository location="http://download.eclipse.org/releases/indigo"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.platform.sdk" version="3.7.0.I20110613-1736"/>
+<repository location="http://download.eclipse.org/eclipse/updates/3.7"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="com.google.collect" version="1.0.0.v201003051000"/>
+<unit id="org.junit" version="4.8.1.v4_8_1_v20100427-1100"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/updateSite"/>
+</location>
+</locations>
+</target>

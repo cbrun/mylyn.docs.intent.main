@@ -1,0 +1,22 @@
+h1. Intent : setting up your dev environment
+
+This document lists all actions required to set up a clean dev environment for Intent.
+
+h2. Step 1 : configure git
+
+If you are under Windows, please execute the following command in your terminal, to avoid line-ending issues : 
+@git config --global core.autocrlf true@
+
+If your are under Linux, this step is optionnal.
+
+h2. Step 2 : use Intent target platform
+
+Please remember to use Intent's target platform (Window > Preferences > Plug-in Development > Target Platform > Intent - Indigo TP).
+
+h2. Step 3 : configure your workspace
+
+Please refer to the @/dev/code/README.textile@ to learn how to configure your workspace.
+
+h2. Step 4 : use launch configurations
+
+Please refer to the @/dev/launchconfigs/README.textile@ to learn how to use launch configurations to launch tests, clients and runtimes.
