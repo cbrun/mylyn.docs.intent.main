@@ -32,7 +32,6 @@ import org.eclipse.mylyn.docs.intent.collab.common.location.IntentLocations;
 import org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotificationFactoryHolder;
 import org.eclipse.mylyn.docs.intent.collab.ide.notification.WorkspaceRepositoryChangeNotificationFactory;
 import org.eclipse.mylyn.docs.intent.collab.ide.repository.WorkspaceConfig;
-import org.eclipse.mylyn.docs.intent.collab.ide.utils.MonitoringUtil;
 import org.eclipse.mylyn.docs.intent.collab.repository.Repository;
 import org.eclipse.mylyn.docs.intent.collab.repository.RepositoryConnectionException;
 import org.eclipse.mylyn.docs.intent.collab.utils.RepositoryCreatorHolder;
@@ -111,7 +110,7 @@ public final class IntentProjectManager {
 				// Synchronizer
 				if (synchronizerClient == null) {
 					synchronizerClient = SynchronizerCreator.createSynchronizer(getRepository(),
-							MonitoringUtil.createProgressMonitor(null), new IDEGeneratedElementListener());
+							new IDEGeneratedElementListener());
 				}
 
 				// Indexer
@@ -256,7 +255,7 @@ public final class IntentProjectManager {
 		if (synchronizerClient == null) {
 			try {
 				synchronizerClient = SynchronizerCreator.createSynchronizer(getRepository(),
-						MonitoringUtil.createProgressMonitor(null), new IDEGeneratedElementListener());
+						new IDEGeneratedElementListener());
 			} catch (RepositoryConnectionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

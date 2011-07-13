@@ -42,11 +42,6 @@ public class ProjectExplorerRefreshJob extends Job {
 	public static final String PROJECT_EXPLORER_REFRESH_JOB_NAME = "Refreshing Intent Index";
 
 	/**
-	 * The delay to use for scheduling this Job.
-	 */
-	public static final long SCHEDULE_DELAY = 500;
-
-	/**
 	 * The project to refresh.
 	 */
 	private IProject project;

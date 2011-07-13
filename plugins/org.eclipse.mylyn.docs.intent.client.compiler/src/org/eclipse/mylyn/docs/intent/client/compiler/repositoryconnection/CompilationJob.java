@@ -13,15 +13,17 @@ package org.eclipse.mylyn.docs.intent.client.compiler.repositoryconnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.mylyn.docs.intent.client.compiler.ModelingUnitCompiler;
 import org.eclipse.mylyn.docs.intent.client.compiler.generator.modellinking.ModelingUnitLinkResolver;
 import org.eclipse.mylyn.docs.intent.client.compiler.utils.IntentCompilerInformationHolder;
 import org.eclipse.mylyn.docs.intent.collab.common.location.IntentLocations;
-import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler;
-import org.eclipse.mylyn.docs.intent.collab.repository.Repository;
 import org.eclipse.mylyn.docs.intent.collab.repository.RepositoryConnectionException;
 import org.eclipse.mylyn.docs.intent.core.modelingunit.ModelingUnit;
 import org.eclipse.mylyn.docs.intent.core.query.UnitGetter;
@@ -30,59 +32,43 @@ import org.eclipse.mylyn.docs.intent.core.query.UnitGetter;
  * Represents a compilation operation, that compiles all the modeling units contained in the repository.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
-public class CompilationOperation implements Runnable {
+public class CompilationJob extends Job {
 	/**
-	 * The repository Object Handler to use for receiving notification.
+	 * Name to associate to this job.
 	 */
-	private RepositoryObjectHandler repositoryObjectHandler;
+	public static final String COMPILATION_JOB_NAME = "Compiling";
 
-	/**
-	 * The repository to use for acces to package registry and several informations.
-	 */
-	private Repository repository;
-
-	private CompilerRepositoryClient compilerRepositoryClient;
-
-	/**
-	 * The progressMonitor to use for compilation ; if canceled, the compilation will stop immediately.
-	 */
-	private Monitor progressMonitor;
+	private CompilerRepositoryClient client;
 
 	/**
 	 * CompilationOperation constructor.
 	 * 
-	 * @param repositoryObjectHandler
-	 *            the repository Object Handler to use for receiving notification
-	 * @param repository
-	 *            the repository to use for access to package registry and several informations
 	 * @param compilerRepositoryClient
 	 *            the client that launched this compilation operation
 	 */
-	public CompilationOperation(RepositoryObjectHandler repositoryObjectHandler, Repository repository,
-			CompilerRepositoryClient compilerRepositoryClient, Monitor progressMonitor) {
-		this.repositoryObjectHandler = repositoryObjectHandler;
-		this.repository = repository;
-		this.compilerRepositoryClient = compilerRepositoryClient;
-		this.progressMonitor = progressMonitor;
+	public CompilationJob(CompilerRepositoryClient compilerRepositoryClient) {
+		super(COMPILATION_JOB_NAME);
+		this.client = compilerRepositoryClient;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see java.lang.Runnable#run()
+	 * @see org.eclipse.core.runtime.jobs.Job#run(org.eclipse.core.runtime.Imonitor)
 	 */
-	public void run() {
+	@Override
+	protected IStatus run(IProgressMonitor monitor) {
 		try {
-
-			if (!progressMonitor.isCanceled()) {
+			if (!monitor.isCanceled()) {
 				ModelingUnitCompiler compiler = null;
 				ModelingUnitLinkResolver resolver = null;
 				List<ModelingUnit> modelingUnitsToCompile = new ArrayList<ModelingUnit>();
 
 				// InformationHolder Initialization
-				final Resource resourceIndex = repositoryObjectHandler.getRepositoryAdapter().getResource(
-						IntentLocations.INTENT_INDEX);
+				final Resource resourceIndex = client.getRepositoryObjectHandler().getRepositoryAdapter()
+						.getResource(IntentLocations.INTENT_INDEX);
 
 				IntentCompilerInformationHolder informationHolder = IntentCompilerInformationHolder
 						.getInstance();
@@ -90,14 +76,15 @@ public class CompilationOperation implements Runnable {
 
 				// LinkResolver initialization
 
-				if (!progressMonitor.isCanceled()) {
-					resolver = new ModelingUnitLinkResolver(repository, informationHolder);
+				if (!monitor.isCanceled()) {
+					resolver = new ModelingUnitLinkResolver(client.getRepository(), informationHolder);
 				}
 
 				// Compiler initialization
-				if (!progressMonitor.isCanceled()) {
-					compiler = new ModelingUnitCompiler(repository, resolver, informationHolder,
-							progressMonitor);
+				if (!monitor.isCanceled()) {
+					compiler = new ModelingUnitCompiler(client.getRepository(), resolver, informationHolder,
+							BasicMonitor.toMonitor(monitor));
+					
 
 					for (EObject resourceContent : resourceIndex.getContents()) {
 						modelingUnitsToCompile.addAll(UnitGetter
@@ -106,25 +93,22 @@ public class CompilationOperation implements Runnable {
 				}
 
 				// Compilation
-				if (!progressMonitor.isCanceled()) {
+				if (!monitor.isCanceled()) {
 					compiler.compile(modelingUnitsToCompile);
 				}
 				// Saving the new compilations errors
-				if (!progressMonitor.isCanceled()) {
+				if (!monitor.isCanceled()) {
 					System.err.println("[Compiler] compiled : "
 							+ informationHolder.getDeclaredResources().size() + " resources. ");
 					System.err.println("[Compiler] saving...");
-					compilerRepositoryClient.saveCompilationInformations(informationHolder);
+					client.saveCompilationInformations(informationHolder);
 					System.err.println("[Compiler] =====================> saved.");
 				}
 			}
-			Thread.currentThread().join(1);
 		} catch (RepositoryConnectionException e) {
 			e.printStackTrace();
 			System.err.println("[Compiler] Compilation  Failed");
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		return Status.OK_STATUS;
 	}
 }

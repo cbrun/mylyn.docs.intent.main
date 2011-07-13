@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.mylyn.docs.intent.client.ui.ide.launcher.IntentProjectManager;
 import org.eclipse.mylyn.docs.intent.collab.common.location.IntentLocations;
-import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient;
 import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.RepositoryAdapter;
+import org.eclipse.mylyn.docs.intent.collab.handlers.impl.AbstractRepositoryClient;
 import org.eclipse.mylyn.docs.intent.collab.handlers.impl.ReadWriteRepositoryObjectHandlerImpl;
 import org.eclipse.mylyn.docs.intent.collab.handlers.impl.notification.elementList.ElementListNotificator;
 import org.eclipse.mylyn.docs.intent.collab.handlers.notification.Notificator;
@@ -38,12 +38,7 @@ import org.eclipse.mylyn.docs.intent.collab.utils.RepositoryCreatorHolder;
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
  */
-public class ProjectExplorerRefresher implements RepositoryClient {
-
-	/**
-	 * The {@link Job} that refreshes the Project Explorer.
-	 */
-	private Job refreshJob;
+public class ProjectExplorerRefresher extends AbstractRepositoryClient {
 
 	/**
 	 * The project to refresh.
@@ -58,45 +53,6 @@ public class ProjectExplorerRefresher implements RepositoryClient {
 	 */
 	public ProjectExplorerRefresher(IProject project) {
 		this.project = project;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#addRepositoryObjectHandler(org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler)
-	 */
-	public void addRepositoryObjectHandler(RepositoryObjectHandler handler) {
-		handler.addClient(this);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#removeRepositoryObjectHandler(org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler)
-	 */
-	public void removeRepositoryObjectHandler(RepositoryObjectHandler handler) {
-		handler.removeClient(this);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#handleChangeNotification(org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification)
-	 */
-	public void handleChangeNotification(RepositoryChangeNotification notification) {
-		// Step 1 : cancel previous refresh job
-		if (refreshJob != null) {
-			refreshJob.cancel();
-		}
-
-		// Step 2 : launching a new Job
-		if (notification.getRightRoots().isEmpty()) {
-			refreshJob = new ProjectExplorerRefreshJob(project, notification.getRightRoots().iterator()
-					.next());
-		} else {
-			refreshJob = new ProjectExplorerRefreshJob(project, null);
-		}
-		refreshJob.schedule(ProjectExplorerRefreshJob.SCHEDULE_DELAY);
 	}
 
 	/**
@@ -130,5 +86,21 @@ public class ProjectExplorerRefresher implements RepositoryClient {
 		ProjectExplorerRefresher refresher = new ProjectExplorerRefresher(project);
 		refresher.addRepositoryObjectHandler(handler);
 		return refresher;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.impl.AbstractRepositoryClient#createNotificationJob(org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification)
+	 */
+	@Override
+	protected Job createNotificationJob(RepositoryChangeNotification notification) {
+		Job res = null;
+		if (notification.getRightRoots().isEmpty()) {
+			res = new ProjectExplorerRefreshJob(project, notification.getRightRoots().iterator().next());
+		} else {
+			res = new ProjectExplorerRefreshJob(project, null);
+		}
+		return res;
 	}
 }

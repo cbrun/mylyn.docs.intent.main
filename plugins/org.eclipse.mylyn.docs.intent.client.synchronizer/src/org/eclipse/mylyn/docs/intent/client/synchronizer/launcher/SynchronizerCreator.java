@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -58,12 +57,9 @@ public final class SynchronizerCreator {
 	 * @return the created Synchronizer client
 	 * @throws RepositoryConnectionException
 	 *             if a connection to the given repository cannot be established
-	 * @param progressMonitor
-	 *            the progress Monitor indicating if this synchronization operation has been canceled
 	 */
 	public static SynchronizerRepositoryClient createSynchronizer(Repository repository,
-			Monitor progressMonitor, GeneratedElementListener generatedElementListener)
-			throws RepositoryConnectionException {
+			GeneratedElementListener generatedElementListener) throws RepositoryConnectionException {
 
 		// Step 1 : we initialize the listened elements
 		final RepositoryAdapter repositoryAdapter = RepositoryCreatorHolder.getCreator()
@@ -90,7 +86,7 @@ public final class SynchronizerCreator {
 
 		// Step 3 : create the synchronizer
 		SynchronizerRepositoryClient synchronizerClient = new SynchronizerRepositoryClient(
-				(TraceabilityIndex)traceAbilityIndex, progressMonitor);
+				(TraceabilityIndex)traceAbilityIndex);
 		synchronizerClient.addRepositoryObjectHandler(handler);
 		synchronizerClient.setGeneratedElementListener(generatedElementListener);
 

@@ -10,18 +10,13 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.client.synchronizer;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.eclipse.emf.common.util.BasicMonitor;
-import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.mylyn.docs.intent.client.synchronizer.listeners.GeneratedElementListener;
 import org.eclipse.mylyn.docs.intent.client.synchronizer.synchronizer.IntentSynchronizer;
-import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient;
-import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler;
-import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.ReadOnlyException;
-import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.SaveException;
+import org.eclipse.mylyn.docs.intent.collab.handlers.impl.AbstractRepositoryClient;
 import org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationMessageType;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatus;
@@ -32,13 +27,9 @@ import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndex;
  * each time a modification on the compiler's generated elements index is detected.
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ * @author <a href="mailto:william.piers@obeo.fr">William Piers</a>
  */
-public class SynchronizerRepositoryClient implements RepositoryClient {
-
-	/**
-	 * The repository Object Handler to use for receiving notification.
-	 */
-	private RepositoryObjectHandler repositoryObjectHandler;
+public class SynchronizerRepositoryClient extends AbstractRepositoryClient {
 
 	/**
 	 * The synchronizer to use.
@@ -51,96 +42,15 @@ public class SynchronizerRepositoryClient implements RepositoryClient {
 	private TraceabilityIndex traceabilityIndex;
 
 	/**
-	 * The progress Monitor to use for canceling a synchronization operation.
-	 */
-	private Monitor progressMonitor;
-
-	/**
 	 * SynchronizerRepositoryClient constructor.
 	 * 
 	 * @param traceabilityIndex
 	 *            the listened TraceAbilityIndex
-	 * @param progressMonitor
-	 *            the progress Monitor to use for canceling a synchronization operation
 	 */
-	public SynchronizerRepositoryClient(TraceabilityIndex traceabilityIndex, Monitor progressMonitor) {
+	public SynchronizerRepositoryClient(TraceabilityIndex traceabilityIndex) {
 		System.out.println("[Synchronizer] Initialised.");
 		this.synchronizer = new IntentSynchronizer();
 		this.traceabilityIndex = traceabilityIndex;
-		this.progressMonitor = progressMonitor;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#addRepositoryObjectHandler(org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler)
-	 */
-	public void addRepositoryObjectHandler(RepositoryObjectHandler handler) {
-		handler.addClient(this);
-		repositoryObjectHandler = handler;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#removeRepositoryObjectHandler(org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler)
-	 */
-	public void removeRepositoryObjectHandler(RepositoryObjectHandler handler) {
-		handler.removeClient(this);
-		repositoryObjectHandler = null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#handleChangeNotification(org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification)
-	 */
-	public void handleChangeNotification(RepositoryChangeNotification notification) {
-		// First we reload the index
-		this.traceabilityIndex = (TraceabilityIndex)repositoryObjectHandler.getRepositoryAdapter().reload(
-				this.traceabilityIndex);
-
-		// this.traceabilityIndex = (TraceabilityIndex)notification.getRightRoots().get(0);
-		System.out.println("[Synchroniser] Detected changes on the TraceabilityResourceIndex.");
-
-		// We cancel the previous operation
-		progressMonitor.setCanceled(true);
-
-		repositoryObjectHandler.getRepositoryAdapter().openSaveContext();
-
-		// We get all the compilation Status to add
-		progressMonitor = new BasicMonitor();
-		Collection<? extends CompilationStatus> statusList = new ArrayList<CompilationStatus>();
-		try {
-			statusList = synchronizer.synchronize(repositoryObjectHandler.getRepositoryAdapter(),
-					this.traceabilityIndex, progressMonitor);
-		} catch (InterruptedException e) {
-			// Nothing to do : it means that the operation has been canceled
-			System.out.println("[Synchronizer] Canceled.");
-		}
-
-		if (!progressMonitor.isCanceled()) {
-			addAllStatusToTargetElement(statusList);
-		}
-
-		if (!progressMonitor.isCanceled()) {
-			// We add these status to the targets Element
-			try {
-				repositoryObjectHandler.getRepositoryAdapter().save();
-			} catch (ReadOnlyException e) {
-				// As we have just opened a save context, we are sure that this will never happens
-			} catch (SaveException e) {
-				try {
-					repositoryObjectHandler.getRepositoryAdapter().undo();
-				} catch (ReadOnlyException e1) {
-					// As we have just opened a save context, we are sure that this will never happens
-				}
-			}
-			System.out.println("[Synchronizer] Done. Detected " + statusList.size()
-					+ " synchronization issues");
-		}
-		repositoryObjectHandler.getRepositoryAdapter().closeContext();
-
 	}
 
 	/**
@@ -175,8 +85,30 @@ public class SynchronizerRepositoryClient implements RepositoryClient {
 	 *            the GeneratedElementListener
 	 */
 	public void setGeneratedElementListener(GeneratedElementListener generatedElementListener) {
-		this.synchronizer.setGeneratedElementListener(generatedElementListener);
+		synchronizer.setGeneratedElementListener(generatedElementListener);
 		generatedElementListener.setSynchronizer(this);
 
+	}
+
+	public TraceabilityIndex getTraceabilityIndex() {
+		return traceabilityIndex;
+	}
+
+	public void setTraceabilityIndex(TraceabilityIndex traceabilityIndex) {
+		this.traceabilityIndex = traceabilityIndex;
+	}
+
+	public IntentSynchronizer getSynchronizer() {
+		return synchronizer;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.impl.AbstractRepositoryClient#createNotificationJob(org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification)
+	 */
+	@Override
+	protected Job createNotificationJob(RepositoryChangeNotification notification) {
+		return new SynchronizeRepositoryJob(this);
 	}
 }

@@ -10,13 +10,16 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.client.indexer;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.mylyn.docs.intent.client.indexer.tocmaker.TocMaker;
 import org.eclipse.mylyn.docs.intent.collab.common.location.IntentLocations;
-import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient;
-import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.ReadOnlyException;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.SaveException;
+import org.eclipse.mylyn.docs.intent.collab.handlers.impl.AbstractRepositoryClient;
 import org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification;
 import org.eclipse.mylyn.docs.intent.core.document.IntentDocument;
 import org.eclipse.mylyn.docs.intent.core.indexer.IntentIndex;
@@ -27,7 +30,7 @@ import org.eclipse.mylyn.docs.intent.core.indexer.IntentIndexerFactory;
  * 
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
  */
-public class IndexerRepositoryClient implements RepositoryClient {
+public class IndexerRepositoryClient extends AbstractRepositoryClient {
 
 	/**
 	 * Entity used to compute index from a IntentDocument.
@@ -35,60 +38,10 @@ public class IndexerRepositoryClient implements RepositoryClient {
 	private TocMaker indexComputor;
 
 	/**
-	 * The repositoryObjectHandler notifying this indexer about any modifications on the document.
-	 */
-	private RepositoryObjectHandler repositoryObjectHandler;
-
-	/**
 	 * Indexer constructor.
 	 */
 	public IndexerRepositoryClient() {
 		indexComputor = new TocMaker();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#addRepositoryObjectHandler(org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler)
-	 */
-	public void addRepositoryObjectHandler(RepositoryObjectHandler handler) {
-		handler.addClient(this);
-		this.repositoryObjectHandler = handler;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#removeRepositoryObjectHandler(org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler)
-	 */
-	public void removeRepositoryObjectHandler(RepositoryObjectHandler handler) {
-		handler.removeClient(this);
-		this.repositoryObjectHandler = null;
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryClient#handleChangeNotification(org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification)
-	 */
-	public void handleChangeNotification(RepositoryChangeNotification notification) {
-		System.out.println("[Index] Detected changes...");
-		try {
-			repositoryObjectHandler.getRepositoryAdapter().openSaveContext();
-			makeToc();
-			repositoryObjectHandler.getRepositoryAdapter().save();
-		} catch (SaveException e) {
-			try {
-				repositoryObjectHandler.getRepositoryAdapter().undo();
-			} catch (ReadOnlyException e1) {
-				// TODO we can't do anything here
-			}
-		} catch (ReadOnlyException e) {
-			// TODO we can't do anything here
-		}
-		repositoryObjectHandler.getRepositoryAdapter().closeContext();
-
 	}
 
 	/**
@@ -130,6 +83,38 @@ public class IndexerRepositoryClient implements RepositoryClient {
 			return (IntentDocument)indexResource.getContents().get(0);
 		}
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.mylyn.docs.intent.collab.handlers.impl.AbstractRepositoryClient#createNotificationJob(org.eclipse.mylyn.docs.intent.collab.handlers.notification.RepositoryChangeNotification)
+	 */
+	@Override
+	protected Job createNotificationJob(final RepositoryChangeNotification notification) {
+		return new Job("Indexing") {
+
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				IStatus res = Status.OK_STATUS;
+				System.out.println("[Index] Detected changes... " + notification);
+				try {
+					repositoryObjectHandler.getRepositoryAdapter().openSaveContext();
+					makeToc();
+					repositoryObjectHandler.getRepositoryAdapter().save();
+				} catch (SaveException e) {
+					try {
+						repositoryObjectHandler.getRepositoryAdapter().undo();
+					} catch (ReadOnlyException e1) {
+						res = Status.CANCEL_STATUS;
+					}
+				} catch (ReadOnlyException e) {
+					res = Status.CANCEL_STATUS;
+				}
+				repositoryObjectHandler.getRepositoryAdapter().closeContext();
+				return res;
+			}
+		};
 	}
 
 }
