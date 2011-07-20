@@ -21,5 +21,5 @@ package org.eclipse.mylyn.docs.intent.markup.markup;
  * @model
  * @generated
  */
-public interface Document extends Container {
+public interface Document extends Container, HasAttributes {
 } // Document

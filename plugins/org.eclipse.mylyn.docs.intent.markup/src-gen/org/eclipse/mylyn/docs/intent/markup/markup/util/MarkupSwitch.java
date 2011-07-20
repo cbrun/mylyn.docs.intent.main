@@ -123,6 +123,7 @@ public class MarkupSwitch<T> {
 				Document document = (Document)theEObject;
 				T result = caseDocument(document);
 				if (result == null) result = caseContainer(document);
+				if (result == null) result = caseHasAttributes(document);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

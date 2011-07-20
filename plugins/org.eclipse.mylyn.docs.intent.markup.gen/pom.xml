@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+ <parent>
+    <groupId>org.eclipse.mylyn.docs.intent</groupId>
+    <artifactId>intent-parent</artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+    <relativePath>../..</relativePath>
+  </parent>
+
+  <groupId>acceleo</groupId>
+  <artifactId>org.eclipse.mylyn.docs.intent.markup.gen</artifactId>
+  <version>0.7.0.qualifier</version> <!-- This version should match the version of your project in the MANIFEST.MF-->
+  <packaging>eclipse-plugin</packaging>
+
+  <build>
+      <plugins>
+        <plugin>  
+          <groupId>org.codehaus.mojo</groupId>  
+          <artifactId>exec-maven-plugin</artifactId>  
+          <version>1.1.1</version>  
+          <executions>  
+            <execution>  
+              <phase>compile</phase>  
+              <goals>  
+                <goal>java</goal>  
+              </goals>
+              <configuration>
+                <!--
+                   Calls the AcceleoCompiler to launch the compilation.
+                -->
+                <mainClass>org.eclipse.mylyn.docs.intent.markup.gen.AcceleoCompiler</mainClass>  
+                <arguments>  
+                  <argument>${basedir}/src/</argument>  <!-- The source folder -->  
+                  <argument>${basedir}/target/classes</argument>  <!-- The output folder -->
+                  <argument>true</argument>  <!-- Indicates if we should use binary resources serializations -->
+                  <argument></argument>  <!-- The project dependencies in the workspace -->
+                </arguments>  
+              </configuration>  
+            </execution>  
+          </executions>  
+        </plugin>
+        
+        
+      </plugins>
+  </build>
+</project>

@@ -14,6 +14,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.mylyn.docs.intent.markup.markup.Image;
 import org.eclipse.swt.graphics.ImageData;
 
+/**
+ * Service for Acceleo generator to get Image information.
+ * 
+ * @author <a href="mailto:cedric.brun@obeo.fr">Cedric Brun</a>
+ */
 public class ImageUtility {
 
 	public String getImageWidth(Image imageDSL) {
@@ -30,7 +35,6 @@ public class ImageUtility {
 		}
 		return 1d;
 	}
-
 
 	public Boolean hasLandscapeRatio(Image imageDSL) {
 		return getWidthRatio(imageDSL) > 1;
@@ -52,9 +56,15 @@ public class ImageUtility {
 
 	private ImageData getImageData(Image imageDSL) {
 		try {
-			URI modelPath = imageDSL.eResource().getURI().trimSegments(1);
-			String absoluteImagePath = modelPath.toFileString() + "/"
-					+ imageDSL.getUrl();
+			URI imageURI = URI.createURI(imageDSL.getUrl());
+			String absoluteImagePath;
+			if (imageURI.hasAbsolutePath()) {
+				absoluteImagePath = imageURI.toString();
+			} else {
+				URI modelPath = imageDSL.eResource().getURI().trimSegments(1);
+				absoluteImagePath = modelPath.toFileString() + "/"
+						+ imageDSL.getUrl();
+			}
 			ImageData data = new ImageData(absoluteImagePath);
 			return data;
 		} catch (Exception e) {

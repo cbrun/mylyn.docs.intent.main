@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="markup"
     nsURI="http://www.eclipse.org/intent/markup/0.7" nsPrefix="markup">
-  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Container"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Container expectedResults/packagesModels/markup.ecore#//HasAttributes"/>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleContainer" eSuperTypes="expectedResults/packagesModels/markup.ecore#//Container"/>
   <eClassifiers xsi:type="ecore:EClass" name="StructureElement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="expectedResults/packagesModels/markup.ecore#//StructureElement expectedResults/packagesModels/markup.ecore#//Container expectedResults/packagesModels/markup.ecore#//HasAttributes">

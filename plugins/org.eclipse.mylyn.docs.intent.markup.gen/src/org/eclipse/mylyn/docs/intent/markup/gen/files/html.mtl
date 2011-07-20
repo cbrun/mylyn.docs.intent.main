@@ -9,19 +9,14 @@
 [comment encoding = UTF-8 /]
 [module html('http://www.eclipse.org/intent/markup/0.7')/]
 
-[template public generateSeverals(docs : Sequence(Document))]
-	[comment @main /]
-	[file ('index.html', false, 'UTF-8')]
-	[/file]
-[/template]
-
+  
 [template public generate(e : Document)]
 	
 	[comment @main /]
 	[file (eResourceName().replace('textile','html'), false, 'UTF-8')]
-	<!doctype html> 
+	<!doctype html>  
 	<html> 
-		<head>
+		<head> 
 			<link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
 		    <style>
 		[styleSheet()/]
@@ -32,11 +27,11 @@
 	    <header>
 	    <nav>
 	      <ul>
-	    	[e.eContents(Section).toNav()/]
+         	[e.eContents(Section).toNav()/]
 	       </ul>
 	    </nav>
 	    </header>
-		[e.content.toHTML()/]
+[e.content.toHTML()/]
 		</body>	
 	</html>
 	[/file]
@@ -46,11 +41,11 @@
 [template public toNav(e : Section)]
 <li><a href="#[e.id()/]">[e.title.toHTML()/]</a>
 [if (e.content.eContents(Section)->size() > 0)]
-	<ul>
-	[for (child : Section | e.eContents(Section))]
-		[child.toNav()/]
-	[/for]
-	</ul>
+<ul>
+[for (child : Section | e.eContents(Section))]
+[child.toNav()/]
+[/for]
+</ul>
 [/if]
 </li>
 [/template]
@@ -86,10 +81,10 @@ blockquote {
     page-break-before: always;
     margin: 0 0 80px 0 ;
 	text-align: justify;
-	-moz-column-count: 3;
+	-moz-column-count: 2;
 	-moz-column-gap: 1.5em;
 	-moz-column-rule: 1px solid #c4c8cc;
-	-webkit-column-count: 3;
+	-webkit-column-count: 2;
 	-webkit-column-gap: 1.5em;
 	-webkit-column-rule: 1px solid #c4c8cc;
 }
@@ -107,7 +102,58 @@ footer {
 	color: #777;
 }   
 
-/* [protected ('custom-css-directives')] */
+
+th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+}
+
+
+td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff url(images/bullet1.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa url(images/bullet2.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+
+/*[protected ('custom-css-directives')]
+*/
 	
 /* [/protected] */
 [/template] 
@@ -118,14 +164,14 @@ footer {
 [/template]
 
 [template public toHTML(e : Block)  ]
-	[e.content.toHTML()/]
+[e.content.toHTML()/]
 [/template]
 
 [template public toHTML(e : Section)  ]
-  <section id="[e.id()/]" class="section_level_[e.level/]">
-	<h[e.level/]>[e.title.content.toHTML()/]</h[e.level/]>
-	[e.content.toHTML()/]
-  </section>
+<section id="[e.id()/]" class="section_level_[e.level/]">
+<h[e.level/]>[e.title.content.toHTML()/]</h[e.level/]>
+[e.content.toHTML()/]
+</section>
 [/template]
 
 [template public toHTML(e : Paragraph)  ]
@@ -134,16 +180,30 @@ footer {
 
 
 [template public toHTML(e : Preformatted)  ]
-<pre>[content.toHTML()/]</pre>
-[/template]
+<pre>[content.toHTML()/]</pre>[/template]
 
 [template public toHTML(e : Code)  ]
-<pre>[content.toHTML()/]</pre>
-[/template]
+<pre>[content.toHTML()/]</pre>[/template]
 
 [template public toHTML(e : List)  ]
-	<ul> [content.toHTML()/] [items.toHTML()/]	
-	</ul>
+<ul>
+[content.toHTML()/] [items.toHTML()/]	
+</ul>
+[/template]
+
+[template public toHTML(e : Table)]
+<table>
+ [content.toHTML()/] 
+</table>	
+[/template]
+
+[template public toHTML(e : TableRow)]
+<tr>[content.toHTML()/] </tr>
+[/template]
+
+[template public toHTML(e : TableCell)]
+[if (e.isCellHeader)]<th>[content.toHTML()/]</th>
+[else]<td>[content.toHTML()/]</td>[/if]
 [/template]
 
 [template public toHTML(e : ListItem)  ]
@@ -160,8 +220,8 @@ footer {
 [comment block content /]
 
 
-[template public toHTML(e : Image)  ]
-	<img src="[e.url/]"/>
+[template public toHTML(e : Image)  ] 
+	<p><img src="[e.url/]"/></p>
 [/template]
 
 [template public toHTML(e : Text)  ]
@@ -179,8 +239,7 @@ footer {
 		<b>		
 	[/if]
 [/for]
-	<span>[e.data/]</span>
-[for (format : Formatting | e.format)]
+[e.data/][for (format : Formatting | e.format)]
     [comment TODO handle all formattings  /]
 	[if (format = markup::Formatting::code)]
 		</tt>
@@ -192,15 +251,12 @@ footer {
 		</strong>
 	[elseif (format = markup::Formatting::bold)]
 		</b>		
-	[/if]
-[/for]
-	[if (e.lineBreak)]
-		<br/>
-	[/if]
+	[/if][/for]
+[if (e.lineBreak)]<br/>[/if]
 [/template]
 
 [template public toHTML(e : Entity)  ]
-&[e.data/];	
+&[e.data/]; 
 [/template]
 
 [template public toHTML(e : Link) ?(e.hasBeenDeclaredWithHTMLSyntax and e.target <> null) ]
@@ -208,11 +264,11 @@ footer {
 [/template]
 
 [template public toHTML(e : Link) ?(not e.hasBeenDeclaredWithHTMLSyntax and e.target <> null) ]
-<span>->[e.name/]</span>
+<span>->[e.name.toHTML()/]</span>
 [/template]
 
 
 [query public eResourceName(cur : OclAny) : String =
-  invoke('org.eclipse.mylyn.docs.intent.makup.gen.services.ResourceService', 'eResourceName(org.eclipse.emf.ecore.EObject)', Sequence{}) /]
+  invoke('org.eclipse.mylyn.docs.intent.markup.gen.services.ResourceService', 'eResourceName(org.eclipse.emf.ecore.EObject)', Sequence{}) /]
 
 

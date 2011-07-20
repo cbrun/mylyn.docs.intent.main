@@ -346,6 +346,17 @@ public class SBlock extends BuilderState {
 		block.getContent().add(img);
 		return this;
 	}
+	
+	@Override
+	public BuilderState imageLink(Attributes attributes,
+			Attributes imageAttributes, String href, String imageUrl) {
+		Image img = MarkupFactory.eINSTANCE.createImage();
+		img.setUrl(imageUrl);
+		new HasAttributeCopyAttributes(img).setValues(attributes);
+		block.getContent().add(img);
+		return this;
+
+	}
 
 	/**
 	 * {@inheritDoc}

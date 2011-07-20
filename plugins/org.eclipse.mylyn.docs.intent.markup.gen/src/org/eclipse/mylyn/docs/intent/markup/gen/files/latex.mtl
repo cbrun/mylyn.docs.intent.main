@@ -12,8 +12,8 @@
 [query public autoRotateImage(e : OclAny) : Boolean = false /]
 
 
-[query public decode(s : String) : String =
-  invoke('org.eclipse.mylyn.docs.intent.markup.gen.services.DecodingService', 'decode(java.lang.String)', Sequence{}) /]
+[query public decode(s : Entity) : String =
+  invoke('org.eclipse.mylyn.docs.intent.markup.gen.services.DecodingService', 'decode(org.eclipse.mylyn.docs.intent.markup.markup.Entity)', Sequence{}) /]
 
 [query public listEnv(l : List) : String =
   if (l.listType = ListType::BULLETED) then
@@ -34,7 +34,7 @@
 [query public drop(s : Sequence(OclAny), n : Integer) : Sequence(OclAny) =
   s->subSequence(n+1, s->size())  /]
   
-[query public butLast(s : Sequence(OclAny)) : Sequence(OclAny) =
+[query public butLast(s : Sequence(TableCell)) : Sequence(TableCell) =
   s->subSequence(1, s->size() - 1) /]
 
 
@@ -125,7 +125,7 @@ This chapter includes all the large figures of the document oriented in landscap
 [/template]
 
 [template public toTex(e : Entity) post (trim())]
-[let decoded : String = e.data.decode()]
+[let decoded : String = e.decode()]
 [if (decoded = '’')]
 '	
 [/if]	

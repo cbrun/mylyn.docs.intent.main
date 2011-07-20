@@ -975,6 +975,7 @@ public class MarkupPackageImpl extends EPackageImpl implements MarkupPackage {
 
 		// Add supertypes to classes
 		documentEClass.getESuperTypes().add(this.getContainer());
+		documentEClass.getESuperTypes().add(this.getHasAttributes());
 		simpleContainerEClass.getESuperTypes().add(this.getContainer());
 		sectionEClass.getESuperTypes().add(this.getStructureElement());
 		sectionEClass.getESuperTypes().add(this.getContainer());

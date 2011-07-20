@@ -9,13 +9,16 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.mylyn.docs.intent.markup.gen,
  org.eclipse.mylyn.docs.intent.markup.gen.files,
+ org.eclipse.mylyn.docs.intent.markup.gen.services,
  org.eclipse.mylyn.docs.intent.markup.wikigen,
  org.eclipse.mylyn.docs.intent.markup.wikigen.impl,
  org.eclipse.mylyn.docs.intent.markup.wikigen.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.engine,
- org.eclipse.swt,
  org.eclipse.mylyn.docs.intent.markup,
  org.eclipse.ocl.ecore,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ com.google.collect,
+ org.eclipse.acceleo.parser
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.swt.graphics

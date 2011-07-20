@@ -10,8 +10,18 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.markup.gen.services;
 
+import org.eclipse.mylyn.docs.intent.markup.markup.Entity;
+
+/**
+ * Service to decode HTML entities.
+ * 
+ * @author <a href="mailto:cedric.brun@obeo.fr">Cedric Brun</a>
+ * 
+ */
 public class DecodingService {
-	public String decode(String codePoint) {
+	
+	public String decode(Entity a) {
+		String codePoint = a.getData();
 		if (codePoint.startsWith("#")) {
 			codePoint = codePoint.substring(1);
 		}

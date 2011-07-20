@@ -112,13 +112,22 @@ public interface MarkupPackage extends EPackage {
 	int DOCUMENT__CONTENT = CONTAINER__CONTENT;
 
 	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__ATTRIBUTES = CONTAINER_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 0;
+	int DOCUMENT_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.mylyn.docs.intent.markup.markup.impl.SimpleContainerImpl <em>Simple Container</em>}' class.

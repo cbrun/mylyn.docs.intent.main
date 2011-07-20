@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://www.obeo.fr">
+      Viewpoint
+   </description>
+   <feature url="features/org.eclipse.mylyn.docs.intent.markup_0.0.0.qualifier.jar" id="org.eclipse.mylyn.docs.intent.markup" version="0.7.0.qualifier">
+      <category name="Mylyn Intent"/>
+   </feature>
+   <feature url="features/org.eclipse.mylyn.docs.intent_0.0.0.qualifier.jar" id="org.eclipse.mylyn.docs.intent" version="0.7.0.qualifier">
+      <category name="Mylyn Intent"/>
+   </feature>
+   <category-def name="Mylyn Intent" label="Mylyn Intent">
+      <description>
+         Mylyn Intent
+      </description>
+   </category-def>
+</site>
