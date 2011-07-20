@@ -36,7 +36,6 @@ public class IntentQuickAssistProcessor implements IQuickAssistProcessor {
 	 * 
 	 * @see org.eclipse.jface.text.quickassist.IQuickAssistProcessor#getErrorMessage()
 	 */
-	@Override
 	public String getErrorMessage() {
 		// TODO Auto-generated method stub
 		return null;
@@ -47,7 +46,6 @@ public class IntentQuickAssistProcessor implements IQuickAssistProcessor {
 	 * 
 	 * @see org.eclipse.jface.text.quickassist.QuickAssistAssistant#canFix(org.eclipse.jface.text.source.Annotation)
 	 */
-	@Override
 	public boolean canFix(Annotation annotation) {
 		return IntentAnnotationFactory.INTENT_ANNOT_SYNC_WARNING.equals(annotation.getType());
 	}
@@ -57,7 +55,6 @@ public class IntentQuickAssistProcessor implements IQuickAssistProcessor {
 	 * 
 	 * @see org.eclipse.jface.text.quickassist.IQuickAssistProcessor#canAssist(org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext)
 	 */
-	@Override
 	public boolean canAssist(IQuickAssistInvocationContext invocationContext) {
 		// TODO Auto-generated method stub
 		return false;
@@ -68,7 +65,6 @@ public class IntentQuickAssistProcessor implements IQuickAssistProcessor {
 	 * 
 	 * @see org.eclipse.jface.text.quickassist.IQuickAssistProcessor#computeQuickAssistProposals(org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext)
 	 */
-	@Override
 	public ICompletionProposal[] computeQuickAssistProposals(IQuickAssistInvocationContext quickAssistContext) {
 		ISourceViewer viewer = quickAssistContext.getSourceViewer();
 		int documentOffset = quickAssistContext.getOffset();

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
 public class ProtocolFactory implements Resource.Factory {
 
-	@Override
 	public Resource createResource(URI uri) {
 		String projectName = parse(uri);
 		if (projectName != null) {
@@ -50,7 +49,6 @@ public class ProtocolFactory implements Resource.Factory {
 	private void fillProjectWithTests(final Project rPrj, IProject prj) throws CoreException {
 		prj.accept(new IResourceVisitor() {
 
-			@Override
 			public boolean visit(IResource resource) throws CoreException {
 				if ("java".equals(resource.getFileExtension())
 						&& resource.getFullPath().toString().contains("acceptance/comparedialog/patch")) {

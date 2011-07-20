@@ -93,7 +93,6 @@ public class IntentAnnotation extends Annotation implements IQuickFixableAnnotat
 	 * 
 	 * @see org.eclipse.jface.text.quickassist.IQuickFixableAnnotation#setQuickFixable(boolean)
 	 */
-	@Override
 	public void setQuickFixable(boolean state) {
 		this.quickFixableState = state;
 	}
@@ -103,7 +102,6 @@ public class IntentAnnotation extends Annotation implements IQuickFixableAnnotat
 	 * 
 	 * @see org.eclipse.jface.text.quickassist.IQuickFixableAnnotation#isQuickFixableStateSet()
 	 */
-	@Override
 	public boolean isQuickFixableStateSet() {
 		return quickFixableState;
 	}
@@ -113,7 +111,6 @@ public class IntentAnnotation extends Annotation implements IQuickFixableAnnotat
 	 * 
 	 * @see org.eclipse.jface.text.quickassist.IQuickFixableAnnotation#isQuickFixable()
 	 */
-	@Override
 	public boolean isQuickFixable() throws AssertionFailedException {
 		return true;
 	}

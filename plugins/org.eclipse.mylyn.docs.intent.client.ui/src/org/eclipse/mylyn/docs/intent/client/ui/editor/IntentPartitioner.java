@@ -69,7 +69,6 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#connect(org.eclipse.jface.text.IDocument)
 	 */
-	@Override
 	public void connect(IDocument document) {
 		fDocument = document;
 		updateRegions();
@@ -80,7 +79,6 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#disconnect()
 	 */
-	@Override
 	public void disconnect() {
 		// do nothing
 
@@ -91,7 +89,6 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#documentAboutToBeChanged(org.eclipse.jface.text.DocumentEvent)
 	 */
-	@Override
 	public void documentAboutToBeChanged(DocumentEvent event) {
 		// do nothing
 	}
@@ -101,7 +98,6 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#getLegalContentTypes()
 	 */
-	@Override
 	public String[] getLegalContentTypes() {
 		return TextUtilities.copy(fLegalContentTypes);
 	}
@@ -111,7 +107,6 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#getContentType(int)
 	 */
-	@Override
 	public String getContentType(int offset) {
 		ITypedRegion region = getPartition(offset);
 		if (region != null) {
@@ -125,7 +120,6 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#documentChanged(org.eclipse.jface.text.DocumentEvent)
 	 */
-	@Override
 	public boolean documentChanged(final DocumentEvent event) {
 		if (event.fText.length() == 0) {
 			// shift backward
@@ -154,11 +148,10 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#computePartitioning(int, int)
 	 */
-	@Override
 	public ITypedRegion[] computePartitioning(int offset, int length) {
 		ITypedRegion[] res = regions.toArray(new ITypedRegion[regions.size()]);
 		Arrays.sort(res, new Comparator<ITypedRegion>() {
-			@Override
+			
 			public int compare(ITypedRegion o1, ITypedRegion o2) {
 				return Integer.valueOf(o1.getOffset()).compareTo(Integer.valueOf(o2.getOffset()));
 			}
@@ -171,7 +164,6 @@ public class IntentPartitioner implements IDocumentPartitioner {
 	 * 
 	 * @see org.eclipse.jface.text.IDocumentPartitioner#getPartition(int)
 	 */
-	@Override
 	public ITypedRegion getPartition(int offset) {
 		for (ITypedRegion region : regions) {
 			if (region.getOffset() <= offset && (region.getOffset() + region.getLength()) >= offset) {

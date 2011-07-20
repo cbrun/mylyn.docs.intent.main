@@ -58,7 +58,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 * 
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#apply(org.eclipse.jface.text.IDocument)
 	 */
-	@Override
 	public void apply(IDocument document) {
 		// Step 1 : getting the resources to compare URI
 		String generatedResourceURI = syncAnnotation.getAdditionalInformations().iterator().next();
@@ -104,7 +103,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 * 
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getSelection(org.eclipse.jface.text.IDocument)
 	 */
-	@Override
 	public Point getSelection(IDocument document) {
 		// TODO Auto-generated method stub
 		return null;
@@ -115,7 +113,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 * 
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getAdditionalProposalInfo()
 	 */
-	@Override
 	public String getAdditionalProposalInfo() {
 		return "";
 	}
@@ -125,7 +122,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 * 
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getDisplayString()
 	 */
-	@Override
 	public String getDisplayString() {
 		return "See differences in Compare Editor";
 	}
@@ -135,7 +131,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 * 
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getImage()
 	 */
-	@Override
 	public Image getImage() {
 		return IntentEditorActivator.getDefault().getImage("icon/annotation/sync-warning.gif");
 	}
@@ -145,7 +140,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 * 
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getContextInformation()
 	 */
-	@Override
 	public IContextInformation getContextInformation() {
 		return null;
 	}
