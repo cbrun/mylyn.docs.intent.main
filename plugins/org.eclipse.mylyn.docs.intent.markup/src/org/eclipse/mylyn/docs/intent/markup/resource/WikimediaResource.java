@@ -14,6 +14,7 @@
 package org.eclipse.mylyn.docs.intent.markup.resource;
 
 import com.google.common.collect.Iterators;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -48,12 +49,10 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-
 /**
  * A resource implementation for web-based pages on wikimedia.
  * 
  * @author <a href="mailto:cedric.brun@obeo.fr">Cedric Brun</a>
- * 
  */
 public class WikimediaResource extends ResourceImpl {
 
@@ -71,21 +70,20 @@ public class WikimediaResource extends ResourceImpl {
 		WikimediaURI wURI = new WikimediaURI(uri);
 
 		String pageName = wURI.pageName();
-		String apiURI = wURI.baseServer()
-				+ "/api.php?format=xml&action=query&prop=revisions&titles="
+		String apiURI = wURI.baseServer() + "/api.php?format=xml&action=query&prop=revisions&titles="
 				+ pageName + "&rvprop=content";
 		URI eApiURI = URI.createURI(apiURI);
 
-		Map<?, ?> response = options == null ? null : (Map<?, ?>) options
-				.get(URIConverter.OPTION_RESPONSE);
-		if (response == null) {
+		Map<?, ?> response = null;
+		if (options != null) {
+			response = (Map<?, ?>)options.get(URIConverter.OPTION_RESPONSE);
+		} else {
 			response = new HashMap<Object, Object>();
 		}
 
 		InputStream inputStream = getInputStream(eApiURI);
 
-		URI eImgURI = URI.createURI(wURI.baseServer()
-				+ "/api.php?action=query&titles=" + pageName
+		URI eImgURI = URI.createURI(wURI.baseServer() + "/api.php?action=query&titles=" + pageName
 				+ "&generator=images&prop=imageinfo&iiprop=url&format=xml");
 		InputStream inputImage = getInputStream(eImgURI);
 
@@ -105,8 +103,7 @@ public class WikimediaResource extends ResourceImpl {
 		} finally {
 			inputStream.close();
 			inputImage.close();
-			Long timeStamp = (Long)response
-					.get(URIConverter.RESPONSE_TIME_STAMP_PROPERTY);
+			Long timeStamp = (Long)response.get(URIConverter.RESPONSE_TIME_STAMP_PROPERTY);
 			if (timeStamp != null) {
 				setTimeStamp(timeStamp);
 			}
@@ -116,9 +113,8 @@ public class WikimediaResource extends ResourceImpl {
 
 	}
 
-	private void handleImagesData(URI eImgURI, String baseServer,
-			InputStream input) throws ParserConfigurationException,
-			SAXException, IOException {
+	private void handleImagesData(URI eImgURI, String baseServer, InputStream input)
+			throws ParserConfigurationException, SAXException, IOException {
 
 		final SAXParserFactory parserFactory = SAXParserFactory.newInstance();
 		parserFactory.setNamespaceAware(true);
@@ -133,17 +129,15 @@ public class WikimediaResource extends ResourceImpl {
 		try {
 			xmlReader.parse(new InputSource(input));
 		} catch (IOException e) {
-			throw new RuntimeException(String.format(
-					"Unexpected exception retrieving data from %s", eImgURI), e); //$NON-NLS-1$
-		} 
+			throw new RuntimeException(
+					String.format("Unexpected exception retrieving data from %s", eImgURI), e); //$NON-NLS-1$
+		}
 
 		if (contentHandler.imageTitleToUrl.size() > 0) {
-			Iterator<Image> it = Iterators
-					.filter(getAllContents(), Image.class);
+			Iterator<Image> it = Iterators.filter(getAllContents(), Image.class);
 			while (it.hasNext()) {
 				Image cur = it.next();
-				String completeURL = contentHandler.imageTitleToUrl
-						.get("Image:" + cur.getUrl());
+				String completeURL = contentHandler.imageTitleToUrl.get("Image:" + cur.getUrl());
 				if (completeURL != null) {
 					cur.setUrl(baseServer + "/" + completeURL);
 				}
@@ -188,14 +182,11 @@ public class WikimediaResource extends ResourceImpl {
 			Link lnk = it.next();
 			String href = lnk.getHrefOrHashName();
 			if (lnk.getTarget() == null && href.startsWith("/wiki/")) {
-				String targetPageName = href
-						.substring(href.indexOf("/wiki/") + 6);
+				String targetPageName = href.substring(href.indexOf("/wiki/") + 6);
 				URI uri = getURI();
 				URI targetUri = uri.trimSegments(uri.segmentCount());
-				targetUri = URI.createURI(targetUri.toString() + targetPageName
-						+ "#/0");
-				Document proxifiedDoc = MarkupFactory.eINSTANCE
-						.createDocument();
+				targetUri = URI.createURI(targetUri.toString() + targetPageName + "#/0");
+				Document proxifiedDoc = MarkupFactory.eINSTANCE.createDocument();
 				((InternalEObject)proxifiedDoc).eSetProxyURI(targetUri);
 				lnk.setTarget(proxifiedDoc);
 			}
@@ -203,8 +194,7 @@ public class WikimediaResource extends ResourceImpl {
 
 	}
 
-	private void wikimediaLoad(InputStream is, Map<?, ?> options)
-			throws SAXException, IOException {
+	private void wikimediaLoad(InputStream is, Map<?, ?> options) throws SAXException, IOException {
 
 		final char[] buffer = new char[BUFFER_SIZE];
 		StringBuilder out = new StringBuilder();
@@ -236,6 +226,11 @@ public class WikimediaResource extends ResourceImpl {
 
 }
 
+/**
+ * URI for for web-based pages on wikimedia.
+ * 
+ * @author <a href="mailto:cedric.brun@obeo.fr">Cedric Brun</a>
+ */
 class WikimediaURI {
 
 	private URI baseURI;
@@ -270,29 +265,31 @@ class WikimediaURI {
 
 }
 
+/**
+ * A specific content handler.
+ * 
+ * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
+ */
 class ImageFetchingContentHandler implements ContentHandler {
 
 	final Map<String, String> imageTitleToUrl = new HashMap<String, String>();
 
-	private String currentPage = null;
+	private String currentPage;
 
-	private boolean inImageInfo = false;
+	private boolean inImageInfo;
 
-	public void startElement(String uri, String localName, String qName,
-			Attributes atts) throws SAXException {
+	public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
 		if ("page".equals(localName)) { //$NON-NLS-1$
 			currentPage = atts.getValue("title"); //$NON-NLS-1$
 		} else if ("imageinfo".equals(localName)) { //$NON-NLS-1$
 			inImageInfo = true;
 		} else if (inImageInfo && "ii".equals(localName)) { //$NON-NLS-1$
 			imageTitleToUrl.put(currentPage, atts.getValue("url")); //$NON-NLS-1$
-			imageTitleToUrl.put(currentPage.replace(' ', '_'),
-					atts.getValue("url"));
+			imageTitleToUrl.put(currentPage.replace(' ', '_'), atts.getValue("url"));
 		}
 	}
 
-	public void endElement(String uri, String localName, String qName)
-			throws SAXException {
+	public void endElement(String uri, String localName, String qName) throws SAXException {
 		if ("page".equals(localName)) { //$NON-NLS-1$
 			currentPage = null;
 		} else if ("imageinfo".equals(localName)) { //$NON-NLS-1$
@@ -300,8 +297,7 @@ class ImageFetchingContentHandler implements ContentHandler {
 		}
 	}
 
-	public void characters(char[] ch, int start, int length)
-			throws SAXException {
+	public void characters(char[] ch, int start, int length) throws SAXException {
 	}
 
 	public void endDocument() throws SAXException {
@@ -310,12 +306,10 @@ class ImageFetchingContentHandler implements ContentHandler {
 	public void endPrefixMapping(String prefix) throws SAXException {
 	}
 
-	public void ignorableWhitespace(char[] ch, int start, int length)
-			throws SAXException {
+	public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
 	}
 
-	public void processingInstruction(String target, String data)
-			throws SAXException {
+	public void processingInstruction(String target, String data) throws SAXException {
 	}
 
 	public void setDocumentLocator(Locator locator) {
@@ -327,8 +321,7 @@ class ImageFetchingContentHandler implements ContentHandler {
 	public void startDocument() throws SAXException {
 	}
 
-	public void startPrefixMapping(String prefix, String uri)
-			throws SAXException {
+	public void startPrefixMapping(String prefix, String uri) throws SAXException {
 	}
 
 }
