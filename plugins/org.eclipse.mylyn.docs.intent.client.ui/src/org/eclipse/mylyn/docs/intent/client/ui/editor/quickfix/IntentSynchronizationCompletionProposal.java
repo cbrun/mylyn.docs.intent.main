@@ -210,7 +210,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		public IServiceLocator getServiceLocator() {
 			return new IServiceLocator() {
 
-				@Override
 				public boolean hasService(Class api) {
 					if (api.equals(IHandlerService.class)) {
 						return true;
@@ -218,7 +217,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 					return false;
 				}
 
-				@Override
 				public Object getService(Class api) {
 					if (api.equals(IHandlerService.class)) {
 						return new IntentCompareHandlerService();
@@ -242,7 +240,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.services.IDisposable#dispose()
 		 */
-		@Override
 		public void dispose() {
 
 		}
@@ -252,7 +249,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.services.IServiceWithSources#removeSourceProvider(org.eclipse.ui.ISourceProvider)
 		 */
-		@Override
 		public void removeSourceProvider(ISourceProvider provider) {
 
 		}
@@ -262,7 +258,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.services.IServiceWithSources#addSourceProvider(org.eclipse.ui.ISourceProvider)
 		 */
-		@Override
 		public void addSourceProvider(ISourceProvider provider) {
 
 		}
@@ -273,7 +268,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#setHelpContextId(org.eclipse.core.commands.IHandler,
 		 *      java.lang.String)
 		 */
-		@Override
 		public void setHelpContextId(IHandler handler, String helpContextId) {
 
 		}
@@ -283,7 +277,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.handlers.IHandlerService#readRegistry()
 		 */
-		@Override
 		public void readRegistry() {
 
 		}
@@ -293,7 +286,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.handlers.IHandlerService#getCurrentState()
 		 */
-		@Override
 		public IEvaluationContext getCurrentState() {
 
 			return null;
@@ -305,7 +297,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#executeCommandInContext(org.eclipse.core.commands.ParameterizedCommand,
 		 *      org.eclipse.swt.widgets.Event, org.eclipse.core.expressions.IEvaluationContext)
 		 */
-		@Override
 		// CHECKSTYLE:OFF
 		public Object executeCommandInContext(ParameterizedCommand command, Event event,
 				IEvaluationContext context) throws ExecutionException, NotDefinedException,
@@ -320,7 +311,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#executeCommand(org.eclipse.core.commands.ParameterizedCommand,
 		 *      org.eclipse.swt.widgets.Event)
 		 */
-		@Override
 		public Object executeCommand(ParameterizedCommand command, Event event) throws ExecutionException,
 				NotDefinedException, NotEnabledException, NotHandledException {
 
@@ -333,7 +323,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#executeCommand(java.lang.String,
 		 *      org.eclipse.swt.widgets.Event)
 		 */
-		@Override
 		public Object executeCommand(String commandId, Event event) throws ExecutionException,
 				NotDefinedException, NotEnabledException, NotHandledException {
 
@@ -346,7 +335,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.handlers.IHandlerService#deactivateHandlers(java.util.Collection)
 		 */
-		@Override
 		public void deactivateHandlers(Collection activations) {
 
 		}
@@ -356,7 +344,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.handlers.IHandlerService#deactivateHandler(org.eclipse.ui.handlers.IHandlerActivation)
 		 */
-		@Override
 		public void deactivateHandler(IHandlerActivation activation) {
 
 		}
@@ -367,7 +354,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#createExecutionEvent(org.eclipse.core.commands.ParameterizedCommand,
 		 *      org.eclipse.swt.widgets.Event)
 		 */
-		@Override
 		public ExecutionEvent createExecutionEvent(ParameterizedCommand command, Event event) {
 
 			return null;
@@ -379,7 +365,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#createExecutionEvent(org.eclipse.core.commands.Command,
 		 *      org.eclipse.swt.widgets.Event)
 		 */
-		@Override
 		public ExecutionEvent createExecutionEvent(Command command, Event event) {
 
 			return null;
@@ -390,7 +375,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.handlers.IHandlerService#createContextSnapshot(boolean)
 		 */
-		@Override
 		public IEvaluationContext createContextSnapshot(boolean includeSelection) {
 
 			return null;
@@ -402,7 +386,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
 		 *      org.eclipse.core.commands.IHandler, org.eclipse.core.expressions.Expression, int)
 		 */
-		@Override
 		public IHandlerActivation activateHandler(String commandId, IHandler handler, Expression expression,
 				int sourcePriorities) {
 
@@ -415,7 +398,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
 		 *      org.eclipse.core.commands.IHandler, org.eclipse.core.expressions.Expression, boolean)
 		 */
-		@Override
 		public IHandlerActivation activateHandler(String commandId, IHandler handler, Expression expression,
 				boolean global) {
 
@@ -428,7 +410,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
 		 *      org.eclipse.core.commands.IHandler, org.eclipse.core.expressions.Expression)
 		 */
-		@Override
 		public IHandlerActivation activateHandler(String commandId, IHandler handler, Expression expression) {
 
 			return null;
@@ -440,7 +421,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
 		 *      org.eclipse.core.commands.IHandler)
 		 */
-		@Override
 		public IHandlerActivation activateHandler(String commandId, IHandler handler) {
 
 			return null;
@@ -451,7 +431,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		 * 
 		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(org.eclipse.ui.handlers.IHandlerActivation)
 		 */
-		@Override
 		public IHandlerActivation activateHandler(IHandlerActivation activation) {
 
 			return null;
