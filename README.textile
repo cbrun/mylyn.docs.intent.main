@@ -12,8 +12,12 @@ see the plugins/org.eclipse.mylyn.docs.intent/dev/README_BEFORE_CODING.textile f
 
 h2. Building
 
-Just use maven
+Just use maven 3, to build :
 
 mvn clean verify
+
+to build and *launch the tests* :
+
+mvn clean package
 
 
