@@ -19,7 +19,7 @@ import org.junit.runners.Suite;
  * @author <a href="mailto:alex.lagarde@obeo.fr">Alex Lagarde</a>
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({TestWikiTextParserGeneral.class, TestWikiTextParserSpecificElements.class, TestWikiTextParserUnresolvedProblems.class
+@Suite.SuiteClasses({TestWikiTextParserGeneral.class, TestWikiTextParserSpecificElements.class
 })
 public class TestWikiTextParserSuite {
 
