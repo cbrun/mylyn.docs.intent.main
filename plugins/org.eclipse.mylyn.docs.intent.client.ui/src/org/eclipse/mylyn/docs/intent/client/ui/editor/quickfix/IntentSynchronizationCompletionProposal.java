@@ -11,10 +11,23 @@
  *******************************************************************************/
 package org.eclipse.mylyn.docs.intent.client.ui.editor.quickfix;
 
+import java.util.Collection;
+
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareUI;
+import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.NotEnabledException;
+import org.eclipse.core.commands.NotHandledException;
+import org.eclipse.core.commands.ParameterizedCommand;
+import org.eclipse.core.commands.common.NotDefinedException;
+import org.eclipse.core.expressions.Expression;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.service.DiffService;
@@ -31,6 +44,13 @@ import org.eclipse.mylyn.docs.intent.client.ui.IntentEditorActivator;
 import org.eclipse.mylyn.docs.intent.client.ui.editor.annotation.IntentAnnotation;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.ui.ISourceProvider;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.IHandlerActivation;
+import org.eclipse.ui.handlers.IHandlerService;
+import org.eclipse.ui.services.IServiceLocator;
 
 /**
  * {@link ICompletionProposal} used to fix a Synchronization issue by opening the compare Editor.
@@ -67,7 +87,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 		// Step 2 : loading the resources
 		ResourceSetImpl rs = new ResourceSetImpl();
 		Resource generatedResource = rs.getResource(URI.createURI(generatedResourceURI), true);
-		ResourceSetImpl rs2 = new ResourceSetImpl();
 		Resource workingCopyResource = rs.getResource(URI.createURI(workingCopyResourceURI), true);
 
 		// Step 3 : opening a new Compare Editor on these two resources
@@ -84,14 +103,11 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 			// Step 3.3 : open a compare dialog
 			final CompareConfiguration compareConfig = new IntentCompareConfiguration(generatedResource,
 					workingCopyResource);
-			ModelCompareEditorInput input = new ModelCompareEditorInput(snapshot) {
-				@Override
-				public CompareConfiguration getCompareConfiguration() {
-					return compareConfig;
-				}
-			};
+			ModelCompareEditorInput input = new IntentCompareEditorInput(snapshot, compareConfig);
+			compareConfig.setContainer(input);
 			input.setTitle(COMPARE_EDITOR_TITLE + " (" + workingCopyResourceURI + ")");
 			CompareUI.openCompareDialog(input);
+
 		} catch (InterruptedException e) {
 			// Editor will not be opened
 		}
@@ -104,7 +120,6 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 * @see org.eclipse.jface.text.contentassist.ICompletionProposal#getSelection(org.eclipse.jface.text.IDocument)
 	 */
 	public Point getSelection(IDocument document) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -142,6 +157,306 @@ public class IntentSynchronizationCompletionProposal implements ICompletionPropo
 	 */
 	public IContextInformation getContextInformation() {
 		return null;
+	}
+
+	/**
+	 * A custom CompareEditorInput for Intent.
+	 * 
+	 * @author alagarde
+	 */
+	private class IntentCompareEditorInput extends ModelCompareEditorInput {
+
+		private CompareConfiguration compareConfig;
+
+		/**
+		 * This constructor takes a {@link ComparisonSnapshot} as input.
+		 * 
+		 * @param snapshot
+		 *            The ComparisonSnapshot loaded from an emfdiff.
+		 * @param compareConfig
+		 *            the compare config
+		 */
+		public IntentCompareEditorInput(ComparisonSnapshot snapshot, CompareConfiguration compareConfig) {
+			super(snapshot);
+			this.compareConfig = compareConfig;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.compare.CompareEditorInput#getCompareConfiguration()
+		 */
+		@Override
+		public CompareConfiguration getCompareConfiguration() {
+			return compareConfig;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.compare.CompareEditorInput#getWorkbenchPart()
+		 */
+		@Override
+		public IWorkbenchPart getWorkbenchPart() {
+			return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.compare.CompareEditorInput#getServiceLocator()
+		 */
+		@Override
+		public IServiceLocator getServiceLocator() {
+			return new IServiceLocator() {
+
+				@Override
+				public boolean hasService(Class api) {
+					if (api.equals(IHandlerService.class)) {
+						return true;
+					}
+					return false;
+				}
+
+				@Override
+				public Object getService(Class api) {
+					if (api.equals(IHandlerService.class)) {
+						return new IntentCompareHandlerService();
+					}
+					return null;
+				}
+			};
+		}
+
+	}
+
+	/**
+	 * A IHandlerService for Intent.
+	 * 
+	 * @author alagarde
+	 */
+	private class IntentCompareHandlerService implements IHandlerService {
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.services.IDisposable#dispose()
+		 */
+		@Override
+		public void dispose() {
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.services.IServiceWithSources#removeSourceProvider(org.eclipse.ui.ISourceProvider)
+		 */
+		@Override
+		public void removeSourceProvider(ISourceProvider provider) {
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.services.IServiceWithSources#addSourceProvider(org.eclipse.ui.ISourceProvider)
+		 */
+		@Override
+		public void addSourceProvider(ISourceProvider provider) {
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#setHelpContextId(org.eclipse.core.commands.IHandler,
+		 *      java.lang.String)
+		 */
+		@Override
+		public void setHelpContextId(IHandler handler, String helpContextId) {
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#readRegistry()
+		 */
+		@Override
+		public void readRegistry() {
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#getCurrentState()
+		 */
+		@Override
+		public IEvaluationContext getCurrentState() {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#executeCommandInContext(org.eclipse.core.commands.ParameterizedCommand,
+		 *      org.eclipse.swt.widgets.Event, org.eclipse.core.expressions.IEvaluationContext)
+		 */
+		@Override
+		// CHECKSTYLE:OFF
+		public Object executeCommandInContext(ParameterizedCommand command, Event event,
+				IEvaluationContext context) throws ExecutionException, NotDefinedException,
+				NotEnabledException, NotHandledException {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#executeCommand(org.eclipse.core.commands.ParameterizedCommand,
+		 *      org.eclipse.swt.widgets.Event)
+		 */
+		@Override
+		public Object executeCommand(ParameterizedCommand command, Event event) throws ExecutionException,
+				NotDefinedException, NotEnabledException, NotHandledException {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#executeCommand(java.lang.String,
+		 *      org.eclipse.swt.widgets.Event)
+		 */
+		@Override
+		public Object executeCommand(String commandId, Event event) throws ExecutionException,
+				NotDefinedException, NotEnabledException, NotHandledException {
+
+			return null;
+		}
+
+		// CHECKSTYLE:ON
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#deactivateHandlers(java.util.Collection)
+		 */
+		@Override
+		public void deactivateHandlers(Collection activations) {
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#deactivateHandler(org.eclipse.ui.handlers.IHandlerActivation)
+		 */
+		@Override
+		public void deactivateHandler(IHandlerActivation activation) {
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#createExecutionEvent(org.eclipse.core.commands.ParameterizedCommand,
+		 *      org.eclipse.swt.widgets.Event)
+		 */
+		@Override
+		public ExecutionEvent createExecutionEvent(ParameterizedCommand command, Event event) {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#createExecutionEvent(org.eclipse.core.commands.Command,
+		 *      org.eclipse.swt.widgets.Event)
+		 */
+		@Override
+		public ExecutionEvent createExecutionEvent(Command command, Event event) {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#createContextSnapshot(boolean)
+		 */
+		@Override
+		public IEvaluationContext createContextSnapshot(boolean includeSelection) {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
+		 *      org.eclipse.core.commands.IHandler, org.eclipse.core.expressions.Expression, int)
+		 */
+		@Override
+		public IHandlerActivation activateHandler(String commandId, IHandler handler, Expression expression,
+				int sourcePriorities) {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
+		 *      org.eclipse.core.commands.IHandler, org.eclipse.core.expressions.Expression, boolean)
+		 */
+		@Override
+		public IHandlerActivation activateHandler(String commandId, IHandler handler, Expression expression,
+				boolean global) {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
+		 *      org.eclipse.core.commands.IHandler, org.eclipse.core.expressions.Expression)
+		 */
+		@Override
+		public IHandlerActivation activateHandler(String commandId, IHandler handler, Expression expression) {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(java.lang.String,
+		 *      org.eclipse.core.commands.IHandler)
+		 */
+		@Override
+		public IHandlerActivation activateHandler(String commandId, IHandler handler) {
+
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.handlers.IHandlerService#activateHandler(org.eclipse.ui.handlers.IHandlerActivation)
+		 */
+		@Override
+		public IHandlerActivation activateHandler(IHandlerActivation activation) {
+
+			return null;
+		}
+
 	}
 
 }

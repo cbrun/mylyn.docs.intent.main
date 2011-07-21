@@ -27,8 +27,10 @@ import org.eclipse.mylyn.docs.intent.client.compiler.utils.IntentCompilerInforma
 import org.eclipse.mylyn.docs.intent.collab.common.location.IntentLocations;
 import org.eclipse.mylyn.docs.intent.collab.handlers.RepositoryObjectHandler;
 import org.eclipse.mylyn.docs.intent.collab.handlers.adapters.ReadOnlyException;
+import org.eclipse.mylyn.docs.intent.core.compiler.CompilationMessageType;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusManager;
+import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerFactory;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndex;
 import org.eclipse.mylyn.docs.intent.core.compiler.TraceabilityIndexEntry;
@@ -122,16 +124,17 @@ public class CompilerInformationsSaver {
 		for (ResourceDeclaration resource : informationHolder.getDeclaredResources()) {
 			if (!progressMonitor.isCanceled()) {
 				String internalResourcePath = getInternalResourcePath(resource);
+				if (internalResourcePath != null) {
+					Resource generatedResource = handler.getRepositoryAdapter().getOrCreateResource(
+							internalResourcePath);
+					resourceInfos.put(resource, internalResourcePath);
+					generatedResource.getContents().clear();
 
-				Resource generatedResource = handler.getRepositoryAdapter().getOrCreateResource(
-						internalResourcePath);
-				resourceInfos.put(resource, internalResourcePath);
-				generatedResource.getContents().clear();
-
-				// We update the resourceToTraceabilityElementIndexEntry map using this resource content
-				updateTraceabilityFromResourceContent(resource, informationHolder,
-						informationHolder.getResourceContent(resource));
-				generatedResource.getContents().addAll(informationHolder.getResourceContent(resource));
+					// We update the resourceToTraceabilityElementIndexEntry map using this resource content
+					updateTraceabilityFromResourceContent(resource, informationHolder,
+							informationHolder.getResourceContent(resource));
+					generatedResource.getContents().addAll(informationHolder.getResourceContent(resource));
+				}
 			}
 		}
 		return resourceInfos;
@@ -250,9 +253,30 @@ public class CompilerInformationsSaver {
 	 *         resource will be located)
 	 */
 	private String getInternalResourcePath(ResourceDeclaration resource) {
-		String resourcePath = ((String)resource.getUri()).replace("\"", "");
-		if (resourcePath.contains("/")) {
-			resourcePath = resourcePath.substring(resourcePath.lastIndexOf('/') + 1);
+		String resourcePath = null;
+		// If the resource is not associated to any URI
+		if (resource.getUri() == null) {
+			// We try to use its name to compute the internal path
+			String resourceName = resource.getName();
+			if (resourceName != null && resourceName.length() > 0) {
+				resourcePath = resourceName;
+			} else {
+				// We add an error and return a sample name
+				CompilationStatus status = CompilerFactory.eINSTANCE.createCompilationStatus();
+				status.setSeverity(CompilationStatusSeverity.ERROR);
+				status.setTarget(resource);
+				status.setType(CompilationMessageType.VALIDATION_ERROR);
+				status.setMessage("As this resource has no URI, it should have a name to be identifed.");
+				resource.getCompilationStatus().add(status);
+				return "unnamed-resource.xmi";
+			}
+		} else {
+			// Here a concrete URI has been associated to this resource
+			resourcePath = ((String)resource.getUri()).replace("\"", "");
+			// we get the last Segment of this URI to compute the internal path
+			if (resourcePath.contains("/")) {
+				resourcePath = resourcePath.substring(resourcePath.lastIndexOf('/') + 1);
+			}
 		}
 		resourcePath = IntentLocations.GENERATED_RESOURCES_FOLDER_PATH + resourcePath;
 		return resourcePath;

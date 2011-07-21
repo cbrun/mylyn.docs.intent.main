@@ -248,14 +248,9 @@ public final class SynchronizerMessageProvider {
 	 * @return an error message indicating that the given resourceDeclaration hasn't been found externally
 	 */
 	public static String createMessageForNullExternalResource(ResourceDeclaration resourceDeclaration) {
-		String returnedMessage = "Resource ";
-		if (resourceDeclaration.getName() != null) {
-			returnedMessage += resourceDeclaration.getName() + SYNC_MESSAGES_WHITESPACE;
-		}
-		returnedMessage += " has been generated on the " + SYNC_MESSAGES_INTERNAL_MODEL + " but no "
-				+ SYNC_MESSAGES_EXTERNAL_MODEL + " Resource found";
+		String returnedMessage = "";
 		if (resourceDeclaration.getUri() != null) {
-			returnedMessage += " at URI : " + resourceDeclaration.getUri().toString();
+			returnedMessage += "Cannot locate Resource at URI : " + resourceDeclaration.getUri().toString();
 		}
 		returnedMessage += ".";
 		return returnedMessage;

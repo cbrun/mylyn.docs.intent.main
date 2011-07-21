@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.text.ISynchronizable;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
@@ -84,11 +85,17 @@ public class IntentAnnotationModelManager {
 		if (!(handledCompilationStatus.containsKey(status))) {
 			// If the status is a Synchronization Status
 			URI uri = null;
-			if (status instanceof SynchronizerCompilationStatus) {
+			if (status instanceof SynchronizerCompilationStatus
+					&& ((SynchronizerCompilationStatus)status).getCompiledResourceURI() != null
+					&& ((SynchronizerCompilationStatus)status).getCompiledResourceURI().length() > 0) {
 				// We use the repository Adapter to get the Resource containing
 				// the target of the synchronization error
-				uri = repositoryAdapter.getResource(
-						((SynchronizerCompilationStatus)status).getCompiledResourceURI()).getURI();
+				String compiledResourceURI = ((SynchronizerCompilationStatus)status).getCompiledResourceURI();
+				Resource resource = repositoryAdapter.getResource(compiledResourceURI);
+
+				if (resource != null) {
+					uri = resource.getURI();
+				}
 			}
 
 			// We create an annotation from the status and add it to the annotation model

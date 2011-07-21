@@ -85,7 +85,9 @@ public final class IntentAnnotationFactory {
 					SynchronizerCompilationStatus syncStatus = (SynchronizerCompilationStatus)compilationStatus;
 					Set<String> additionalInformations = new HashSet<String>();
 					additionalInformations.add(syncStatus.getWorkingCopyResourceURI());
-					additionalInformations.add(targetURI.toString());
+					if (targetURI != null) {
+						additionalInformations.add(targetURI.toString());
+					}
 					annotation.setAdditionalInformations(additionalInformations);
 					annotationMessageType = IntentAnnotationMessageType.SYNC_WARNING;
 				} else {

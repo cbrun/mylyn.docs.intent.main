@@ -1,0 +1,26 @@
+h1. Intent : Abstract Resources
+
+
+h2. Did you say "Abstract" ? 
+
+See Eclipe Con example : the resource containing the emfCompareProduct has been defined for documentation purposes only : as it is an abstraction of the EMF Compare software, synchronizing it with some concrete and technical artifact has no meaning at all.
+
+That is why we would like to introduce "Abstract" resources, that will not be synchronized.
+
+Such a resource will still be built and validated by the compiler.
+
+h2. Abstract resources : formal definition
+
+Any Resource which is not associated to any URI is considered as Abstract, as there is no concrete artificats that we can use to synchronize it.
+
+Example (default syntax) : 
+
+bc.. 
+@M
+	Resource emfCompareProductResource {
+		content += emfCompareProduct;
+	}
+M@
+
+
+

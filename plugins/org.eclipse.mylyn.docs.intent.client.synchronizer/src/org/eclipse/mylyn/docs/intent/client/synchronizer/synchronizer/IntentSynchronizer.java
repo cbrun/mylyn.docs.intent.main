@@ -111,8 +111,12 @@ public class IntentSynchronizer {
 			TraceabilityIndexEntry indexEntry = indexEntryIterator.next();
 			// First of all, we clear the old synchronization statuses
 			clearSyncStatusesFromIndexEntry(indexEntry);
-			// We then generate the synchronization status for this entry
-			statusList.addAll(synchronize(adapter, indexEntry, progressMonitor));
+
+			// We do not synchronize abstract resources (i.e. resources with no associated URI)
+			if (indexEntry.getResourceDeclaration().getUri() != null) {
+				// We then generate the synchronization status for this entry
+				statusList.addAll(synchronize(adapter, indexEntry, progressMonitor));
+			}
 		}
 		return statusList;
 	}

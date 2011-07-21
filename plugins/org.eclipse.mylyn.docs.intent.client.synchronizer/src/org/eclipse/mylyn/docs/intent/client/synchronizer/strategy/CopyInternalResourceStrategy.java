@@ -21,6 +21,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.mylyn.docs.intent.client.synchronizer.factory.SynchronizerMessageProvider;
+import org.eclipse.mylyn.docs.intent.core.compiler.CompilationMessageType;
+import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity;
+import org.eclipse.mylyn.docs.intent.core.compiler.CompilerFactory;
+import org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.modelingunit.ResourceDeclaration;
 
 /**
@@ -55,7 +60,15 @@ public class CopyInternalResourceStrategy implements SynchronizerStrategy {
 			options.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 			externalResource.save(options);
 		} catch (IOException e) {
-			// We simply stop the synchronization on these resources
+			// We stop the synchronization on these resources and put a warning
+			SynchronizerCompilationStatus status = CompilerFactory.eINSTANCE
+					.createSynchronizerCompilationStatus();
+			status.setSeverity(CompilationStatusSeverity.WARNING);
+			status.setTarget(resourceDeclaration);
+			status.setType(CompilationMessageType.SYNCHRONIZER_WARNING);
+			status.setMessage(SynchronizerMessageProvider
+					.createMessageForNullExternalResource(resourceDeclaration));
+			resourceDeclaration.getCompilationStatus().add(status);
 			return null;
 		}
 		return externalResource;

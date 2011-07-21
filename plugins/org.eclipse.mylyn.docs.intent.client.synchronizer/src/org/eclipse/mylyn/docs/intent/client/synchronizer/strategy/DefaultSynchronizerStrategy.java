@@ -13,9 +13,9 @@ package org.eclipse.mylyn.docs.intent.client.synchronizer.strategy;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.mylyn.docs.intent.client.synchronizer.factory.SynchronizerMessageProvider;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationMessageType;
-import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilationStatusSeverity;
 import org.eclipse.mylyn.docs.intent.core.compiler.CompilerFactory;
+import org.eclipse.mylyn.docs.intent.core.compiler.SynchronizerCompilationStatus;
 import org.eclipse.mylyn.docs.intent.core.modelingunit.ResourceDeclaration;
 
 /**
@@ -38,7 +38,8 @@ public class DefaultSynchronizerStrategy implements SynchronizerStrategy {
 	public Resource handleNullExternalResource(ResourceDeclaration resourceDeclaration,
 			Resource internalResource, String externalResourceURI) {
 
-		CompilationStatus status = CompilerFactory.eINSTANCE.createCompilationStatus();
+		SynchronizerCompilationStatus status = CompilerFactory.eINSTANCE
+				.createSynchronizerCompilationStatus();
 		status.setSeverity(CompilationStatusSeverity.WARNING);
 		status.setTarget(resourceDeclaration);
 		status.setType(CompilationMessageType.SYNCHRONIZER_WARNING);
