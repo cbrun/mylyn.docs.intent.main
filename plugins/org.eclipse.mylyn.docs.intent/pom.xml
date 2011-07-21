@@ -22,6 +22,29 @@
 
  <build>   
     <plugins>
+    <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>build-helper-maven-plugin</artifactId>
+    <version>1.3</version>
+    <executions>
+        <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+                <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+                <artifacts>
+                    <artifact>
+                        <file>dev/target platform/indigo-sdk.target</file>
+                        <type>target</type>
+                        <classifier>dev/target platform/indigo-sdk</classifier>
+                    </artifact>
+                </artifacts>
+            </configuration>
+        </execution>
+    </executions>
+    </plugin>
     </plugins>
   </build>
 
