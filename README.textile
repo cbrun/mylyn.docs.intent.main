@@ -14,10 +14,10 @@ h2. Building
 
 Just use maven 3, to build :
 
-mvn clean verify
+mvn clean package
 
 to build and *launch the tests* :
 
-mvn clean package
+mvn clean verify
 
 
